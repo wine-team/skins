@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2a1ebd41-54f1-4e91-b843-4a2cd2989781" name="https://github.com/wine-team/skins.git" url="https://github.com/wine-team/skins.git">
+        <fileTransfer host="https://github.com/wine-team/skins.git" port="21" rootFolder="/skins" username="604942578@qq.com">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="https://github.com/wine-team/skins.git" uploadOnCheckin="2a1ebd41-54f1-4e91-b843-4a2cd2989781">
+    <serverData>
+      <paths name="https://github.com/wine-team/skins.git">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+    <option name="myUploadOnCheckinName" value="https://github.com/wine-team/skins.git" />
+  </component>
+</project>
