@@ -1,581 +1,290 @@
-/**
- * 获取host域名
- * @returns
- */
-function hostUrl() {
-    return location.protocol+'//'+location.host;
-}
-$(document).ready(function(){
+jQuery(function(){
 	
-	if ($('.login-con').size()>0 ){
-		$('.login').on('click','.hd',function(){  //会员登陆和快速登陆切换
-	        $('.normal-login').toggle();
-			$('.quick-login').toggle();
-		});
-	}
+	var time = "3";
+	var istel = 1;
 	
-    if ($('.hover-trigger').size()>0) {
-        $('.hover-trigger,.hover-accept').hover(function () {
-            if ($(this).is('.hover-trigger')) {
-                $(this).next('.hover-accept').show();
-                $(this).addClass('hover-change');
-            } else {
-                 $(this).show();
-                 $(this).prev('.hover-trigger').addClass('hover-change');
-            }
-        }, function () {
-            if ($(this).is('.hover-trigger')) {
-                $(this).next('.hover-accept').hide();
-                $(this).removeClass('hover-change');
-            } else {
-                $(this).hide();
-                $(this).prev('.hover-trigger').removeClass('hover-change');
-            }
-        });
-    }
+	$("#minbar").on("mouseover",".m_li",function(event){
+		
+	     $(this).addClass("m_lion");
+	     $(this).find(".r_av").show().stop().animate({opacity:1,right:"35px"},300);
+	}).on("mouseout",'.m_li',function(){
+		
+		 $(this).removeClass("m_lion");
+		 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
+	})
 
-    //注册验证码
-    if ($('#ajaxJsonCaptcha').size() > 0) {
-        $('.forget-form-account').on('click', '#ajaxJsonCaptcha', function(){
-            $.ajax({
-                type: 'get',
-                async: false,
-                dataType : 'json',
-                url: location.origin+'/pc/forget/ajaxJsonCaptcha',
-                success: function(json) {
-                    $('#ajaxJsonCaptcha').html(json.image);
-                }
-            });
-        });
-    }
-    
-    //登录验证码
-    if ($('.ajaxJsonCaptcha').size() > 0) {
-        $('.fast-login').on('click', '.ajaxJsonCaptcha', function(){
-            $.ajax({
-                type: 'get',
-                async: false,
-                dataType : 'json',
-                url: location.origin+'/pc/forget/ajaxJsonCaptcha',
-                success: function(json) {
-                    $('.ajaxJsonCaptcha').html(json.image);
-                }
-            });
-        });
-    }
-    
-    //注册页发送短信
-    if ($('.btnsend').size() > 0) {
-        $('.register-form-validate').on('click', '.btnsend', function(event){
-            var obj = $(this);
-            obj.attr('disabled', 'true');
-            var phone = $.trim($('input[name=mobile_phone]').val());
-            var captcha = $.trim($('input[name=captcha]').val());
-            var mobile = /^1[34578]\d{9}$/
-            if (!phone || !mobile.test(phone)) {
-                if (!$('input[name=mobile_phone]').hasClass('error')) {
-                    $('input[name=mobile_phone]').addClass('error').after('<label for="mobile_phone" class="error">手机号码格式有误</label>');
-                } else {
-                    $('input[name=mobile_phone]').focus();
-                }
-                obj.removeAttr('disabled');
-                return;
-            } else if( !captcha ) {
-                if (!$('input[name=captcha]').hasClass('error')) {
-                    $('input[name=captcha]').addClass('error').after('<label for="captcha" class="error">请输入验证码</label>');
-                } else {
-                    $('input[name=captcha]').focus();
-                }
-                obj.removeAttr('disabled');
-                return;
-            } else {
-                $.ajax({
-                    url:hostUrl()+'/pc/register/checkPhone',
-                    type:'post',
-                    data:{phone:phone, captcha:captcha},
-                    dataType:'json',
-                    success:function(data) {
-                        if (data.status) {
-                            jump(obj, 60);
-                        } else {
-                        	if (!$('input[name=captcha]').hasClass('error')) {
-                                $('input[name=captcha]').next('label.error').text(data.messages).show();
-                            } else {
-                                $('input[name=captcha]').addClass('error').after('<label for="verify" class="error">'+data.messages+'</label>');
-                            }
-                            obj.removeAttr('disabled');
-                        }
-                    }
-                });
-            }
-            event.preventDefault();
-        });
-    }
-    
-    //登录页发送短信
-    if ($('.getpwd').size() > 0) {
-        $('.fast-code').on('click', '.getpwd', function(event){
-            var obj = $(this);
-            obj.attr('disabled', 'true');
-            var phone = $.trim($('input[name=mobile_phone]').val());
-            var captcha = $.trim($('.e-captcha').val());
-            var mobile = /^1[34578]\d{9}$/
-            if (!phone || !mobile.test(phone)) {
-                if (!$('input[name=mobile_phone]').hasClass('error')) {
-                	$('input[name=mobile_phone]').parents('.quick-login').find('.remind').children('p').text('手机号码格式有误');
-                }
-                $('input[name=mobile_phone]').focus();
-                obj.removeAttr('disabled');
-                return false;
-            }
-            if( !captcha ) {
-                if (!$('input[name=captcha]').hasClass('error')) {
-                	$('input[name=mobile_phone]').parents('.quick-login').find('.remind').children('p').text('请输入验证码');
-                } 
-                $('input[name=captcha]').focus();
-                obj.removeAttr('disabled');
-                return false;
-            }
-            $.ajax({
-                url:hostUrl()+'/pc/login/checkPhone',
-                type:'post',
-                data:{phone:phone, captcha:captcha},
-                dataType:'json',
-                success:function(data) {
-                    if (data.status) {
-                    	$('.quick-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
-                        jump(obj, 60);
-                    } else {
-                    	$('input[name=mobile_phone]').parents('.quick-login').find('.remind').children('p').text(data.messages);
-                        obj.removeAttr('disabled');
-                    }
-                }
-            });
-            event.preventDefault();
-        });
-    }
-    
-    function jump(obj, count) {
-        obj.text(count+'秒');
-        window.setTimeout(function(){
-            count--;
-            if(count > 0) {
-                obj.text(count+'秒');
-                jump(obj, count);
-            } else {
-                obj.text('重新发送').removeAttr('disabled');  
-            }
-        }, 1000);
-    }
-    
-    /*注册提交*/
-    if ($('.register-form-validate').size() > 0) {
-        $('.register-form-validate').submit(function(e) {
-            e.preventDefault();
-        }).validate({
-            rules: {
-                username: {
-                    required: true,
-                    remote: {
-                        url:hostUrl()+'/pc/register/validateName',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            username:function(json) {
-                                return $('input[name=username]').val();
-                            }
-                        }
-                    }
-                },
-                password: {
-                    required: true,
-                    rangelength:[6,20]
-                },
-                confirm_password: {
-                    required: true,
-                    equalTo: '#password'
-                },
-                verify: {
-                    required: true,
-                    remote: {
-                        url:hostUrl()+'/pc/register/validateVerify',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            mobile_phone:function(json) {
-                                return $('input[name=mobile_phone]').val();
-                            },
-                            verify:function(json) {
-                                return $('input[name=verify]').val();
-                            }
-                        }
-                    }
-                },
-                mobile_phone: {
-                    required: true,
-                    mobile:true,
-                    remote: {
-                        url:hostUrl()+'/pc/register/validateMobilePhone',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            mobile_phone:function(json) {
-                                return $('input[name=mobile_phone]').val();
-                            }
-                        }
-                    }
-                },
-                parent_id: {
-                    remote: {
-                        url:hostUrl()+'/pc/register/validateParentId',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            username:function(json) {
-                                return $('input[name=parent_id]').val();
-                            }
-                        }
-                    }
-                }
-            },
-            messages: {
-                username: {
-                    required: '请输入您的用户名',
-                    remote: '用户名已存在'
-                },
-                password: {
-                    required: '请输入您的密码',
-                    rangelength: '密码长度只能在6-20位字符之间'
-                },
-                confirm_password: {
-                    required: '请再次输入密码',
-                    equalTo: '输入密码与原来不相同'
-                },
-                mobile_phone: {
-                    required: '请输入您的手机号码',
-                    mobile: '手机号码格式有误',
-                    remote: '手机号已注册'
-                },
-                captcha: {
-                    required: '请输入验证码',
-                },
-                verify: {
-                    required: '请输入动态密码',
-                    remote: '动态密码无效'
-                },
-                parent_id: {
-                    remote: '当前推荐人无效'
-                }
-            },
-            submitHandler: function(f) {
-                $.ajax({
-                    type: 'post',
-                    async: false,
-                    dataType : 'json',
-                    url: hostUrl()+'/pc/register/doRegister',
-                    data: $('.register-form-validate').serialize(),
-                    beforeSend: function() {
-                        $('button[type=submit]').text('正在注册...').attr('disabled', true);
-                    },
-                    success: function(json) {
-                        if (json.status) {
-                            window.location.href = json.messages;
-                        } else {
-                            alert(json.messages);
-                            $('button[type=submit]').text('立即注册').removeAttr('disabled');
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
-    
-    //登录提交页面
-    if ($('.normal-login').size() > 0) {
-        $('.normal-login').submit(function(e) {
-            e.preventDefault();
-        }).validate({
-            errorPlacement: function(e, el) {
-            	if ($(el).hasClass('error')) {
-	            	if ($('#username').val() == '' && $('#password').val() == '' ) {
-	            		$(el).parents('.normal-login').find('.remind').children('p').text('请输入您的用户名');
-	            	}else{
-	            		$(el).parents('.normal-login').find('.remind').children('p').text(e.text());
-	            	}
-            	}
-            },
-            success: function(e, el) {
-                if ($(el).hasClass('error')) {
-                    $(el).parents('.normal-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
-                }
-            },
-        	rules: {
-                 username: {
-                     required: true,
-                 },
-                 password: {
-                     required: true,
-                     rangelength:[6,20]
-                 },
-            },
-            messages: {
-                username: {
-                	required: '请输入您的用户名',
-                },
-                password: {
-                    required: '请输入您的密码',
-                	rangelength: '密码长度只能在6-20位字符之间'
-                },
-            },
-            submitHandler: function(f) {
-                $.ajax({
-                    type: 'post',
-                    async: false,
-                    dataType : 'json',
-                    url: hostUrl()+'/pc/login/loginPost',
-                    data: $('.login-form-validate').serialize(),
-                    beforeSend: function() {
-                        $('.d-login').text('正在登录...').attr('disabled', true);
-                    },
-                    success: function(json) {
-                        if (json.status) {
-                            window.location.href = json.messages;
-                        } else {
-                        	$('.d-login').text('正在登录...').attr('disabled', true);
-                        	if (json.data >= 3) {
-                        		$('.forget-form-account').css('display', 'block');
-                        		if (!$('.d-captcha').val()) {
-                        			$('.login-form-validate').find('.remind').children('p').text('必选字段');
-                        		}
-                        	}
-                        	if (json.input == 'captcha') {
-                        		$('.d-captcha').focus();
-                        	}
-                        	$('.login-form-validate').find('.remind').children('p').text(json.messages);
-                        	$('.d-login').animate({'top':'+=0'}, 200, function(){
-                        	    $(this).text('登 录').removeAttr('disabled');
-                        	});
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
-    
-    //快速登录提交页
-    if ($('.quick-login').size() > 0) {
-        $('.quick-login').submit(function(e) {
-            e.preventDefault();
-        }).validate({
-            errorPlacement: function(e, el) {
-                if ($(el).hasClass('error')) {
-                	if ($('#mobile_phone').val() == '' && $('#captcha').val() == '' && $('#verify').val() == '' ) {
-	            		$(el).parents('.quick-login').find('.remind').children('p').text('请输入您的手机号码');
-	            	}else if ($('#captcha').val() == '' && $('#verify').val() == '' ){
-	            		$(el).parents('.quick-login').find('.remind').children('p').text('请输入验证码');
-	            	}else {
-	            		$(el).parents('.quick-login').find('.remind').children('p').text(e.text());
-	            	}
-                }
-            },
-            success: function(e, el) {
-                if ($(el).hasClass('error')) {
-                    $(el).parents('.quick-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
-                }
-            },
-        	rules: {
-        	    mobile_phone: {
-                    required: true,
-                },
-                captcha: {
-                    required: true
-                },
-                verify: {
-                    required: true,
-                },
-            },
-            messages: {
-            	mobile_phone: {
-                	required: '请输入您的手机号码',
-                },
-                captcha: {
-                    required: '请输入验证码',
-                },
-                verify: {
-                    required: '请输入动态密码',
-                },
-            },
-            submitHandler: function(f) {
-                $.ajax({
-                    type: 'post',
-                    async: false,
-                    dataType : 'json',
-                    url: hostUrl()+'/pc/login/loginPost',
-                    data: $('.quick-login').serialize(),
-                    beforeSend: function() {
-                        $('.e-login').text('正在登录...').attr('disabled', true);
-                    },
-                    success: function(json) {
-                        if (json.status) {
-                            window.location.href = json.messages;
-                        } else {
-                            $('.quick-login').find('.remind').children('p').text(json.messages);
-                            $('button[type=submit]').text('登 录').removeAttr('disabled');
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
-    
-    //填写账户名提交页面
-    if ($('.forget-form-account').size() > 0) {
-        $('.forget-form-account').submit(function(e) {
-            e.preventDefault();
-        }).validate({
-            errorPlacement: function(e, el) {
-                $(el).next().text(e.text());
-            },
-            success: function(e, el) {
-                $(el).next().text(e.text());
-            },
-            submitHandler: function(f) {
-                $.ajax({
-                    type: 'post',
-                    async: false,
-                    dataType : 'json',
-                    url: hostUrl()+'/pc/forget/alidateUser',
-                    data: $('.forget-form-account').serialize(),
-                    beforeSend: function() {
-                        $('button[type=submit]').text('加载中...').attr('disabled', true);
-                    },
-                    success: function(json) {
-                        if (json.status) {
-                            window.location.href = json.messages;
-                        } else {
-                            alert(json.messages);
-                            $('button[type=submit]').text('下一步').removeAttr('disabled');
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
-    
-    //找回密码操作
-    if ($('.forget-form-mobile').size() > 0) {
-        $('.forget-form-mobile').on('click', '.btnsend', function(event){
-            var obj = $(this);
-            obj.attr('disabled', 'true');
-            $.ajax({
-                url:hostUrl()+'/pc/forget/checkPhone',
-                type:'post',
-                data:{phone:$('button.btnsend').attr('data-attr')},
-                dataType:'json',
-                success:function(data) {
-                    if (data.status) {
-                        jump(obj, 60);
-                    } else {
-                        if (!$('input[name=verify]').hasClass('error')) {
-                            $('input[name=verify]').next('span.error').text(data.message);
-                        } else {
-                            $('input[name=verify]').addClass('error').after('<span class="error">'+data.message+'</span>');
-                        }
-                    }
-                }
-            });
-            event.preventDefault();
-        });
-        
-        $('.forget-form-mobile').submit(function(e) {
-            e.preventDefault();
-        }).validate({
-            errorPlacement: function(e, el) {
-                $(el).next().text(e.text());
-            },
-            success: function(e, el) {
-                $(el).next().text(e.text());
-            },
-            submitHandler: function(f) {
-                $.ajax({
-                    type: 'post',
-                    async: false,
-                    dataType : 'json',
-                    url: hostUrl()+'/pc/forget/confirmValidate',
-                    data: {username:$('input[name=username]').val(), verify:$('input[name=verify]').val(), mobile_phone:$('button.btnsend').attr('data-attr')},
-                    beforeSend: function() {
-                        $('button[type=submit]').text('加载中...').attr('disabled', true);
-                    },
-                    success: function(json) {
-                        if (json.status) {
-                            window.location.href = json.messages;
-                        } else {
-                            alert(json.messages);
-                            $('button[type=submit]').text('下一步').removeAttr('disabled');
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
-    
-    //修改密码操作
-    if ($('.forget-modify-password').size() > 0) {
-        $('.forget-modify-password').submit(function(e) {
-            e.preventDefault();
-        }).validate({
-            rules: {
-                password: {
-                    minlength: 6,
-                    required: true
-                },
-                confirm_password: {
-                    required: true,
-                    equalTo: '#password'
-                }
-            },
-            messages: {
-                password: {
-                    required: '请输入您的密码',
-                    minlength: '密码长度不能少于6位字符'
-                },
-                confirm_password: {
-                    required: '请再次输入密码',
-                    equalTo: '输入密码与原来不相同'
-                }
-            },
-            errorPlacement: function(e, el) {
-                $(el).next().text(e.text());
-            },
-            success: function(e, el) {
-                $(el).next().text(e.text());
-            },
-            submitHandler: function(f) {
-                $.ajax({
-                    type: 'post',
-                    async: false,
-                    dataType : 'json',
-                    url: hostUrl()+'/pc/forget/modifyValidate',
-                    data: $('.forget-modify-password').serialize(),
-                    beforeSend: function() {
-                        $('button[type=submit]').text('加载中...').attr('disabled', true);
-                    },
-                    success: function(json) {
-                        if (json.status) {
-                            window.location.href = json.messages;
-                        } else {
-                            alert(json.messages);
-                            $('button[type=submit]').text('修改密码').removeAttr('disabled');
-                        }
-                    }
-                });
-                return false;
-            }
-        });
-    }
-});
+	$('.m_tops').delegate('.top','click',function(){ 
+		$('html,body').stop().animate({scrollTop:'0px'},600)
+	})
+	
+	$(".lha").delegate("h2","mouseenter",function(){
+		
+		var i = $(this).index();
+		$(this).addClass("on").siblings().removeClass("on");
+		$("#lzone").children(".lfmo").eq(i).show().siblings().hide();
+	});
+
+	var Validator= {
+			
+		    isEmail:function(a) {
+		        var b = "^[-!#$%&'*+\\./0-9=?A-Z^_`a-z{|}~]+@[-!#$%&'*+\\/0-9=?A-Z^_`a-z{|}~]+.[-!#$%&'*+\\./0-9=?A-Z^_`a-z{|}~]+$";
+		        return this.test(a, b);
+		    },
+		    isMobile:function(a) {
+		        return this.test(a, /(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/);
+		    },
+		    isPhone:function(a) {
+		        return this.test(a, /^[0-9]{3,4}\-[0-9]{7,8}$/);
+		    },
+		    isNumber:function(a, b) {
+		        return !isNaN(a.nodeType == 1 ? a.value :a) && (!b || !this.test(a, "^-?[0-9]*\\.[0-9]*$"));
+		    },
+		    isEmpty:function(a) {
+		        return !jQuery.isEmptyObject(a);
+		    },
+		    test:function(a, b) {
+		        a = a.nodeType == 1 ? a.value :a;
+		        return new RegExp(b).test(a);
+		    }
+	};
+	$("#loginform").bind("submit",function(){
+		
+		var a = $("#username").val();
+		var b = $("#password").val();
+		var c = $('#remember').is(':checked') ? 1 : 0;
+		var t = $('#token').val();
+		if(	a.length<2||a.length>30	){
+			alert("请准确填写登陆帐号,2-30位之间");
+			$("#username").focus();
+			return false;
+		}
+		if(	b.length<5||b.length>30	){
+			alert("请准确填写登陆密码,5-30位之间");
+			$("#password").focus();
+			return false;
+		}
+		$.ajax({url:'user.php', 
+			type:'POST', 
+			data:{act:"ajax_login",username:a,password:b,remember:c,token:t},
+			dataType:'TEXT',
+			error: function(){
+				alert('Error');
+			},
+			success:function(result){
+				if( result==1){
+					$("#loginform").hide();
+					$("#lok").show();
+					dj();
+				}else{
+					alert("您输入的用户名或密码有误，请重新输入！");	
+				}
+			}
+		});
+		return false;
+	});
+	
+	
+	
+	$(".rtext").keyup(function(){
+		
+		var a=$(this).val();
+		var s=$(this).parent().find("label");	
+		if(a==""){
+			s.show();
+		}else{
+			s.hide();	
+		}
+	});
+	
+	
+	
+	$("#telform").bind("submit",function(){
+		
+		var a='';
+		var b=$("#tpas").val();
+		var c=$("#cpas").val();
+		if(istel==1){
+			a=$("#mobile_phone").val();
+			if(a.length<4||!Validator.isMobile(a)){
+				alert("请填写正确的手机号码");
+				$("#mobile_phone").focus();
+				return false;
+			}
+		}else{
+			a=$("#email").val();	
+			if(a.length<4||!Validator.isEmail(a)){
+				alert("请填写正确的邮箱地址");
+				$("#email").focus();
+				return false;
+			}
+		}
+
+		if(b.length<5||b.length>30){
+			alert("请准确填写登陆密码,5-30位之间");
+			$("#tpas").focus();
+			return false;
+		}
+		if(b=='123456'){
+			alert("密码过于简单！");
+			return false;
+		}
+		if(b!=c){
+			alert("两次输入密码不一致，请重新输入");
+			$("#cpas").focus();
+			return false;
+		}
+		regs(a,b);
+		return false;
+	});
+	
+	$("#telform").delegate("#email","blur",function(){
+		
+		var a=$(this).val();
+		if(a.length<4||!Validator.isEmail(a)){
+			return false;
+		}
+		$.ajax({
+			url:'user.php?act=check_email',
+			type:'POST',
+			data:{'email':a},
+	        dataType:'text',
+	        error:function() {
+	            alert('Error');
+	        },
+	        success:function(res) {
+	         if(res!="y"){
+	        	 $("#t_ts").show();
+	         }else{
+	        	 $("#t_ts").hide();
+	         }
+	        }
+	    });
+	});
+
+	$("#telform").delegate("#mobile_phone","blur",function(){
+		var a=$(this).val();
+		if( a.length<10||!Validator.isMobile(a) ){
+			return false;
+		}
+		$.ajax({
+	        url:'user.php?act=check_phone',
+	        type:'POST',
+	        data:{'mobile_phone':a},
+	        dataType:'text',
+	        error:function() {
+	            alert('Error');
+	        },
+	        success:function(res) {
+	        	if(res!="y"){
+	        		$("#t_ts").show();
+	        	}else{
+	        		$("#t_ts").hide();
+	        	}
+	        }
+	    });
+	});
+
+})
+
+function dj(){
+		
+	setTimeout("dj()",1000);
+	$("#miao").text(time); 
+	time--;
+	if( time<1 ){
+		window.location.href=document.referrer;
+	}
+}
+
+function submitPwd(){
+		
+	var b = $("#new_password").val();
+	var a = $("#confirm_password").val();
+	var c = $("#old_password").val();
+	if( b==""||b==""||c=="" ){
+		alert("原始密码、新密码和确认密码不能为空");
+		return false;
+	}
+	if( a.length<6 ){
+		alert("密码不能少于6位");
+		return false;
+	}
+	if( a!=b ){
+		alert("两次输入的密码不一致！");
+		return false;
+	}
+}	
+
+function submitPwdInfo(){
+		
+	var a = $("#account").val();
+	var b = $("#captcha").val();
+	if( a.length<4 ){
+		alert("帐号不能少于4位！");
+		return false;
+	}
+	if(!Validator.isEmail(a)&&!Validator.isMobile(a)){
+		alert("请填写正确的手机号码/邮箱");
+		return false;
+	}
+	if( b.length<4 ){
+		alert("请输入4位验证码!");
+		return false;
+	}
+}
+
+//regist
+function qieh(obj){  
+	
+	var t = obj.innerHTML;
+	if( t=="使用邮箱注册" ){
+		$("#email").show();
+		$("#mobile_phone").hide();
+		$("#zlab").text("邮箱注册：").show();
+		$("#email").val("");
+		obj.innerHTML="使用手机注册";
+		istel = 0;
+	}else{
+		$("#email").hide();
+		$("#mobile_phone").show();
+		$("#zlab").text("手机号注册：").show();
+		$("#mobile_phone").val("");
+		obj.innerHTML="使用邮箱注册";
+		istel = 1;	
+	}
+}
+
+function regs(u,p){
+	
+	var token = $("#token").val();
+	$.ajax({url:'user.php', 
+			type:'POST', 
+			data:{
+				act:"ajax_regist",
+				username:u,
+				password:p,
+				token:token
+			},
+			dataType:'text',
+			error:function(){
+				alert('Error');
+			},
+			success: function(result){
+				if(result==1){
+					$("#telform").hide();
+					$("#rok").show();
+				}else{
+					alert("您的输入有错，请重新输入！");	
+				}
+		   }
+	});	
+}
+
+function yzm(){
+	
+	var a = $("#yzm").val();
+	if( a=="" || a.length<4 ){
+		 alert("请输入不少于4位的验证码!");
+	     return false;
+	}
+}
