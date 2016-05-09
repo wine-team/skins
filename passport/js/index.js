@@ -96,30 +96,28 @@ jQuery(function(){
 		}
 	});
 	
-	
-	
 	$("#telform").bind("submit",function(){
 		
 		var a='';
 		var b=$("#tpas").val();
 		var c=$("#cpas").val();
-		if(istel==1){
-			a=$("#mobile_phone").val();
-			if(a.length<4||!Validator.isMobile(a)){
+		if( istel==1 ){
+			a = $("#mobile_phone").val();
+			if( a.length<4||!Validator.isMobile(a) ){
 				alert("请填写正确的手机号码");
 				$("#mobile_phone").focus();
 				return false;
 			}
 		}else{
-			a=$("#email").val();	
-			if(a.length<4||!Validator.isEmail(a)){
+			a = $("#email").val();	
+			if( a.length<4||!Validator.isEmail(a) ){
 				alert("请填写正确的邮箱地址");
 				$("#email").focus();
 				return false;
 			}
 		}
 
-		if(b.length<5||b.length>30){
+		if( b.length<5||b.length>30 ){
 			alert("请准确填写登陆密码,5-30位之间");
 			$("#tpas").focus();
 			return false;
