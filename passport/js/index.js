@@ -1,3 +1,11 @@
+/**
+ * 获取host域名
+ * @returns
+ */
+function hostUrl() {
+    return location.protocol+'//'+location.host;
+}
+
 jQuery(function(){
 	
 	var time = "3";
@@ -23,6 +31,72 @@ jQuery(function(){
 		$(this).addClass("on").siblings().removeClass("on");
 		$("#lzone").children(".lfmo").eq(i).show().siblings().hide();
 	});
+	
+	if( $('.captcha').size()>0 ){  //验证码刷新
+		
+		$('.captcha').delegate('img','click',function(){
+			$.ajax({
+	            type: 'get',
+	            async: false,
+	            dataType : 'json',
+	            url: hostUrl()+'/forget/ajaxJsonCaptcha',
+	            success: function(json) {
+	                $('.captcha').html(json.image);
+	            }
+	        });
+		})
+	}
+	
+	if( $('.forget-form').size()>0 ){  // 验证用户忘记密码
+		$('.forget-form').submit(function(e) {
+            e.preventDefault();
+        }).validate({
+            rules: {
+                username: {
+                    required: true,
+                    remote: {
+                        url:hostUrl()+'/forget/validateName',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {
+                            username:function(json) {
+                                return $('input[name=username]').val();
+                            }
+                        }
+                    }
+                },
+               
+            },
+            messages: {
+                username: {
+                    required: '',
+                    remote: '用户名不存在'
+                },
+            },
+            submitHandler: function(f) {
+                $.ajax({
+                    type: 'post',
+                    async: false,
+                    dataType : 'json',
+                    url: hostUrl()+'/forget/validateUser',
+                    data: $('.forget-form').serialize(),
+                    beforeSend: function() {
+                        $('input[type=submit]').text('正在提交...').attr('disabled', true);
+                    },
+                    success: function(json) {
+                        if (json.status) {
+                            window.location.href = json.messages;
+                        } else {
+                            alert(json.messages);
+                            $('input[type=submit]').text('确认提交').removeAttr('disabled');
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+	}
+	
 
 	var Validator= {
 			
@@ -194,43 +268,6 @@ function dj(){
 	}
 }
 
-function submitPwd(){
-		
-	var b = $("#new_password").val();
-	var a = $("#confirm_password").val();
-	var c = $("#old_password").val();
-	if( b==""||b==""||c=="" ){
-		alert("原始密码、新密码和确认密码不能为空");
-		return false;
-	}
-	if( a.length<6 ){
-		alert("密码不能少于6位");
-		return false;
-	}
-	if( a!=b ){
-		alert("两次输入的密码不一致！");
-		return false;
-	}
-}	
-
-function submitPwdInfo(){
-		
-	var a = $("#account").val();
-	var b = $("#captcha").val();
-	if( a.length<4 ){
-		alert("帐号不能少于4位！");
-		return false;
-	}
-	if(!Validator.isEmail(a)&&!Validator.isMobile(a)){
-		alert("请填写正确的手机号码/邮箱");
-		return false;
-	}
-	if( b.length<4 ){
-		alert("请输入4位验证码!");
-		return false;
-	}
-}
-
 //regist
 function qieh(obj){  
 	
@@ -276,13 +313,4 @@ function regs(u,p){
 				}
 		   }
 	});	
-}
-
-function yzm(){
-	
-	var a = $("#yzm").val();
-	if( a=="" || a.length<4 ){
-		 alert("请输入不少于4位的验证码!");
-	     return false;
-	}
 }

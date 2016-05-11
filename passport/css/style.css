@@ -14,6 +14,8 @@
 .login_f{background-color:#fff;padding:0 26px 15px 26px;line-height:30px;}
 .login_b{background-color:#fff;padding:10px 30px;line-height:30px;zoom:1;border-top:1px solid #e5e5e5;}
 .prc{height:60px;width:320px;}
+.lgbg .captcha{vertical-align: middle;cursor:pointer;}
+.lgbg .w{padding-top:120px;}
 .yxr{position:absolute;right:0;top:0;}
 .tts{position:absolute;top:0;left:70px;}
 #footer{margin-top:0;}
