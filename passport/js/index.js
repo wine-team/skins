@@ -47,6 +47,49 @@ jQuery(function(){
 		})
 	}
 	
+	if( $('#loginform').size()>0 ){   //登陆使用
+		$('#loginform').submit(function(e) {
+			 e.preventDefault();
+        }).validate({
+        	
+        	errorPlacement: function(e, el) {  
+            	if ($(el).hasClass('error')) {
+	            	if ($('#username').val() == '' && $('#password').val() == '' ) {
+	            		$(el).parents('.normal-login').find('.remind').children('p').text('请输入您的用户名或密码');
+	            	}else{
+	            		$(el).parents('.normal-login').find('.remind').children('p').text(e.text());
+	            	}
+            	}
+            },
+            success: function(e, el) {
+                if ($(el).hasClass('error')) {
+                    $(el).parents('.normal-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
+                }
+            },
+        	submitHandler: function(f) {
+        		$.ajax({
+                    type: 'post',
+                    async: false,
+                    dataType : 'json',
+                    url: hostUrl()+'/login/loginPost',
+                    data: $('#loginform').serialize(),
+                    beforeSend: function() {
+                        $('input[type=submit]').text('正在登陆...').attr('disabled', true);
+                    },
+                    success: function(json) {
+                        if (json.status) {
+                            window.location.href = json.messages;
+                        } else {
+                            alert(json.messages);
+                            $('input[type=submit]').text('登陆').removeAttr('disabled');
+                        }
+                    }
+                });
+        		return false;
+        	}
+        })
+	}
+	
 	if( $('.forget-form').size()>0 ){  // 验证用户忘记密码
 		$('.forget-form').submit(function(e) {
             e.preventDefault();
@@ -121,41 +164,7 @@ jQuery(function(){
 		        return new RegExp(b).test(a);
 		    }
 	};
-	$("#loginform").bind("submit",function(){
-		
-		var a = $("#username").val();
-		var b = $("#password").val();
-		var c = $('#remember').is(':checked') ? 1 : 0;
-		var t = $('#token').val();
-		if(	a.length<2||a.length>30	){
-			alert("请准确填写登陆帐号,2-30位之间");
-			$("#username").focus();
-			return false;
-		}
-		if(	b.length<5||b.length>30	){
-			alert("请准确填写登陆密码,5-30位之间");
-			$("#password").focus();
-			return false;
-		}
-		$.ajax({url:'user.php', 
-			type:'POST', 
-			data:{act:"ajax_login",username:a,password:b,remember:c,token:t},
-			dataType:'TEXT',
-			error: function(){
-				alert('Error');
-			},
-			success:function(result){
-				if( result==1){
-					$("#loginform").hide();
-					$("#lok").show();
-					dj();
-				}else{
-					alert("您输入的用户名或密码有误，请重新输入！");	
-				}
-			}
-		});
-		return false;
-	});
+	
 	
 	
 	
