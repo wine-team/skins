@@ -45,7 +45,7 @@ del {
 body {
     background-color: #f2f2f2;
     color: #666;
-    font: 12px/150% tahoma,Arial,Verdana,"ËÎÌå";
+    font: 12px/150% tahoma,Arial,Verdana,"ï¿½ï¿½ï¿½ï¿½";
 }
 a {
     color: #666;
@@ -228,7 +228,6 @@ input[type="submit"] {
 }
 @font-face {
     font-family: "vgan";
-    src: url("f.eot?#iefix") format("embedded-opentype"), url("f.woff") format("woff"), url("f.ttf") format("truetype"), url("f.svg#iconfont") format("svg");
 }
 .f {
     font-family: "vgan" !important;
@@ -1752,7 +1751,7 @@ input[type="submit"] {
     width: 100%;
 }
 .s_tl .lr3 {
-    font-family: ËÎÌå;
+    font-family: ï¿½ï¿½ï¿½ï¿½;
     padding: 0 8px;
 }
 .wov {
