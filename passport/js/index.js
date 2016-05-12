@@ -51,7 +51,6 @@ jQuery(function(){
 		$('#loginform').submit(function(e) {
 			 e.preventDefault();
         }).validate({
-        	
         	errorPlacement: function(e, el) {  
             	if ($(el).hasClass('error')) {
 	            	if ($('#username').val() == '' && $('#password').val() == '' ) {
@@ -74,14 +73,14 @@ jQuery(function(){
                     url: hostUrl()+'/login/loginPost',
                     data: $('#loginform').serialize(),
                     beforeSend: function() {
-                        $('input[type=submit]').text('正在登陆...').attr('disabled', true);
+                        $('input[type=submit]').val('正在登陆...').attr('disabled', true);
                     },
                     success: function(json) {
                         if (json.status) {
                             window.location.href = json.messages;
                         } else {
                             alert(json.messages);
-                            $('input[type=submit]').text('登陆').removeAttr('disabled');
+                            $('input[type=submit]').val('登陆').removeAttr('disabled');
                         }
                     }
                 });
@@ -141,29 +140,7 @@ jQuery(function(){
 	}
 	
 
-	var Validator= {
-			
-		    isEmail:function(a) {
-		        var b = "^[-!#$%&'*+\\./0-9=?A-Z^_`a-z{|}~]+@[-!#$%&'*+\\/0-9=?A-Z^_`a-z{|}~]+.[-!#$%&'*+\\./0-9=?A-Z^_`a-z{|}~]+$";
-		        return this.test(a, b);
-		    },
-		    isMobile:function(a) {
-		        return this.test(a, /(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/);
-		    },
-		    isPhone:function(a) {
-		        return this.test(a, /^[0-9]{3,4}\-[0-9]{7,8}$/);
-		    },
-		    isNumber:function(a, b) {
-		        return !isNaN(a.nodeType == 1 ? a.value :a) && (!b || !this.test(a, "^-?[0-9]*\\.[0-9]*$"));
-		    },
-		    isEmpty:function(a) {
-		        return !jQuery.isEmptyObject(a);
-		    },
-		    test:function(a, b) {
-		        a = a.nodeType == 1 ? a.value :a;
-		        return new RegExp(b).test(a);
-		    }
-	};
+	
 	
 	
 	
