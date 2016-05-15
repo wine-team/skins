@@ -7,10 +7,7 @@ function hostUrl() {
 }
 
 jQuery(function(){
-	
-	var time = "3";
-	var istel = 1;
-	
+		
 	$("#minbar").on("mouseover",".m_li",function(event){
 		
 	     $(this).addClass("m_lion");
@@ -73,14 +70,14 @@ jQuery(function(){
                     url: hostUrl()+'/login/loginPost',
                     data: $('#loginform').serialize(),
                     beforeSend: function() {
-                        $('input[type=submit]').val('正在登陆...').attr('disabled', true);
+                        $('#loginform input[type=submit]').val('正在登陆...').attr('disabled', true);
                     },
                     success: function(json) {
                         if (json.status) {
                             window.location.href = json.messages;
                         } else {
                             alert(json.messages);
-                            $('input[type=submit]').val('登陆').removeAttr('disabled');
+                            $('#loginform input[type=submit]').val('登陆').removeAttr('disabled');
                         }
                     }
                 });
@@ -89,7 +86,7 @@ jQuery(function(){
         })
 	}
 	
-	if( $('.forget-form').size()>0 ){  // 验证用户忘记密码
+	if( $('.forget-form').size()>0 ){  //验证用户忘记密码
 		$('.forget-form').submit(function(e) {
             e.preventDefault();
         }).validate({
@@ -139,11 +136,84 @@ jQuery(function(){
         });
 	}
 	
-
-	
-	
-	
-	
+	if( $('#regform').size()>0 ){ 
+		
+		$('#regform').delegate('.register-type','click',function(){
+			
+			 var flag = $(this).attr('flag');
+			 var type = (flag==1) ? '2' : '1';// 1手机 2邮箱
+			 var typeName = ( type==1 ) ? '手机注册' : '邮箱注册';
+			 var typeNameOne = ( type==1 ) ? '邮箱注册' : '手机注册';
+		     var attrName = ( type==1 ) ? 'phone'  : 'email';
+		     $(this).attr('flag',type).text(typeNameOne);
+		     $('#zlab').text(typeName+'：');
+		     $('input[name="type"]').val(type);
+		})
+		
+		$('#regform').submit(function(e) {//注册
+            e.preventDefault();
+        }).validate({
+        	errorPlacement: function(e, el) {  
+        		if ($('#username').val() == '' && $('#password').val() == '' ) {
+            		$(el).parents('#regform').find('.error-infor').show().text('请输入您的用户名或密码');
+            	}else{
+	            	$(el).parents('#regform').find('.error-infor').show().text(e.text());
+            	}
+            },
+            success: function(e, el) {
+                if ($(el).hasClass('error')) {
+                    $(el).parents('#regform').find('.error-infor').hide();
+                }
+            },
+            rules: {
+            	username: {
+            		required : true,
+            	},
+            	password: {
+                    required: true,
+                    rangelength:[6,20]
+                },  
+                confirm_password: {
+                    required: true,
+                    equalTo: '#password'
+                }
+            },
+            messages: {
+            	username: {
+            		required: '请输入用户名',
+            	},
+            	password: {
+                    required: '请输入您的密码',
+                    rangelength: '密码只能在6-20位字符之间'
+                },
+                confirm_password: {
+                    required: '请再次输入密码',
+                    equalTo: '输入密码与原来不相同'
+                }
+            },
+            submitHandler: function(f) {
+                $.ajax({
+                    type: 'post',
+                    async: false,
+                    dataType : 'json',
+                    url: hostUrl()+'/register/doRegister',
+                    data: $('#regform').serialize(),
+                    beforeSend: function() {
+                        $('#regform input[type=submit]').val('正在注册...').attr('disabled', true);
+                    },
+                    success: function(json) {
+                        if (json.status) {
+                            window.location.href = json.messages;
+                        } else {
+                        	$('#regform').find('.error-infor').show().text(json.messages);
+                            $('#regform input[type=submit]').val('立即注册').removeAttr('disabled');
+                        }
+                    }
+                });
+                return false;
+            }
+        });
+	}
 	
 	$(".rtext").keyup(function(){
 		
@@ -156,92 +226,6 @@ jQuery(function(){
 		}
 	});
 	
-	$("#telform").bind("submit",function(){
-		
-		var a='';
-		var b=$("#tpas").val();
-		var c=$("#cpas").val();
-		if( istel==1 ){
-			a = $("#mobile_phone").val();
-			if( a.length<4||!Validator.isMobile(a) ){
-				alert("请填写正确的手机号码");
-				$("#mobile_phone").focus();
-				return false;
-			}
-		}else{
-			a = $("#email").val();	
-			if( a.length<4||!Validator.isEmail(a) ){
-				alert("请填写正确的邮箱地址");
-				$("#email").focus();
-				return false;
-			}
-		}
-
-		if( b.length<5||b.length>30 ){
-			alert("请准确填写登陆密码,5-30位之间");
-			$("#tpas").focus();
-			return false;
-		}
-		if(b=='123456'){
-			alert("密码过于简单！");
-			return false;
-		}
-		if(b!=c){
-			alert("两次输入密码不一致，请重新输入");
-			$("#cpas").focus();
-			return false;
-		}
-		regs(a,b);
-		return false;
-	});
-	
-	$("#telform").delegate("#email","blur",function(){
-		
-		var a=$(this).val();
-		if(a.length<4||!Validator.isEmail(a)){
-			return false;
-		}
-		$.ajax({
-			url:'user.php?act=check_email',
-			type:'POST',
-			data:{'email':a},
-	        dataType:'text',
-	        error:function() {
-	            alert('Error');
-	        },
-	        success:function(res) {
-	         if(res!="y"){
-	        	 $("#t_ts").show();
-	         }else{
-	        	 $("#t_ts").hide();
-	         }
-	        }
-	    });
-	});
-
-	$("#telform").delegate("#mobile_phone","blur",function(){
-		var a=$(this).val();
-		if( a.length<10||!Validator.isMobile(a) ){
-			return false;
-		}
-		$.ajax({
-	        url:'user.php?act=check_phone',
-	        type:'POST',
-	        data:{'mobile_phone':a},
-	        dataType:'text',
-	        error:function() {
-	            alert('Error');
-	        },
-	        success:function(res) {
-	        	if(res!="y"){
-	        		$("#t_ts").show();
-	        	}else{
-	        		$("#t_ts").hide();
-	        	}
-	        }
-	    });
-	});
-
 })
 
 function dj(){
@@ -254,49 +238,3 @@ function dj(){
 	}
 }
 
-//regist
-function qieh(obj){  
-	
-	var t = obj.innerHTML;
-	if( t=="使用邮箱注册" ){
-		$("#email").show();
-		$("#mobile_phone").hide();
-		$("#zlab").text("邮箱注册：").show();
-		$("#email").val("");
-		obj.innerHTML="使用手机注册";
-		istel = 0;
-	}else{
-		$("#email").hide();
-		$("#mobile_phone").show();
-		$("#zlab").text("手机号注册：").show();
-		$("#mobile_phone").val("");
-		obj.innerHTML="使用邮箱注册";
-		istel = 1;	
-	}
-}
-
-function regs(u,p){
-	
-	var token = $("#token").val();
-	$.ajax({url:'user.php', 
-			type:'POST', 
-			data:{
-				act:"ajax_regist",
-				username:u,
-				password:p,
-				token:token
-			},
-			dataType:'text',
-			error:function(){
-				alert('Error');
-			},
-			success: function(result){
-				if(result==1){
-					$("#telform").hide();
-					$("#rok").show();
-				}else{
-					alert("您的输入有错，请重新输入！");	
-				}
-		   }
-	});	
-}
