@@ -428,7 +428,7 @@ a:hover {
     z-index: 10;
 }
 .t_c {
-    background: #f9f9f9 url("i.png") no-repeat scroll 10px -27px;
+    background: #f9f9f9 url("../images/i.png") no-repeat scroll 10px -27px;
     border: 1px solid #ddd;
     cursor: pointer;
     display: block;
@@ -914,6 +914,19 @@ a:hover {
     font: 400 14px simsun;
     margin-bottom: 5px;
     padding: 10px 14px;
+	margin:0 2.5px;
+}
+.page strong {
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    display: inline-block;
+    font: 400 14px simsun;
+    margin-bottom: 5px;
+    padding: 10px 14px;
+	background-color: #c40000;
+	border-color: #c40000;
+	color: #fff;
+	text-decoration: none;
 }
 .page a:hover, .page a.on {
     background-color: #c40000;

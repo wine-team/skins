@@ -8,20 +8,7 @@ function hostUrl() {
 
 jQuery(function(){
 		
-	$("#minbar").on("mouseover",".m_li",function(event){
-		
-	     $(this).addClass("m_lion");
-	     $(this).find(".r_av").show().stop().animate({opacity:1,right:"35px"},300);
-	}).on("mouseout",'.m_li',function(){
-		
-		 $(this).removeClass("m_lion");
-		 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
-	})
 
-	$('.m_tops').delegate('.top','click',function(){ 
-		$('html,body').stop().animate({scrollTop:'0px'},600)
-	})
-	
 	$(".lha").delegate("h2","mouseenter",function(){
 		
 		var i = $(this).index();

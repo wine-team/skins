@@ -1,4 +1,4 @@
-var qu_car = 1;
+
 var v_h = $(window).height();
 var v_w = $(window).width();
 var page_h = document.domain;
@@ -107,17 +107,7 @@ var pez="top=100,left=100,width=890,height=615,location=yes,menubar=no,location=
 	}
 })(jQuery);
 
-function jieshou(a){
-	
-	var curl="http://"+page_h+"/live800.php?pagetitle="+page_t;window.open(curl,'在线客服',pez)
-}
-function scheck(obj){
-	
-	var w=obj.keywords.value;
-	var prev=obj.keywords.getAttribute("data-w");
-	if(w==""||w==prev){alert("请输入关键字!");
-	return false
-}}
+
 function addcollect(){
 	
 	var ctrl=(navigator.userAgent.toLowerCase()).indexOf('mac')!=-1?'Command/Cmd':'CTRL';
@@ -126,24 +116,6 @@ function addcollect(){
 	else if(window.sidebar){
 		window.sidebar.addPanel('趣网商城','http://www.qu.cn',"")
 	}else{alert('您可以尝试通过快捷键'+ctrl+' + D 加入到收藏夹~')}
-}
-
-function updateC(){
-	
-	if(qu_car==1){
-		$.ajax({
-			url:'flow.php?step=show_cart_info',
-			type:'GET',
-			dataType:'html',
-			beforeSend:function(){$("#acar").html("<p class='alC lh35'>加载中，请稍后...</p>")},
-			success:function(data){$("#acar").html(data);qu_car=0}
-			})
-	}
-}
-
-function gotop(){
-	
-	$('html,body').stop().animate({scrollTop:'0px'},600);
 }
 
 function obj2str(o){
@@ -442,18 +414,6 @@ $r_id.delegate("a","mouseenter",function(){
 	keyi=$(this).index();
 });
 	
-$minbar.delegate(".m_li","hover",function(event){
-	
-   var t=$(this);
-   var m=t.find(".r_av");
-   if(event.type == 'mouseenter'){
-	   t.addClass("m_lion");
-	   m.show().stop().animate({opacity:1,right:"35px"},300);
-	}else{
-		t.removeClass("m_lion");
-		m.show().stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
-	}
-});
 
 
 	
@@ -493,35 +453,6 @@ $minbar.bind("mouseleave",function(){
 	}
 });
 
-$("#tcar").hover(function() {
-  $(this).addClass("hv");
-  updateC();
-},
-function(){
-  $(this).removeClass("hv");
-});
-
-$lnavli.hover(function() {
-  $(this).addClass("con");
-},
-function() {
-  $(this).removeClass("con");
-});
-
-$("#tul").delegate(".nbt","hover",function(event){
-  var tl=$(this);
-  if(event.type == 'mouseenter'){
-	   tl.addClass("on")
-  }else{
-	  tl.removeClass("on");
-  }
-});
-
-$("#bignav").hover(function(){
-	              $lnav.show();
-	         },function() {
-	        	  $lnav.hide();
-	     });
 
 $(window).bind("resize",initbar);
 
@@ -534,3 +465,67 @@ if(!navigator.cookieEnabled){
 		 "<p style='background-color:#ffa627' class='alC lh30 c3 hand' onclick=\"window.open('http://www.qu.cn/article.php?id=877')\">您的浏览器禁用了cookie，会导致购物车、登录等操作异常,点击查看启用cookie操作步骤</p>"
 	);
 }
+
+/**最新的js整改技术---2016-05-16*--慢慢替代它的写法**/
+
+jQuery(function(){
+	
+	var qu_car = 1;  //购物车状态位 
+	
+	$("#tul").on("mouseover",".nbt",function(event){  //头部样式效果
+		$(this).addClass("on");
+	}).on("mouseout",'.nbt',function(){
+		$(this).removeClass("on");
+	})
+	
+	$('#tul').on('click','.contact-kf',function(event){ //客服的点击触发
+		var curl="http://"+page_h+"/live800.php?pagetitle="+page_t;window.open(curl,'在线客服',pez)
+	})
+   
+	$("#tcar").hover(function() { //购物车效果 
+		$(this).addClass("hv");
+		if (qu_car==1) {
+			$.ajax({
+				url:'flow.php?step=show_cart_info',
+				type:'GET',
+				dataType:'html',
+				beforeSend:function(){
+				    $("#acar").html("<p class='alC lh35'>加载中，请稍后...</p>");
+			    },
+				success:function(data){
+					$("#acar").html(data);
+					qu_car = 0;
+				}
+			})
+		}
+	},function(){
+		$(this).removeClass("hv");
+	});
+	
+	
+	$("#minbar").on("mouseover",".m_li",function(event){  // 右边黑蓝公用的效果
+		
+	     $(this).addClass("m_lion");
+	     $(this).find(".r_av").show().stop().animate({opacity:1,right:"35px"},300);
+	}).on("mouseout",'.m_li',function(){
+		
+		 $(this).removeClass("m_lion");
+		 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
+	})
+
+	$('.m_tops').delegate('.top','click',function(){ //顶部 公用函数
+		 $('html,body').stop().animate({scrollTop:'0px'},600)
+	})
+	
+	$("#bignav").hover(function(){ // 帮助中心菜单栏放进去的效果
+		 $("#lnav").show();
+    },function() {
+    	 $("#lnav").hide();
+    });
+	
+	 $("#lnav").children().hover(function() { //菜单显示效果
+		  $(this).addClass("con");
+	 }, function() {
+		  $(this).removeClass("con");
+	 });
+})
