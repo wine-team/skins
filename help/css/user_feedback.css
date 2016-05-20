@@ -1,0 +1,10 @@
+#feedback_form .error{
+	padding-left:0;
+	float:left;
+	height: 28px;
+    line-height: 28px;
+}
+#feedback_form label.error[for="captcha"]{
+	float: right;
+    margin-right: 590px;
+}
