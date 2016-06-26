@@ -466,55 +466,17 @@ if(!navigator.cookieEnabled){
 	);
 }
 
+
 /**最新的js整改技术---2016-05-16*--慢慢替代它的写法**/
 
+function hostUrl() {
+    return location.protocol+'//'+location.host;
+}
+
 jQuery(function(){
-	
-	var qu_car = 1;  //购物车状态位 
-	
-	$("#tul").on("mouseover",".nbt",function(event){  //头部样式效果
-		$(this).addClass("on");
-	}).on("mouseout",'.nbt',function(){
-		$(this).removeClass("on");
-	})
-	
+		
 	$('#tul').on('click','.contact-kf',function(event){ //客服的点击触发
 		var curl="http://"+page_h+"/live800.php?pagetitle="+page_t;window.open(curl,'在线客服',pez)
-	})
-   
-	$("#tcar").hover(function() { //购物车效果 
-		$(this).addClass("hv");
-		if (qu_car==1) {
-			$.ajax({
-				url:'flow.php?step=show_cart_info',
-				type:'GET',
-				dataType:'html',
-				beforeSend:function(){
-				    $("#acar").html("<p class='alC lh35'>加载中，请稍后...</p>");
-			    },
-				success:function(data){
-					$("#acar").html(data);
-					qu_car = 0;
-				}
-			})
-		}
-	},function(){
-		$(this).removeClass("hv");
-	});
-	
-	
-	$("#minbar").on("mouseover",".m_li",function(event){  // 右边黑蓝公用的效果
-		
-	     $(this).addClass("m_lion");
-	     $(this).find(".r_av").show().stop().animate({opacity:1,right:"35px"},300);
-	}).on("mouseout",'.m_li',function(){
-		
-		 $(this).removeClass("m_lion");
-		 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
-	})
-
-	$('.m_tops').delegate('.top','click',function(){ //顶部 公用函数
-		 $('html,body').stop().animate({scrollTop:'0px'},600)
 	})
 	
 	$("#bignav").hover(function(){ // 帮助中心菜单栏放进去的效果

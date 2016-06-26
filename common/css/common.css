@@ -445,7 +445,7 @@ a:hover {
     margin-left: 16px;
 }
 #qcar {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll 0 -65px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 0 -65px;
     color: #fff;
     display: block;
     height: 15px;
