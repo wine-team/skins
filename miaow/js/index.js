@@ -1,7 +1,9 @@
 var home = {//首页js
+		
 		'url':function(){
 			return location.protocol+'//'+location.host;
 		 },
+		 
 		 'cartLoad':function(){
 			 if ($('#tcar').size()>0) {
 				 var cart_flag = 0;  //购物车状态位 
@@ -26,6 +28,7 @@ var home = {//首页js
 				});
 			 }
 		 },
+		 
 		 'headRightMenu':function(){
 			 
 			 $("#lnav").children().hover(function() { //菜单显示效果
@@ -48,11 +51,13 @@ var home = {//首页js
 				 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
 			 });
 			 
-			 $('.m_tops').delegate('.top','click',function(){ //顶部 公用函数
+			 $('.m_tops').delegate('.top','click',function(event){ //顶部 公用函数
 				 $('html,body').stop().animate({scrollTop:'0px'},600);
+				 event.preventDefault();
 			 })
 			 
 		 },
+		 
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
@@ -60,5 +65,6 @@ var home = {//首页js
 }
 
 jQuery(function(){
+	
 	home.initial();
 })
