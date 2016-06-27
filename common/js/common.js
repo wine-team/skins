@@ -485,9 +485,4 @@ jQuery(function(){
     	 $("#lnav").hide();
     });
 	
-	 $("#lnav").children().hover(function() { //菜单显示效果
-		  $(this).addClass("con");
-	 }, function() {
-		  $(this).removeClass("con");
-	 });
 })

@@ -28,6 +28,12 @@ var home = {//首页js
 		 },
 		 'headRightMenu':function(){
 			 
+			 $("#lnav").children().hover(function() { //菜单显示效果
+				  $(this).addClass("con");
+			 }, function() {
+				  $(this).removeClass("con");
+			 });
+			 
 			 $("#tul").on("mouseover",".nbt",function(event){ //头部样式效果
 				$(this).addClass("on");
 			 }).on("mouseout",'.nbt',function(){
