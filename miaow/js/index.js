@@ -1,7 +1,9 @@
 var home = {//首页js
+		
 		'url':function(){
 			return location.protocol+'//'+location.host;
 		 },
+		 
 		 'cartLoad':function(){
 			 if ($('#tcar').size()>0) {
 				 var cart_flag = 0;  //购物车状态位 
@@ -26,7 +28,14 @@ var home = {//首页js
 				});
 			 }
 		 },
+		 
 		 'headRightMenu':function(){
+			 
+			 $("#lnav").children().hover(function() { //菜单显示效果
+				  $(this).addClass("con");
+			 }, function() {
+				  $(this).removeClass("con");
+			 });
 			 
 			 $("#tul").on("mouseover",".nbt",function(event){ //头部样式效果
 				$(this).addClass("on");
@@ -42,17 +51,27 @@ var home = {//首页js
 				 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
 			 });
 			 
-			 $('.m_tops').delegate('.top','click',function(){ //顶部 公用函数
+			 $('.m_tops').delegate('.top','click',function(event){ //顶部 公用函数
 				 $('html,body').stop().animate({scrollTop:'0px'},600);
+				 event.preventDefault();
 			 })
 			 
 		 },
+		 
+		 'headerAdvert':function(){
+			 if ($('.header-advert').size()>0){
+				  $(".header-advert").image_slider();// 轮廓图
+			 }
+		 },
+		 
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
+			 home.headerAdvert();
 		 }
 }
 
 jQuery(function(){
+	
 	home.initial();
 })
