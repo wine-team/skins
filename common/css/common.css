@@ -1176,7 +1176,7 @@ a:hover {
     height: 150px;
 }
 .lk_l {
-    background: rgba(0, 0, 0, 0) url("jinri.png") no-repeat scroll 50% 0;
+    background: rgba(0, 0, 0, 0) url("../images/jinri.png") no-repeat scroll 50% 0;
     height: 150px;
     position: relative;
     width: 190px;
