@@ -44,7 +44,7 @@ var address = {// 首页js
 		                    },
 		                    success: function(json) {
 		                        if (json.status) {
-		                        	alert('新增成功');
+		                        	alert('操作成功');
 		                            window.location.href = json.messages;
 		                        } else {
 		                            alert(json.messages);

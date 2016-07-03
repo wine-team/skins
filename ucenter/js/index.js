@@ -13,7 +13,7 @@ var ucenter = {// 首页js
 					$(this).addClass("hv");
 					if (cart_flag == 0) {
 						$.ajax({
-							url:home.url()+'/home/home/getCart',
+							url:url()+'/home/home/getCart',
 							type:'post',
 							dataType:'json',
 							beforeSend:function(){
