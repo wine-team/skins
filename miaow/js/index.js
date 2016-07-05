@@ -4,14 +4,14 @@ var home = {//首页js
 			return location.protocol+'//'+location.host;
 		 },
 		 
-		 'cartLoad':function(){
+		 'headCartLoad':function(){
 			 if ($('#tcar').size()>0) {
 				 var cart_flag = 0;  //购物车状态位 
 				 $("#tcar").hover(function() { //购物车效果 
 						$(this).addClass("hv");
 						if (cart_flag == 0) {
 							$.ajax({
-								url:home.url()+'/home/home/getCart',
+								url:home.url()+'/cart/cart/getCart',
 								type:'post',
 								dataType:'json',
 								beforeSend:function(){
@@ -26,6 +26,28 @@ var home = {//首页js
 				},function(){
 						$(this).removeClass("hv");
 				});
+			 }
+		 },
+		 
+		 'rightCartLoad' : function(){
+			 if ($('#racar').size() > 0) {
+				 var flag = 0;
+				 $("#minarg").bind("mouseenter",function(){
+					 if (flag == 0) {
+						$.ajax({
+							url:home.url()+'/cart/cart/getCart',
+							type:'post',
+							dataType:'json',
+							beforeSend:function(){
+								$("#rxcar").html('<p class="alC c3 lh30">正在加载中...</p>');
+							},
+							success:function(data){
+								   $("#rxcar").html(data.html);
+								   flag = 1;
+							}
+						});
+					 }
+				 });
 			 }
 		 },
 		 
@@ -65,7 +87,8 @@ var home = {//首页js
 		 },
 		 
 		 'initial':function(){
-			 home.cartLoad();
+			 home.headCartLoad();
+			 home.rightCartLoad();
 			 home.headRightMenu();
 			 home.headerAdvert();
 		 }
