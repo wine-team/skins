@@ -316,20 +316,7 @@ function lgout(){
 	});
 	
 
-$minarg.bind("mouseenter",function(){
-	if(!is_carr){
-		var cac=Date.parse(new Date());
-		$("#rxcar").html('<p class="alC c3 lh30">正在加载中...</p>');
-		$.ajax({url:'flow.php?step=show_cart_info',
-		type:'GET',
-		dataType:'HTML',
-		success:function(data){
-			$("#rxcar").html(data);
-			}
-		});
-		is_carr=true;
-	}
-});
+
 		
 $yvv.bind("focus", 
     function() {
