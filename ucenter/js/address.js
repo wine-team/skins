@@ -1,6 +1,10 @@
 /**
  * 
  */
+function url() {
+	return location.protocol+'//'+location.host;
+}
+
 var address = {// 首页js
 		'checkCon':function(){
 			if ($('form#con').size() > 0) {

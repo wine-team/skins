@@ -58,6 +58,8 @@ var user_info = {// 首页js
 		                    required: true,
 		                },
 		                new_password:{
+		                	minlength:6,
+		                	maxlength:20,
 		                	required: true,
 		                },
 		                comfirm_password:{
