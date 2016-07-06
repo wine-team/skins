@@ -11,9 +11,10 @@ var home = {//首页js
 						$(this).addClass("hv");
 						if (cart_flag == 0) {
 							$.ajax({
-								url:home.url()+'/cart/cart/getCart',
-								type:'post',
-								dataType:'json',
+								url:home.url()+'/cart/getCart',
+								type: 'get',
+								dataType:'jsonp',
+								jsonCallback: 'jsonCallback',
 								beforeSend:function(){
 								    $("#acar").html("<p class='alC lh35'>加载中，请稍后...</p>");
 							    },
@@ -33,9 +34,10 @@ var home = {//首页js
 				 $("#minarg").bind("mouseenter",function(){
 					 if (flag == 0) {
 						$.ajax({
-							url:home.url()+'/cart/cart/getCart',
-							type:'post',
-							dataType:'json',
+							url:home.url()+'/cart/getCart',
+							type: 'get',
+							jsonCallback: 'jsonCallback',
+							dataType:'jsonp',
 							beforeSend:function(){
 								$("#rxcar").html('<p class="alC c3 lh30">正在加载中...</p>');
 							},
@@ -52,9 +54,9 @@ var home = {//首页js
 				 $("#rhist").bind("mouseenter",function(){
 					   if (hflag==0) {
 					   	  $.ajax({
-							  url:home.url()+'/home/home/getHistory',
+							  url:home.url()+'/home/getHistory',
 							  type:'post',
-							  dataType:'json',
+							  dataType:'jsonp',
 							  beforeSend:function(){
 								 $("#hibx").html('<p class="alC">正在加载中...</p>');
 							  },
