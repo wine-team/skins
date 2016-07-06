@@ -4,7 +4,7 @@ var home = {//首页js
 			return location.protocol+'//'+location.host;
 		 },
 		 
-		 'headCartLoad':function(){
+		 'cartLoad':function(){
 			 if ($('#tcar').size()>0) {
 				 var cart_flag = 0;  //购物车状态位 
 				 $("#tcar").hover(function() { //购物车效果 
@@ -27,9 +27,7 @@ var home = {//首页js
 						$(this).removeClass("hv");
 				});
 			 }
-		 },
-		 
-		 'rightCartLoad' : function(){
+			 
 			 if ($('#racar').size() > 0) {
 				 var flag = 0;
 				 $("#minarg").bind("mouseenter",function(){
@@ -49,8 +47,27 @@ var home = {//首页js
 					 }
 				 });
 			 }
+			 if ($("#rhist").size() > 0){
+				 var hflag = 0;
+				 $("#rhist").bind("mouseenter",function(){
+					   if (hflag==0) {
+					   	  $.ajax({
+							  url:home.url()+'/home/home/getHistory',
+							  type:'post',
+							  dataType:'json',
+							  beforeSend:function(){
+								 $("#hibx").html('<p class="alC">正在加载中...</p>');
+							  },
+							  success:function(data){
+				 				 $("#hibx").html(data.html);
+								 hflag = 1;
+							  }
+				 		  });
+					   }
+				 });
+			 }
 		 },
-		 
+
 		 'headRightMenu':function(){
 			 
 			 $("#lnav").children().hover(function() { //菜单显示效果
@@ -87,8 +104,7 @@ var home = {//首页js
 		 },
 		 
 		 'initial':function(){
-			 home.headCartLoad();
-			 home.rightCartLoad();
+			 home.cartLoad();
 			 home.headRightMenu();
 			 home.headerAdvert();
 		 }

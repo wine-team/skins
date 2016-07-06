@@ -299,20 +299,7 @@ function lgout(){
 	var $lnavli = $lnav.children();
 	var $hist = $("#rhist");
 	
-	$hist.bind("mouseenter",function(){
-		if(!is_hi){
-			var cac = Date.parse(new Date());
-			$("#hibx").html('<p class="alC">正在加载中...</p>');
-			$.ajax({url:'goods.php?act=history&radom='+cac,
-				type:'GET',
-				dataType:'HTML',
-				success:function(data){
-					$("#hibx").html(data);
-				}
-			});
-			is_hi = true;
-		}
-	});
+	
 	
 
 
