@@ -97,6 +97,24 @@ var home = {//首页js
 				 event.preventDefault();
 			 })
 			 
+			 if ($('.miao-header').size()>0) {
+				 var nav_top = 850;
+				 var has_nav = false;
+				 $(window).scroll(function(){
+			         var ns_top = $(window).scrollTop();
+					 if (ns_top>nav_top) {
+					     if (!has_nav) {
+					    	 $("#home_top").addClass("hs_fix");
+					         has_nav = true;
+					     }
+					 }else{
+					     if (has_nav) {
+					    	 $("#home_top").removeClass("hs_fix");
+				             has_nav = false;
+					     }
+					 }
+				 });
+			 }
 		 },
 		 
 		 'headerAdvert':function(){
