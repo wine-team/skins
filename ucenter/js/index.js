@@ -1,7 +1,7 @@
 var home = {//首页js
 		
 		'url':function(){
-			return location.protocol+'//'+location.host;
+			return 'http://miaow.localhost/';
 		 },
 		 
 		 'cartLoad':function(){
@@ -97,28 +97,10 @@ var home = {//首页js
 				 event.preventDefault();
 			 })
 			 
-			 if ($('.miao-header').size()>0) {
-				 var nav_top = 850;
-				 var has_nav = false;
-				 $(window).scroll(function(){
-			         var ns_top = $(window).scrollTop();
-					 if (ns_top>nav_top) {
-					     if (!has_nav) {
-					    	 $("#home_top").addClass("hs_fix");
-					         has_nav = true;
-					     }
-					 }else{
-					     if (has_nav) {
-					    	 $("#home_top").removeClass("hs_fix");
-				             has_nav = false;
-					     }
-					 }
-				 });
-			 }
 		 },
 		 
 		 'headerAdvert':function(){
-			 if ($('.header-advert').size()>0) {
+			 if ($('.header-advert').size()>0){
 				  $(".header-advert").image_slider();// 轮廓图
 			 }
 		 },
@@ -131,5 +113,6 @@ var home = {//首页js
 }
 
 jQuery(function(){
+	
 	home.initial();
 })
