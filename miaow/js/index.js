@@ -100,7 +100,7 @@ var home = {//首页js
 		 },
 		 
 		 'headerAdvert':function(){
-			 if ($('.header-advert').size()>0){
+			 if ($('.header-advert').size()>0) {
 				  $(".header-advert").image_slider();// 轮廓图
 			 }
 		 },
@@ -113,6 +113,5 @@ var home = {//首页js
 }
 
 jQuery(function(){
-	
 	home.initial();
 })
