@@ -1,8 +1,10 @@
 
 var passport = {
+		
 		url : function(){
 			 return location.protocol+'//'+location.host;
 		},
+		
 		unkonw : function(){
 			$(".rtext").keyup(function(){
 				var a=$(this).val();
@@ -16,20 +18,7 @@ var passport = {
 		},
 		
 		headRightMenu : function(){
-			
-			 $("#minbar").on("mouseover",".m_li",function(event){  // 右边黑蓝公用的效果
-			     $(this).addClass("m_lion");
-			     $(this).find(".r_av").show().stop().animate({opacity:1,right:"35px"},300);
-			 }).on("mouseout",'.m_li',function(){
-				 $(this).removeClass("m_lion");
-				 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
-			 });
-				 
-			 $('.m_tops').delegate('.top','click',function(e){ //顶部 公用函数
-				 $('html,body').stop().animate({scrollTop:'0px'},600);
-				 e.preventDefault();
-			 });
-			 
+		 
 			 $(".lha").delegate("h2","click",function(e){
 				 var i = $(this).index();
 				 $(this).addClass("on").siblings().removeClass("on");
