@@ -451,11 +451,5 @@ jQuery(function(){
 	$('#tul').on('click','.contact-kf',function(event){ //客服的点击触发
 		var curl="http://"+page_h+"/live800.php?pagetitle="+page_t;window.open(curl,'在线客服',pez)
 	})
-	
-	$("#bignav").hover(function(){ // 帮助中心菜单栏放进去的效果
-		 $("#lnav").show();
-    },function() {
-    	 $("#lnav").hide();
-    });
-	
+
 })

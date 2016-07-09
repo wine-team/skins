@@ -1,8 +1,10 @@
 
 var help = {
+		
 		url : function(){
 			 return location.protocol+'//'+location.host;
 		},
+		
 		headRightMenu : function(){
 			
 			 $("#lnav").children().hover(function() { //菜单显示效果
@@ -11,24 +13,52 @@ var help = {
 				  $(this).removeClass("con");
 			 });
 			 
+			 $("#bignav").hover(function(){ // 帮助中心菜单栏放进去的效果
+				 $("#lnav").show();
+		     },function() {
+		    	 $("#lnav").hide();
+		     });
+			 
 			 $("#tul").on("mouseover",".nbt",function(event){ //头部样式效果
 				 $(this).addClass("on");
 		     }).on("mouseout",'.nbt',function(){
 				 $(this).removeClass("on");
 			 });
-				 
-			 $("#minbar").on("mouseover",".m_li",function(event){  // 右边黑蓝公用的效果
-			     $(this).addClass("m_lion");
-			     $(this).find(".r_av").show().stop().animate({opacity:1,right:"35px"},300);
-			 }).on("mouseout",'.m_li',function(){
-				 $(this).removeClass("m_lion");
-				 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
-			 });
-				 
+				 				 
 			 $('.m_tops').delegate('.top','click',function(){ //顶部 公用函数
 				 $('html,body').stop().animate({scrollTop:'0px'},600);
-			 })
+			 });
+			 
 		},
+		
+		getCart : function(){
+			
+			if ($('.help-tcar').size()>0) {
+				 var cart_flag = 0;  //购物车状态位 
+				 $(".help-tcar").hover(function() { //购物车效果 
+						$(this).addClass("hv");
+						var url = $(this).attr('main-url');
+						if (cart_flag == 0) {
+							$.ajax({
+								url:url+'cart/getCart',
+								type: 'get',
+								dataType:'jsonp',
+								jsonCallback: 'jsonCallback',
+								beforeSend:function(){
+								    $(".help-acar").html("<p class='alC lh35'>加载中，请稍后...</p>");
+							    },
+								success:function(data){
+									$(".help-acar").html(data.html);
+									cart_flag = 1;
+								}
+							})
+						}
+				},function(){
+						$(this).removeClass("hv");
+				});
+			 }
+		},
+		
 		captcha : function(){
 			if( $('.captcha').size()>0 ){  
 				$('.captcha').parent().delegate('.captcha','click',function(){
@@ -101,6 +131,7 @@ var help = {
 		},
 		initial:function(){
 			help.headRightMenu();
+			help.getCart();
 			help.captcha();
 			help.feedback();
 		}
