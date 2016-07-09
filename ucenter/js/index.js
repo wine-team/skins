@@ -78,24 +78,21 @@ var home = {//首页js
 				  $(this).removeClass("con");
 			 });
 			 
+			 $("#bignav").hover(function(){ // 帮助中心菜单栏放进去的效果
+				 $("#lnav").show();
+		     },function() {
+		    	 $("#lnav").hide();
+		     });
+			 
 			 $("#tul").on("mouseover",".nbt",function(event){ //头部样式效果
-				$(this).addClass("on");
-			 }).on("mouseout",'.nbt',function(){
-				$(this).removeClass("on");
+				 $(this).addClass("on");
+		     }).on("mouseout",'.nbt',function(){
+				 $(this).removeClass("on");
 			 });
-			 
-			 $("#minbar").on("mouseover",".m_li",function(event){  // 右边黑蓝公用的效果
-			     $(this).addClass("m_lion");
-			     $(this).find(".r_av").show().stop().animate({opacity:1,right:"35px"},300);
-			 }).on("mouseout",'.m_li',function(){
-				 $(this).removeClass("m_lion");
-				 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
-			 });
-			 
-			 $('.m_tops').delegate('.top','click',function(event){ //顶部 公用函数
+				 				 
+			 $('.m_tops').delegate('.top','click',function(){ //顶部 公用函数
 				 $('html,body').stop().animate({scrollTop:'0px'},600);
-				 event.preventDefault();
-			 })
+			 });
 			 
 		 },
 		 
