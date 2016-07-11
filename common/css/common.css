@@ -1109,6 +1109,8 @@ a:hover {
     text-align: center;
     width: 100%;
 }
+.f_ul li a {height:450px;max-width:1920px;min-width:1024px;margin:0 auto;display: block;}
+.f_ul li a img{ height:100%;width:100%;}
 .btn {
     bottom: 10px;
     left: 0;
