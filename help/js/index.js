@@ -40,7 +40,7 @@ var help = {
 						var url = $(this).attr('main-url');
 						if (cart_flag == 0) {
 							$.ajax({
-								url:url+'cart/getCart',
+								url:url+'home/getCart',
 								type: 'get',
 								dataType:'jsonp',
 								jsonCallback: 'jsonCallback',
