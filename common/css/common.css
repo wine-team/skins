@@ -333,7 +333,7 @@ a:hover {
     top: -1px;
 }
 .t_v {
-    background: rgba(0, 0, 0, 0) url("i.png") repeat scroll 0 -806px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") repeat scroll 0 -806px;
     color: #fff;
     font-size: 10px;
     height: 14px;
@@ -838,7 +838,7 @@ a:hover {
     color: #fff;
 }
 .r_ma, .r_top {
-    background: rgba(0, 0, 0, 0) url("i.png") repeat scroll 50% -90px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") repeat scroll 50% -90px;
     display: block;
     float: left;
     height: 35px;
@@ -1631,7 +1631,7 @@ a:hover {
     z-index: 3;
 }
 .lwen {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll 5px -860px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 5px -860px;
     cursor: pointer;
 }
 .bc_a {
@@ -1752,7 +1752,7 @@ a:hover {
     float: left;
 }
 .d_xx {
-    background: #fff url("i.png") no-repeat scroll right -232px;
+    background: #fff url("../images/i.png") no-repeat scroll right -232px;
     border: 1px solid #ec8382;
     color: #ec8382;
     display: inline-block;
@@ -1829,7 +1829,7 @@ a:hover {
     text-decoration: none;
 }
 .b_rmo {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll right -254px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll right -254px;
     color: #999;
     cursor: pointer;
     height: 18px;
@@ -1916,7 +1916,7 @@ a:hover {
     color: #fff;
 }
 .rjg {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll right -168px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll right -168px;
     display: block;
     height: 14px;
     position: absolute;
@@ -2099,7 +2099,7 @@ a:hover {
     width: 130px;
 }
 .kan_i {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll 0 -816px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 0 -816px;
     margin-left: 28px;
     padding-left: 18px;
 }
@@ -2214,7 +2214,7 @@ a:hover {
     padding: 0 5px;
 }
 .amount {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll 0 -328px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 0 -328px;
     display: block;
     height: 31px;
     margin: 5px 10px 0 0;
@@ -2252,7 +2252,7 @@ a:hover {
     width: auto;
 }
 .xcolor a:hover, .xcolor a.hover {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll right -504px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll right -504px;
     border-color: #c40000;
     border-width: 2px;
     color: #c40000;
@@ -2315,7 +2315,7 @@ a:hover {
     width: 16px;
 }
 .fu_btn, .red_btn {
-    background: #c87347 url("i.png") no-repeat scroll 30px -284px;
+    background: #c87347 url("../images/i.png") no-repeat scroll 30px -284px;
     color: #fff;
     float: left;
     font-family: "Microsoft Yahei";
@@ -2671,7 +2671,7 @@ a:hover {
     width: 8px;
 }
 .px, .px p {
-    background: rgba(0, 0, 0, 0) url("i.png") repeat-x scroll 0 -489px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") repeat-x scroll 0 -489px;
     display: block;
     height: 14px;
     overflow: hidden;
@@ -2987,7 +2987,7 @@ a:hover {
     background-color: #bbb;
 }
 .zon {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll right -531px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll right -531px;
     border: 1px solid #12ac02;
     color: #12ac02;
 }
@@ -2995,7 +2995,7 @@ a:hover {
     color: #999;
 }
 .o_add, .o_cut {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll 0 -370px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 0 -370px;
     display: inline-block;
     height: 18px;
     margin: 0 5px;
@@ -3017,7 +3017,7 @@ a:hover {
     text-indent: 5px;
 }
 .error, .ok {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll 4px -440px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 4px -440px;
     display: block;
     padding-left: 20px;
 }
@@ -3052,7 +3052,7 @@ a:hover {
     width: 400px;
 }
 .u_zh, .u_mm {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll right -715px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll right -715px;
 }
 .u_mm {
     background-position: right -756px;
@@ -3065,7 +3065,7 @@ a:hover {
     width: 300px;
 }
 .vip {
-    background: rgba(0, 0, 0, 0) url("i.png") no-repeat scroll 0 -577px;
+    background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 0 -577px;
     display: inline;
     float: left;
     height: 14px;
@@ -3126,7 +3126,7 @@ a:hover {
     width: 440px;
 }
 #pes_ul li {
-    background: #fff url("i.png") no-repeat scroll right 12px;
+    background: #fff url("../images/i.png") no-repeat scroll right 12px;
     border: 1px solid #ddd;
     cursor: pointer;
     display: inline;

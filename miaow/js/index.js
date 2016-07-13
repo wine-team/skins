@@ -123,10 +123,20 @@ var home = {//首页js
 			 }
 		 },
 		 
+		 'cart':function(){ // 购物车
+			 
+			 $('.pay-type').on('click','.zfu',function(e){
+				 $(this).addClass('zon').siblings().removeClass('zon');
+				 e.preventDefault();
+			 })
+			 
+		 },
+		 
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
 			 home.headerAdvert();
+			 home.cart();
 		 }
 }
 
