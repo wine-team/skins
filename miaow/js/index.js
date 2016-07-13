@@ -130,6 +130,17 @@ var home = {//首页js
 				 e.preventDefault();
 			 })
 			 
+			 $('.free').on('click','.check-box',function(e){
+				 
+				 var checkFlag = $(this).find('input[name="youhuiquan"]').is(':checked');
+				 var selectFlag = $(this).parents('.free').find('.select-free');
+			     if (checkFlag) {
+			    	 selectFlag.removeClass('hid');
+			     } else {
+			    	 selectFlag.addClass('hid');
+			     }
+				 e.preventDefault();
+			 })
 		 },
 		 
 		 'initial':function(){
