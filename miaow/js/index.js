@@ -130,16 +130,15 @@ var home = {//首页js
 				 e.preventDefault();
 			 })
 			 
-			 $('.free').on('click','.check-box',function(e){
+			 $('.free').on('click','.youhuiquan',function(e){ //优惠券
 				 
-				 var checkFlag = $(this).find('input[name="youhuiquan"]').is(':checked');
 				 var selectFlag = $(this).parents('.free').find('.select-free');
-			     if (checkFlag) {
+			     if ($(this).is(':checked')) {
 			    	 selectFlag.removeClass('hid');
 			     } else {
-			    	 selectFlag.addClass('hid');
+			    	 selectFlag.addClass('hid'); 
 			     }
-				 e.preventDefault();
+				 e.stopPragination();
 			 })
 		 },
 		 
