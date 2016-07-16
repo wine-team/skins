@@ -92,10 +92,16 @@ var home = {//首页js
 				 $(this).find(".r_av").stop().animate({opacity:0,right:"70px"},300,function(){$(this).hide()});
 			 });
 			 
+			 $("#bignav").hover(function(){ // 帮助中心菜单栏放进去的效果
+				 $("#lnav").show();
+		     },function() {
+		    	 $("#lnav").hide();
+		     });
+			 
 			 $('.m_tops').delegate('.top','click',function(event){ //顶部 公用函数
 				 $('html,body').stop().animate({scrollTop:'0px'},600);
 				 event.preventDefault();
-			 })
+			 });
 			 
 			 if ($('.miao-header').size()>0) {
 				 var nav_top = 850;
@@ -141,12 +147,67 @@ var home = {//首页js
 				 e.stopPragination();
 			 })
 		 },
+		 'search':function(){
+			 
+			 var ac = 1;
+			 var gdls = $("#gdls");
+			 var gddl = gdls.find(".gl");
+			 var lz_k = gdls.find(".simg");
+			 var lz_r = lz_k.children();
+			 var ls_cat = $("#ls_cat");
+			 
+			 $('.simg').on('mouseenter','img',function(event){
+			 	 var m = $(this).parents('.gl').find(".sbm");
+			 	 var g = $(this).attr("data-s");
+			 	 $(this).addClass("on").siblings("img").removeClass("on");
+			 	 m.attr("src",g);
+			 	 event.preventDefault();
+			 });
+			 
+			 $(".ls_cat").delegate(".ls_lab input","click",function(e){
+				 var cup = $(this).parent().attr("href");
+				 window.location.href = cup;
+			 });
+			 
+			 $(".gdls").find(".gl").hover(function(){
+				$(this).addClass("hov");
+			 },function() {
+				$(this).removeClass("hov");
+			 });
+			 
+			 $('.sdl').on('click','.b_rmo',function(){
+				$(".brand_dl").toggleClass("h_auto");
+				$(".b_rmo").toggleClass("b_rmon");
+			 })
+			 
+			 if ($('.goods-list').size()>0) {
+				 
+				 var isf = 0;
+				 var ntop = $(".ls_cat").offset().top;
+				 $(window).scroll(function(){
+					 var scrolls = $(window).scrollTop()-ntop;
+				 	 if ( $(document).scrollTop()>ntop ){
+					 	if (isf==0) {
+					 		$(".ls_cat").addClass("ccat");
+				 	 	}
+					 	isf = 1;
+				     } else {
+			    	 	if (isf==1){
+			    	 		$(".ls_cat").removeClass("ccat");
+			    	 	}
+			    	 	isf = 0;
+				     }
+					 return false;
+				 });
+			 }
+		 },
 		 
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
 			 home.headerAdvert();
 			 home.cart();
+			 home.search();
 		 }
 }
 

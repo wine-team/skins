@@ -1823,6 +1823,11 @@ a:hover {
 .sdl dd a.on {
     color: #c40000;
 }
+.sdl dd a.on{
+	background-color:#c40000;
+	color:#fff;
+}
+
 .sdl dd a:hover {
     background-color: #c40000;
     color: #fff;
