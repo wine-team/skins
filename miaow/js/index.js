@@ -121,9 +121,7 @@ var home = {//首页js
 					 }
 				 });
 			 }
-		 },
-		 
-		 'headerAdvert':function(){
+			 
 			 if ($('.header-advert').size()>0) {
 				  $(".header-advert").image_slider();// 轮廓图
 			 }
@@ -148,14 +146,7 @@ var home = {//首页js
 			 })
 		 },
 		 'search':function(){
-			 
-			 var ac = 1;
-			 var gdls = $("#gdls");
-			 var gddl = gdls.find(".gl");
-			 var lz_k = gdls.find(".simg");
-			 var lz_r = lz_k.children();
-			 var ls_cat = $("#ls_cat");
-			 
+			 			 
 			 $('.simg').on('mouseenter','img',function(event){
 			 	 var m = $(this).parents('.gl').find(".sbm");
 			 	 var g = $(this).attr("data-s");
@@ -202,12 +193,70 @@ var home = {//首页js
 			 }
 		 },
 		 
+		 goodsType: function(){ //女性
+			 
+			 if ($('.goods-advert').size()>0) {
+				 $('.goods-advert').image_slider();// 轮廓图
+			 }
+			 
+			 $('.wbox').find('.dn_a').hover(function(){
+				  $(this).addClass("hov");
+			 	},function() {
+			 	  $(this).removeClass("hov");
+			 });
+			 
+			 $(".bdls").find(".gl").hover(function(){
+					$(this).addClass("hov");
+				 },function() {
+					$(this).removeClass("hov");
+			 });
+			 
+			 $("#gdls").delegate(".lwen","hover",function(event){
+				 
+				 var wenv = $(this).parent().parent().find(".b_h4");
+				 var did = Number($(this).attr("data-id"))-2;
+				 if (event.type == 'mouseenter') {
+					 var tx = wenv.html();
+					 if(tx.indexOf("<!--") > 0 ){
+						 tx = tx.replace("<!--","");
+						 tx = tx.replace("-->","");
+						 wenv.text(tx);
+					 }
+					 wenv.show();
+				 } else {
+				 	 wenv.hide();
+				 }
+			});
+			
+			if ($('#bignav').size()>0) {
+				var has_nav = false;
+				var nav_top = 600;
+				var $blnav = $("#nav");
+				$(window).scroll(function(){
+					 var ns_top = $(window).scrollTop();
+					 if ( ns_top>nav_top ) {
+						 if (!has_nav) {
+							 $blnav.addClass("ccat");
+							 $("#konav").show();
+							 has_nav = true;
+					 	}
+					 }else{
+					 	if (has_nav) {
+					 		$blnav.removeClass("ccat");
+					 		$("#konav").hide();
+					 		has_nav	= false;
+					 	}
+					 }
+				});
+			}
+		 },
+		 
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
-			 home.headerAdvert();
 			 home.cart();
-			 home.search();
+			 home.search(); 
+			 home.goodsType();
 		 }
 }
 
