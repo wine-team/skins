@@ -253,7 +253,11 @@ var home = {//首页js
 		 
 		 'goodsDetail':function(){
 			
-			 
+			 $('.goods-pic').delegate('li','mouseenter',function(){
+				 var n = $(this).attr('data-src');
+				 $(this).addClass('on').siblings('li').removeClass('on');
+				 $('.goods-main-pic').attr('src',n);
+		      });
 		 },
 		 
 		 'initial':function(){
@@ -261,6 +265,7 @@ var home = {//首页js
 			 home.headRightMenu();
 			 home.cart();
 			 home.search(); 
+			 home.goodsDetail();
 			 if(location.href.indexOf('femal')>-1){
 				 home.goodsType();
 			 }
