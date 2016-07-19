@@ -251,7 +251,7 @@ var home = {//首页js
 			}
 		 },
 		 
-		 'goodsDetail':function(){
+		 'goodsDetail':function(){  //产品详情页
 			
 			 $('.goods-pic').delegate('li','mouseenter',function(){
 				 var n = $(this).attr('data-src');
