@@ -251,12 +251,20 @@ var home = {//首页js
 			}
 		 },
 		 
+		 'goodsDetail':function(){
+			
+			 
+		 },
+		 
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
 			 home.cart();
 			 home.search(); 
-			 home.goodsType();
+			 if(location.href.indexOf('femal')>-1){
+				 home.goodsType();
+			 }
+			 
 		 }
 }
 
