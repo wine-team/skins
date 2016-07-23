@@ -208,7 +208,7 @@ var ucenter = {
 			}
 		},
 		
-		/**未完成
+		/** 
 		 * 微信扫码支付
 		 * */
 		order_weixin_pay : function(){
@@ -231,12 +231,30 @@ var ucenter = {
 						if (typeof (res) === 'string') {
 							res = JSON.parse(res);
 						}
-						if (res.status === 500) {
-							_content = res.msg;
-							$('#codeimg').popUpWin({
-								content : res.msg
-							});
+						if (res.status === false) {
+							if (res.data){
+								alert(res.msg);
+								window.location.href = res.data;
+							}else{
+								_content = res.msg;
+								$('#codeimg').popUpWin({
+									content : res.msg
+								});
+							}
 						} else {
+							/**获取扫码支付结果*/
+							var get_trade_state = function(){
+								$.post(url()+'/Ucenter/get_trade_state',{out_trade_no:res.data},function(json){
+									if(json.status){
+										clearTimeout(t_out);
+										alert(json.msg);
+										window.location.href = json.data;
+									}
+								},'json');
+								var t_out = setTimeout(get_trade_state,3000);
+							}
+							get_trade_state();
+							
 							$('#codeimg').html('');
 							$('#codeimg').popUpWin({
 								content : function() {
@@ -247,6 +265,7 @@ var ucenter = {
 									self.opts.qrCodeClose = true;
 								}
 							});
+							
 						}
 					}
 				});
