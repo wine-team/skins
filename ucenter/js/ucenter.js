@@ -208,6 +208,50 @@ var ucenter = {
 			}
 		},
 		
+		/**未完成
+		 * 微信扫码支付
+		 * */
+		order_weixin_pay : function(){
+			if($('#weixinzhifu').size() > 0){
+				var order_sn = $('#weixinzhifu').data('order_id');
+				var ip = "127.0.0.1";
+				var total = parseFloat($('#weixinzhifu').data('total'));
+				total = Math.round(total*100);
+				$.ajax({
+					url : url()+'/Ucenter/get_wxpay_code',
+					data : {
+						'out_trade_no' : order_sn,
+						'body' : "妙网商城-购物消费",
+						'total_fee' : total,
+						'mch_create_ip' : ip
+					},
+					dataType : "json",
+					type : "POST",
+					success : function(res) {
+						if (typeof (res) === 'string') {
+							res = JSON.parse(res);
+						}
+						if (res.status === 500) {
+							_content = res.msg;
+							$('#codeimg').popUpWin({
+								content : res.msg
+							});
+						} else {
+							$('#codeimg').html('');
+							$('#codeimg').popUpWin({
+								content : function() {
+									return '<img width="230" src="'+res.code_img_url+'" />';
+								},
+								closeCallback : function() {
+									self.popWin = undefined;
+									self.opts.qrCodeClose = true;
+								}
+							});
+						}
+					}
+				});
+			}
+		},
 		
 }
 
@@ -216,6 +260,63 @@ jQuery(function(){
 	ucenter.address();
 	ucenter.editUser();
 	ucenter.editPass();
-})
+	ucenter.order_weixin_pay();
+});
 
+(function($){
+    var PopUpWin = function(ele,opts){
+        opts = $.extend({
+            id:'',
+            content:undefined,//内容
+            closeCallback:undefined//关闭时调用的方法
+        },opts);
+        this.init(ele,opts);
+    }
+
+    PopUpWin.prototype = {
+
+        template:'{content}',
+        init:function(ele,opts){
+            this.render(ele,opts);
+            this.initEvent(ele,opts);
+        },
+        initEvent:function(ele,opts){
+            var self = this;
+            ele.find('.btn_cancel').click(function(){
+                ele.find('#'+self.id).remove();
+                if(opts.closeCallback !== undefined && $.isFunction(opts.closeCallback)){
+                    opts.closeCallback();
+                }
+            });
+        },
+        elId:function(){//自动生成7位8进制DOM元素ID
+            return 'win-xxx'.replace(/[x]/g,function(c){
+                var r = Math.random() * 16|0, v = c === 'x' ? r : (r&0x3|0x8);
+                return v.toString(8);
+            }).toLocaleLowerCase();
+        },
+        render:function(ele,opts){
+            if(ele === undefined){
+                ele = $('body');
+            }
+            
+            var content = opts.content;
+            this.id = this.elId();
+            
+            if($.isFunction(content)){
+                content  = content(this);
+            }
+                tpl = this.template.replace(/\{id\}/,this.id).replace(/\{content\}/,content);
+            ele.append(tpl);
+        }
+    };
+
+    $.fn.popUpWin = function(opts){
+        return this.each(function(){
+             var that = $(this);
+             var popUp = new PopUpWin(that,opts);
+        });
+    };
+
+})(jQuery);
 
