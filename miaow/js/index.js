@@ -349,7 +349,9 @@ var home = {//首页js
 			 home.headRightMenu();
 			 home.cart();
 			 home.search(); 
-			 home.goodsDetail();
+			 if(location.href.indexOf('detail')>-1){
+				 home.goodsDetail();
+			 }
 			 if(location.href.indexOf('femal')>-1){
 				 home.goodsType();
 			 }
