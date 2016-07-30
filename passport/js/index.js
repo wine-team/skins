@@ -82,7 +82,7 @@ $(document).ready(function(){
                 return;
             } else {
                 $.ajax({
-                    url:hostUrl()+'/pc/register/checkPhone',
+                    url:hostUrl()+'/register/checkPhone',
                     type:'post',
                     data:{phone:phone, captcha:captcha},
                     dataType:'json',
@@ -166,15 +166,16 @@ $(document).ready(function(){
             e.preventDefault();
         }).validate({
             rules: {
-                username: {
+            	mobile_phone: {
                     required: true,
+                    mobile:true,
                     remote: {
-                        url:hostUrl()+'/pc/register/validateName',
+                        url:hostUrl()+'/register/validateMobilePhone',
                         type: 'post',
                         dataType: 'json',
                         data: {
-                            username:function(json) {
-                                return $('input[name=username]').val();
+                            mobile_phone:function(json) {
+                                return $('input[name=mobile_phone]').val();
                             }
                         }
                     }
@@ -190,7 +191,7 @@ $(document).ready(function(){
                 verify: {
                     required: true,
                     remote: {
-                        url:hostUrl()+'/pc/register/validateVerify',
+                        url:hostUrl()+'/register/validateVerify',
                         type: 'post',
                         dataType: 'json',
                         data: {
@@ -203,23 +204,9 @@ $(document).ready(function(){
                         }
                     }
                 },
-                mobile_phone: {
-                    required: true,
-                    mobile:true,
-                    remote: {
-                        url:hostUrl()+'/pc/register/validateMobilePhone',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {
-                            mobile_phone:function(json) {
-                                return $('input[name=mobile_phone]').val();
-                            }
-                        }
-                    }
-                },
                 parent_id: {
                     remote: {
-                        url:hostUrl()+'/pc/register/validateParentId',
+                        url:hostUrl()+'/register/validateParentId',
                         type: 'post',
                         dataType: 'json',
                         data: {
@@ -231,9 +218,10 @@ $(document).ready(function(){
                 }
             },
             messages: {
-                username: {
-                    required: '请输入您的用户名',
-                    remote: '用户名已存在'
+            	mobile_phone: {
+                    required: '请输入您的手机号码',
+                    mobile: '手机号码格式有误',
+                    remote: '手机号已注册'
                 },
                 password: {
                     required: '请输入您的密码',
@@ -242,11 +230,6 @@ $(document).ready(function(){
                 confirm_password: {
                     required: '请再次输入密码',
                     equalTo: '输入密码与原来不相同'
-                },
-                mobile_phone: {
-                    required: '请输入您的手机号码',
-                    mobile: '手机号码格式有误',
-                    remote: '手机号已注册'
                 },
                 captcha: {
                     required: '请输入验证码',
@@ -264,7 +247,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/pc/register/doRegister',
+                    url: hostUrl()+'/register/doRegister',
                     data: $('.register-form-validate').serialize(),
                     beforeSend: function() {
                         $('button[type=submit]').text('正在注册...').attr('disabled', true);
