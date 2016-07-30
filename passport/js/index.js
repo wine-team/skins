@@ -439,7 +439,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/pc/forget/alidateUser',
+                    url: hostUrl()+'/forget/alidateUser',
                     data: $('.forget-form-account').serialize(),
                     beforeSend: function() {
                         $('button[type=submit]').text('加载中...').attr('disabled', true);
@@ -464,7 +464,7 @@ $(document).ready(function(){
             var obj = $(this);
             obj.attr('disabled', 'true');
             $.ajax({
-                url:hostUrl()+'/pc/forget/checkPhone',
+                url:hostUrl()+'/forget/checkPhone',
                 type:'post',
                 data:{phone:$('button.btnsend').attr('data-attr')},
                 dataType:'json',
@@ -497,7 +497,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/pc/forget/confirmValidate',
+                    url: hostUrl()+'/forget/confirmValidate',
                     data: {username:$('input[name=username]').val(), verify:$('input[name=verify]').val(), mobile_phone:$('button.btnsend').attr('data-attr')},
                     beforeSend: function() {
                         $('button[type=submit]').text('加载中...').attr('disabled', true);
@@ -552,7 +552,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/pc/forget/modifyValidate',
+                    url: hostUrl()+'/forget/modifyValidate',
                     data: $('.forget-modify-password').serialize(),
                     beforeSend: function() {
                         $('button[type=submit]').text('加载中...').attr('disabled', true);
