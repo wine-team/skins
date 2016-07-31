@@ -747,8 +747,11 @@ a:hover {
     width: 35px;
     z-index: 20;
 }
+.minbar  .iconfont{
+	font-size:18px;
+}
 .r_panel {
-    background: #000 none repeat scroll 0 0;
+    background: #7A6E6E none repeat scroll 0 0;
     height: 100%;
     left: 0;
     position: absolute;
@@ -761,12 +764,12 @@ a:hover {
     text-decoration: none;
 }
 #m_mid {
-    margin-top: -210px;
+    /*margin-top: -210px;*/
     position: absolute;
-    top: 50%;
+    top: 38%;
 }
 .m_li {
-    background-color: #000;
+    background-color: #7A6E6E;
     color: #fff;
     font-size: 12px;
     height: 35px;
@@ -790,7 +793,6 @@ a:hover {
     transition: all 0.3s ease 0s;
 }
 .rt_line {
-    background-color: #444;
     height: 1px;
     margin: 0 auto;
     overflow: hidden;
@@ -824,7 +826,7 @@ a:hover {
     width: 14px;
 }
 .m_tr {
-    background-color: #444;
+    background-color: #7A6E6E;
     color: #fff;
     height: 35px;
     line-height: 33px;
