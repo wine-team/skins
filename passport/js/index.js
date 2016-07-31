@@ -41,6 +41,13 @@ $(document).ready(function(){
         });
     }
     
+    if ($('.login').size()>0) { // 点击快捷和会员登陆的切换
+    	$('.login').on('click','.hd',function(){
+            $('.normal-login').toggle();
+    		$('.quick-login').toggle();
+    	});
+    }
+    
     //登录验证码
     if ($('.ajaxJsonCaptcha').size() > 0) {
         $('.fast-login').on('click', '.ajaxJsonCaptcha', function(){

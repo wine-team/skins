@@ -531,7 +531,7 @@ a:hover {
 }
 .navq {
     background-color: #fff;
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 2px solid #B1191A;  /*1px solid #e5e5e5*/
     font-family: "Microsoft Yahei";
     height: 34px;
 }
@@ -1132,7 +1132,7 @@ a:hover {
     width: 100%;
 }
 .btn span {
-    background-color: #000;
+    background-color: #3E3E3E;
     border-radius: 10px;
     color: #fff;
     cursor: pointer;
