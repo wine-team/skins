@@ -345,6 +345,11 @@ a:hover {
     color: #c40000;
     text-decoration: none;
 }
+#top a {
+	color:#666;
+	font-size:12.5px;
+	font-style:normal;
+}
 #header {
     background-color: #fff;
     height: 78px;
