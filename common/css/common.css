@@ -1148,7 +1148,7 @@ a:hover {
     background-color: #c40000;
 }
 .h_pre, .h_nxt, .h_pres, .h_nxts {
-    background-color: #000;
+	background:rgba(0, 0, 0, 0.2) none repeat scroll 0 0 ; /*background-color: #000;*/
     color: #fff;
     display: none;
     font: 400 30px/62px simsun;
@@ -1168,8 +1168,8 @@ a:hover {
     right: 50%;
 }
 .h_pre:hover, .h_nxt:hover, .h_pres:hover, .h_nxts:hover {
-    background-color: #000;
-    opacity: 1;
+    background:rgba(0, 0, 0, 0.2) none repeat scroll 0 0 ; /*background-color: #000*/;
+    opacity: 0.6;
     text-decoration: none;
 }
 .mt35 {
