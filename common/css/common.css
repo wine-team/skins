@@ -1072,6 +1072,7 @@ a:hover {
     background: rgba(0, 0, 0, 0) url("ft/wu.png") repeat-x scroll 0 0;
 }
 .hs_t {
+	background-color:#fff;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 3px #ccc;
     height: 40px;
