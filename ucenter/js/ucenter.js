@@ -68,6 +68,7 @@ var ucenter = {
 	                        }
 	                    }
 				    });
+				    e.preventDefault();
 		        })
 			}
 		},
@@ -154,7 +155,7 @@ var ucenter = {
 	                        }
 	                    }
 				    });
-				    return false;
+					e.preventDefault();
 		        });
 			}
 		},
@@ -203,7 +204,7 @@ var ucenter = {
 	                        }
 	                    }
 				    });
-				    return false;
+					e.preventDefault();
 		        });
 			}
 		},

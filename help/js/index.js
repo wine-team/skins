@@ -143,59 +143,52 @@ var help = {
 				})
 			}
 		},
+		
+		isMobile : function(mob){
+			var mobile = /^(13|14|15|17|18)+[0-9]{9}$/;
+			return mobile.test(mob);
+		},
+		
 		feedback : function(){
-			if( $('#feedback_form').size()>0 ){   
-				$('#feedback_form').submit(function(e) {
-					 e.preventDefault();
-		        }).validate({
-		        	rules:{
-		        		ms_content: {
-		                    required: true,
-		                    minlength:10,
-		                    maxlength:1000
-		                },
-		                ms_tel:{
-		                	mobile:true,
-		                },
-		                captcha: {
-		                    required: true,
-		                    minlength:4,
-		                },
-		        	},
-		            messages:{
-		            	ms_content:{
-		            		required:'',
-		            		minlength:'',
-		                },
-		                captcha:{
-		                	required:'',
-		                	minlength:''
-		                }
-		            },
-		        	submitHandler: function(f) {
-		        		$.ajax({
-		                    type: 'post',
-		                    async: false,
-		                    dataType : 'json',
-		                    url: help.hostUrl()+'/User_feedback/feedback_post',
-		                    data: $('#feedback_form').serialize(),
-		                    beforeSend: function() {
-		                        $('input[type=submit]').val('正在提交...').attr('disabled', true);
-		                    },
-		                    success: function(json) {
-		                        if (json.status) {
-		                        	alert('感谢你宝贵的意见');
-		                            window.location.href = json.messages;
-		                        } else {
-		                            alert(json.messages);
-		                            $('input[type=submit]').val('提交').removeAttr('disabled');
-		                        }
-		                    }
-		                });
-		        		return false;
-		        	},
-		        	focusInvalid:true,
-		        })
+			if( $('#feedback_form').size()>0 ){
+				$('#feedback_form').submit(function(e){
+					
+					var input1 = $('textarea[name="ms_content"]').val();
+					var input2 = $('input[name="ms_tel"]').val();
+					var input3 = $('input[name="captcha"]').val();
+					if(input1.length<10 || input1.length>1000){
+				        alert("意见反馈在10-1000字内");
+				        return false;
+				    }
+					if(!help.isMobile(input2)){ 
+				        alert("请填写正确的手机号码！");
+				        return false;
+				    }
+					if(input3.length!=4){
+						alert("请填写正确的验证码！");
+				        return false;
+					}
+					$.ajax({
+	                    type: 'post',
+	                    async: false,
+	                    dataType : 'json',
+	                    url: help.hostUrl()+'/User_feedback/feedback_post',
+	                    data: $('#feedback_form').serialize(),
+	                    beforeSend: function() {
+	                        $('input[type=submit]').val('正在提交...').attr('disabled', true);
+	                    },
+	                    success: function(json) {
+	                        if (json.status) {
+	                        	alert('感谢你宝贵的意见');
+	                            window.location.href = json.messages;
+	                        } else {
+	                            alert(json.messages);
+	                            $('input[type=submit]').val('提交').removeAttr('disabled');
+	                        }
+	                    }
+	                });
+					e.preventDefault();
+				});
 			}
 		},
 		initial:function(){
