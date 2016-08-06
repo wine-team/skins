@@ -31,7 +31,7 @@ var help = {
 						$(this).removeClass("hv");
 				});
 			 }
-		 },
+		},
 		
 		headRightMenu : function(){
 			
@@ -52,7 +52,6 @@ var help = {
 		     },function() {
 		    	 $("#lnav").hide();
 		     });
-			
 		},
 		
 		captcha : function(){
@@ -70,47 +69,38 @@ var help = {
 				})
 			}
 		},
-		
-		isMobile : function(mob){
-			var mobile = /^(13|14|15|17|18)+[0-9]{9}$/;
-			return mobile.test(mob);
-		},
-		
 		feedback : function(){
-			if( $('#feedback_form').size()>0 ){
-				$('#feedback_form').submit(function(e){
-					
-					var input1 = $('textarea[name="ms_content"]').val();
-					var input2 = $('input[name="ms_tel"]').val();
-					var input3 = $('input[name="captcha"]').val();
-					if(input1.length<10 || input1.length>1000){
-				        alert("意见反馈在10-1000字内");
-				        return false;
-				    }
-					if(!help.isMobile(input2)){ 
-				        alert("请填写正确的手机号码！");
-				        return false;
-				    }
-					if(input3.length!=4){
-						alert("请填写正确的验证码！");
-				        return false;
+			if( $('.feedback-form').size()>0 ){
+				$('.feedback-form').submit(function(e){
+					var mobile = /^1[34578]\d{9}$/;
+					var content = $('.text-area').val();
+					var tel = $.trim($('.cover-input').val());
+					if (content.length < 6 || content.length >100) {
+						layer.msg('意见字数在6到100个字');
+						return false;
+					}
+					if ( !(tel.length==11 &&　mobile.test(tel)) ) {
+						layer.msg('请输入正确的手机号码');
+						return false;
 					}
 					$.ajax({
 	                    type: 'post',
 	                    async: false,
 	                    dataType : 'json',
-	                    url: help.hostUrl()+'/User_feedback/feedback_post',
-	                    data: $('#feedback_form').serialize(),
+	                    url: help.hostUrl()+'/User_feedback/feedback',
+	                    data: $('.feedback-form').serialize(),
 	                    beforeSend: function() {
-	                        $('input[type=submit]').val('正在提交...').attr('disabled', true);
+	                        $('button[type=submit]').text('正在提交').attr('disabled', true);
 	                    },
 	                    success: function(json) {
 	                        if (json.status) {
-	                        	alert('感谢你宝贵的意见');
-	                            window.location.href = json.messages;
+	                        	layer.msg('提交成功,页面跳转中,谢谢反馈!');
+	                        	setTimeout(function(){
+	                        		window.location.href = json.messages;
+	                        	},3000);
 	                        } else {
-	                            alert(json.messages);
-	                            $('input[type=submit]').val('提交').removeAttr('disabled');
+	                        	layer.msg(json.messages);
+	                            $('button[type=submit]').text('提交').removeAttr('disabled');
 	                        }
 	                    }
 	                });
@@ -121,13 +111,9 @@ var help = {
 		initial:function(){
 			help.cartLoad();
 			help.headRightMenu();
-			help.captcha();
 			help.feedback();
 		}
 }
-
-
-
 jQuery(function(){
 	help.initial();
 })

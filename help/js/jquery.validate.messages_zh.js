@@ -32,7 +32,7 @@
 */
 jQuery.validator.addMethod("mobile", function(value, element) {
     var length = value.length;
-    var mobile = /^1[34578]\d{9}$/;
+    var mobile = /^1[23456789]\d{9}$/;
     return this.optional(element) || (length == 11 && mobile.test(value));
 }, "手机号码格式错误");
 
