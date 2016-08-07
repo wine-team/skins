@@ -123,7 +123,21 @@ var home = {//首页js
 			 }
 			 
 			 if ($('.header-advert').size()>0) {
+				 
 				  $(".header-advert").image_slider();// 轮廓图
+			 }
+			 
+			 if ($('.top-active').size()>0) { //头部广告图
+				 
+				 $('.top-active').delegate('.btn-close','click',function(e){
+				 	 $('.top-active').hide();
+				     if (window.sessionStorage) {
+				     	 sessionStorage.setItem('black','hide');
+				     }
+				 })
+				 if (window.sessionStorage && sessionStorage.getItem('black')==='hide') {
+				 	 $('.top-active').hide();
+				 }
 			 }
 		 },
 		 
