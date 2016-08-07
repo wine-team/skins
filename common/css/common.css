@@ -731,10 +731,15 @@ a:hover {
     display: block;
 }
 .f_dot {
-    background-color: #3a3939;
-    color: #999;
+	border-top:2px solid #c40000;
+	background-color:#33302B;
+    color: #f9f9f9;
     line-height: 20px;
-    padding: 20px 0;
+    padding: 20px 0 30px;
+    text-align: center;
+}
+.f_dot .c9{
+	color:#f9f9f9;
 }
 .op6 {
     opacity: 0.6;
@@ -837,7 +842,7 @@ a:hover {
     width: 100px;
 }
 .r_vt {
-    color: #444;
+    color: #7A6E6E;
     font-size: 20px;
     position: absolute;
     right: -6.5px;

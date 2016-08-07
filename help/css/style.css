@@ -35,3 +35,31 @@
 .feedback .contact .controls input { width: 197px; padding: 7px 8px; border: 1px solid #ccc; color: #5D5D65;border-radius: 5px;line-height: 1;}
 .feedback .submit-btn:hover {color: #fff;text-decoration: none;border-color: #3b87ee;background: #458fef;}
 .feedback .submit-btn{ float: left;padding: 8px;width: 103px;font: 16px/18px "Microsoft YaHei";color: #fff;text-decoration: none; border: 1px #3579d6 solid; border-radius: 2px; background: #3579d6;text-align: center;}
+
+/* °ïÖúÖÐÐÄ */
+.help-soicn{margin:22px auto 30px;background-color:#fff;padding:57px 0;min-height:500px;position:relative;}
+
+.help-soicn .clearfix{*zoom: 1; zoom:1;}
+.help-soicn .help-inside{margin:0 auto;width: 1025px;display:block;}
+.help-inside .help-left,.help-inside .help-right{float:left;}
+.help-inside .help-left{width:153px;border:1px #ECECEC solid;margin-right:42px;background-color:#FAFAFA;}
+.help-inside .help-left li{width:100%;}
+
+.help-left li p{float:left;width: 100px;}
+.help-left li i{display:block;width:16px;float:right;transition: all 0.2s ease-in-out 0s;-moz-transition:all 0.2s ease-in-out 0s;-webkit-transition:all 0.2s ease-in-out 0s;-o-transition:all 0.2s ease-in-out 0s;}
+.help-left li .help-trade{height:47px;line-height: 47px;font-size:14px;cursor:pointer;border-top:1px #E1E1E1 solid;padding:0 18px;width:117px;font-weight:bold;}
+.help-left li .trade-none{border-top:none;}
+.help-left li dl{min-height:120px;}
+.help-left li .help-gwzn{display:none;}
+.help-left li dd{height:26px;line-height: 26px;margin-bottom:10px;font-size:14px;padding:0 18px;width:117px;cursor:pointer;transition: all 0.2s ease-in-out 0s;-moz-transition:all 0.2s ease-in-out 0s;-webkit-transition:all 0.2s ease-in-out 0s;-o-transition:all 0.2s ease-in-out 0s;}
+.help-left li dd a{color:#666666;display:block;width:100%;height:100%;}
+.help-left li dd.active{background-color:#3CB1EB;}
+.help-left li dd.active a{color:#F4F9FC;}
+.help-left li dd:hover a{color:#3CB1EB;}
+.help-left li dd.active:hover a{color:#F4F9FC;}
+.help-left li.active .help-trade i{transform:rotate(180deg);-ms-transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);}
+.help-inside .help-right{width:823px;border:1px #EEEEEE solid;}
+.help-right .sub-titile{background-color:#F8F8F8;margin:0px;height:49px;line-height:49px;width:749px;padding:0 37px;font-size:16px;font-weight:normal;color:#676767;}
+.help-right .help-clause{width:749px;padding:25px 37px 60px;font-size:15px;}
+.help-clause p{color:#737373;}
+.help-clause img{max-width:100%;}

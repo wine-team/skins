@@ -1,3 +1,8 @@
+a,a:link,a:visited,a:hover,a:active{text-decoration:none;outline:none;}
+input{outline: none;}
+ul,p,label,hr,dd,h3,table,table.table{margin: 0;padding: 0;}
+li{ list-style:none;}
+
 @font-face {font-family: "iconfont";
   src: url('../fonts/iconfont.eot?t=1462803023'); /* IE9*/
   src: url('../fonts/iconfont.eot?t=1462803023#iefix') format('embedded-opentype'), /* IE6-IE8 */
