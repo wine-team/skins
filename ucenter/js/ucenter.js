@@ -1,6 +1,4 @@
-/**
- * 
- */
+
 function url() {
 	return location.protocol+'//'+location.host;
 }
@@ -21,83 +19,7 @@ var ucenter = {
 			var code = /^[0-9]{6}$/;
 			return code.test(cod);
 		},
-		/**
-		 * 收货地址
-		 * */
-		address : function(){
-			if ($('form#con').size() > 0) { 
-				$('form#con').submit(function(e) {
-					var input1 = $('input[name="receiver_name"]').val();
-					var input2 = $('input[name="detailed"]').val();
-					var input3 = $('input[name="tel"]').val();
-					var input4 = $('input[name="code"]').val();
-					if(input1.length < 2){
-				        alert("收货人姓名不得少于2个字");
-				        return false;
-				    }
-				    if(input2.length<4 || input2.length>50){
-				        alert("请填写收货地址4-60个字");
-				        return false;
-				    }
-				    if(!ucenter.isMobile(input3)){ 
-				        alert("请填写正确的手机号码！");
-				        return false;
-				    }
-				    if(input4.length > 0){
-					    if(!ucenter.isCode(input4)){
-					        alert("请填写正确的邮编！");
-					        return false;
-					    }
-				    }
-				    $.ajax({
-				        type:"POST",
-				        beforeSubmit: function() {
-	                        $('input[type=submit]').val('正在提交...').attr('disabled', true);
-	                    },
-				        dataType:'json',
-				        async: false,
-	                    url: url()+'/Address/addPost',
-	                    data: $('#con').serialize(),
-				        success: function(json) {
-	                        if (json.status) {
-	                        	alert('操作成功');
-	                            window.location.href = json.messages;
-	                        } else {
-	                            alert(json.messages);
-	                            $('input[type=submit]').val('确认提交').removeAttr('disabled');
-	                        }
-	                    }
-				    });
-				    e.preventDefault();
-		        })
-			}
-		},
 		
-		/**
-		 * 猜你喜欢
-		 * */
-		getMaybeLike:function(){
-			if ($('.ubgw .dn_aw').size() > 0) {
-				$.post(url()+'/Ucenter/get_maybe_like', {}, function(json){
-					if(json.length>0) {
-						var cont = '';
-						for(var i=0;i<json.length;i++) {
-							cont += '<a class="dn_au" title="'+json[i].goods_name+'" target="_blank" href="'+json[i].goods_id+'">';
-							var img_arr = json[i].goods_img.split('|'); 
-							cont += '<img width="200" height="200" src="'+this.images_url()+img_arr[0]+''+'">';
-							cont += '<p>'+json[i].goods_name+'</p>';
-							cont += '<p class="xj"> ¥'+json[i].market_price+'</p>';
-							cont += '</a>';
-						}
-						$('.ubgw .dn_aw').html(cont);
-					} else {
-						$('.ubgw .dn_aw').html('您还未浏览过任何产品，<a target="_blank" href="http://miaow.localhost/">马上去逛逛</a>');
-					}
-				}, 'json');
-			}
-		},
-		
-	
 		
 		/**
 		 * 修改用户信息
@@ -276,8 +198,6 @@ var ucenter = {
 }
 
 jQuery(function(){
-	ucenter.getMaybeLike();
-	ucenter.address();
 	ucenter.editUser();
 	ucenter.editPass();
 	ucenter.order_weixin_pay();

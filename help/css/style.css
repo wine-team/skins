@@ -53,9 +53,9 @@
 .help-left li .help-gwzn{display:none;}
 .help-left li dd{height:26px;line-height: 26px;margin-bottom:10px;font-size:14px;padding:0 18px;width:117px;cursor:pointer;transition: all 0.2s ease-in-out 0s;-moz-transition:all 0.2s ease-in-out 0s;-webkit-transition:all 0.2s ease-in-out 0s;-o-transition:all 0.2s ease-in-out 0s;}
 .help-left li dd a{color:#666666;display:block;width:100%;height:100%;}
-.help-left li dd.active{background-color:#3CB1EB;}
+.help-left li dd.active{background-color:#C40000;}
 .help-left li dd.active a{color:#F4F9FC;}
-.help-left li dd:hover a{color:#3CB1EB;}
+.help-left li dd:hover a{color:#C40000;}
 .help-left li dd.active:hover a{color:#F4F9FC;}
 .help-left li.active .help-trade i{transform:rotate(180deg);-ms-transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);}
 .help-inside .help-right{width:823px;border:1px #EEEEEE solid;}
