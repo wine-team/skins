@@ -56,7 +56,20 @@ var home = {
 }
 
 var ucenterH = {
-		
+	
+    'ershire' : function(){
+		if ($('.enshrine').size()>0){
+			$('.fav_a').on('click','.del_fava',function(e){
+				var href = $(this).attr('href');
+				layer.confirm('确定删除该收藏吗', {icon: 3, title:'提示'}, function(index){
+					layer.close(index);
+					window.location.href = href;
+				});
+				e.preventDefault();
+				return false;
+			})
+		}
+	},
 	'address' : function(){ //收货地址
 		if ($('form.address-form').size() > 0) { 
 			$('form.address-form').submit(function(e) {
@@ -105,6 +118,27 @@ var ucenterH = {
 			    });
 			    e.preventDefault();
 	        })
+		}
+		
+		if ($('.address-list').size()>0){
+			$('td').on('click','.dele',function(e){
+				var href = $(this).attr('href');
+				layer.confirm('你确认要删除该收货地址吗', {icon: 3, title:'提示'}, function(index){
+					layer.close(index);
+					window.location.href = href;
+				});
+				e.preventDefault();
+				return false;
+			});
+			$('td').on('click','.modify',function(e){
+				var href = $(this).attr('href');
+				layer.confirm('你确认要设置为默认收货地址吗', {icon: 3, title:'提示'}, function(index){
+					layer.close(index);
+					window.location.href = href;
+				});
+				e.preventDefault();
+				return false;
+			});
 		}
 	},
 	'userIfor':function(){
@@ -208,10 +242,9 @@ var ucenterH = {
 				e.preventDefault();
 	        });
 		}
-		
-		
 	},
 	'initial':function(){
+		ucenterH.ershire();
 		ucenterH.address();
 		ucenterH.userIfor();
 	}
