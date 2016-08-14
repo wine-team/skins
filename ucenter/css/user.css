@@ -1,4 +1,4 @@
-Ôªø.u_top{margin:30px 0;background-color:#fff;border:1px solid #e5e5e5;box-shadow:0 3px 4px rgba(0,0,0,0.1);}
+.u_top{margin:30px 0;background-color:#fff;border:1px solid #e5e5e5;box-shadow:0 3px 4px rgba(0,0,0,0.1);}
 .u_zone{padding:10px 40px;height:70px;border-bottom:1px solid #e5e5e5;}
 .u_ava{height:70px;float:left;width:200px;line-height:20px;}
 .u_ava img{border-radius:70px;margin-right:10px;}
@@ -85,3 +85,7 @@
 .date_selector td.selectable_day{cursor:pointer}
 .date_selector td.selected{background:#2b579a;color:#fff;font-weight:700}
 .date_selector td.selectable_day.hover,.date_selector td.selectable_day:hover{background:#5985c7;color:#fff}
+
+/*ÕºœÒ–≈œ¢**/
+.mb20 .togava{background-color: #999; padding: 0 30px;cursor:pointer;}
+.mb20 .redb{padding: 0 30px;cursor:pointer;}
