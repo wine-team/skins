@@ -278,6 +278,28 @@ var home = {//首页js
 			 	 $(this).addClass("on").siblings().removeClass("on");
 			 	 $("#pes_z").find(".pes_o").eq(i).show().siblings().hide();
 		     });
+			 
+			 $('.goods-image').on('click','.hand',function(){
+				 
+				 var goods_id = $(this).attr('goods-id');
+				 $.ajax({
+					 type:'post',
+					 data:{goods_id:goods_id},
+					 dataType:'json',
+					 url:home.url()+'/goods/enshrine',
+					 success:function(data){
+						 if(data.status){
+							 layer.msg(data.message);
+						 } else {
+							 if(data.message.indexOf('passport')>-1){
+								window.location.href = data.message;
+							 } else {
+								 layer.msg(data.message);
+							 }
+						 }
+					 }
+				 })
+			 })
 
 			 $('.gdl .pes').hover(function(){ //头部样式效果
 				 	$(this).addClass("pes_on");
