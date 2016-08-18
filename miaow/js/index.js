@@ -273,13 +273,13 @@ var home = {//首页js
 			 	 $('.goods-main-pic').attr('src',n);
 		     });
 			 
-			 $('.region').delegate("li","click",function(){
+			 $('.region').delegate("li","click",function(){ // 地区
 			 	 var i = $(this).index();
 			 	 $(this).addClass("on").siblings().removeClass("on");
 			 	 $("#pes_z").find(".pes_o").eq(i).show().siblings().hide();
 		     });
 			 
-			 $('.goods-image').on('click','.hand',function(){
+			 $('.goods-image').on('click','.hand',function(){// 收藏
 				 
 				 var goods_id = $(this).attr('goods-id');
 				 $.ajax({
@@ -299,7 +299,26 @@ var home = {//首页js
 						 }
 					 }
 				 })
+			 });
+			 
+			 $('.kan').on('click','.change',function(e){ //查看更多
+				   var from = $(this).attr('from');
+				   var pg = parseInt($(this).attr('pg'))+1;
+				   $.ajax({
+						 type:'post',
+						 data:{from:from,pg:pg},
+						 dataType:'json',
+						 url:home.url()+'/goods/ajaxMoreSee',
+						 success:function(data){
+							 if(data.status){
+								 $('.kan .change').attr('pg',data.pg);
+								 $('.kan .recommend').html(data.html);
+							 }
+						 }
+				   })
+				   e.preventDefault();
 			 })
+			 
 
 			 $('.gdl .pes').hover(function(){ //头部样式效果
 				 	$(this).addClass("pes_on");
