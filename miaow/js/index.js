@@ -316,6 +316,10 @@ var home = {//首页js
 				 })
 			 });
 			 
+			 $('.gdl').on('click','.review-count',function(){
+				 $('html, body').animate({scrollTop:$('.comment-type').offset().top-50},400);
+			 });
+			 
 			 $('.kan').on('click','.change',function(e){ //查看更多
 				   var from = $(this).attr('from');
 				   var pg = parseInt($(this).attr('pg'))+1;
@@ -380,8 +384,11 @@ var home = {//首页js
 			 	 $('.dx_d').stop().fadeOut(200);
 			 });
 			 
-			 $('.jbars').delegate('li','click',function(){  //滚动条的点击
+			 $('.jbars').delegate('li','click',function(e){  //滚动条的点击
+				 var rel = $(this).attr('rel');
 				 $(this).addClass('on').siblings('li').removeClass('on');
+				 $('html, body').animate({scrollTop:$('#'+rel).offset().top-50},300);
+				 e.stopPropagation();
 		     });
 			 
 			 $(".comment-type").delegate("li","click",function(){ //评论筛选
