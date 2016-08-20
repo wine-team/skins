@@ -294,6 +294,7 @@ var home = {//首页js
 			 
 			 $('.goods-image').on('click','.hand',function(){// 收藏
 				 
+				 var _this = $(this);
 				 var goods_id = $(this).attr('goods-id');
 				 $.ajax({
 					 type:'post',
@@ -303,6 +304,7 @@ var home = {//首页js
 					 success:function(data){
 						 if(data.status){
 							 layer.msg(data.message);
+							 data.isShrine ?  _this.addClass('active') : _this.removeClass('active')
 						 } else {
 							 if(data.message.indexOf('passport')>-1){
 								window.location.href = data.message;

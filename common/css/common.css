@@ -2103,8 +2103,8 @@ a:hover {
     text-align: center;
     width: 50px;
 }
-.afav:hover {
-    color: #c40000;
+.afav.active{
+	color: #c40000;
     text-decoration: none;
 }
 #spic li.on {
