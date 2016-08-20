@@ -264,7 +264,20 @@ var home = {//首页js
 				});
 			}
 		 },
-		 
+		 'goodsRecommed':function(type){
+			 
+			 var cat = (type==1) ? $('.same-hot').attr('cat') : '';
+			 var _this = (type==1) ? $('.same-hot') : $('.all-hot');
+			 $.ajax({
+				 type:'post',
+				 data:{cat:cat},
+				 dataType:'json',
+				 url:home.url()+'/goods/getHot',
+				 success:function(data){
+					 _this.html(data.html)
+				 }
+			 })
+		 },
 		 'goodsDetail':function(){  //产品详情页
 			
 			 $('.goods-pic').delegate('li','mouseenter',function(){
@@ -294,7 +307,7 @@ var home = {//首页js
 							 if(data.message.indexOf('passport')>-1){
 								window.location.href = data.message;
 							 } else {
-								 layer.msg(data.message);
+								layer.msg(data.message);
 							 }
 						 }
 					 }
@@ -317,8 +330,36 @@ var home = {//首页js
 						 }
 				   })
 				   e.preventDefault();
-			 })
+			 });
 			 
+			 if ($('.product-review').size()>0) {
+				 
+				   $.ajax({
+			            type: 'get',
+			            async: true,
+			            dataType: 'json',
+			            data: {goods_id: $('.goods-image .hand').attr('goods-id')},
+			            url: hostUrl() + '/reviews/getReviews',
+			            success: function (data) {
+			                $('.product-review').html(data.html);
+			            }
+			       });
+				   
+				   $('.product-review').on('click', 'ul.pagination a', function (eve) {
+			            var url = $(this).attr('href');
+			            $.ajax({
+			                type: 'get',
+			                async: true,
+			                dataType: 'json',
+			                url: url,
+			                success: function (data) {
+			                    $('.product-review').html(data.html);
+			                    $('html, body').scrollTop($('.comment-type').offset().top-50);
+			                }
+			            });
+			            eve.preventDefault();
+			       });
+			 }		 
 
 			 $('.gdl .pes').hover(function(){ //头部样式效果
 				 	$(this).addClass("pes_on");
@@ -359,9 +400,8 @@ var home = {//首页js
 				 $('html,body').stop().animate({scrollTop:'0px'},600);
 				 event.preventDefault();
 			 });
-
+           
 			 var jtop = $("#jbar").offset().top;
-			 var r_top = $("#goodsrm").offset().top;
 			 var isf = 0;
 			 var isrf = false;
 			 $(window).scroll(function(){
@@ -375,7 +415,7 @@ var home = {//首页js
 					 if (isIE6) {
 						 $("#jbar").css("top",s);
 					 }
-				 }else{
+				 } else {
 					 if (isf==1) {
 						 $("#jbar").removeClass("dheng");
 						 if (isIE6) {
@@ -384,21 +424,9 @@ var home = {//首页js
 					 }
 					 isf = 0;
 				 }
-
-				 if (dmtop>r_top) {
-				 	if (!isrf) {
-				 		$("#goodsrm").addClass("rfix");
-				 		isrf=true;
-				 	}
-				 }else{
-				 	if (isrf) {
-				 		$("#goodsrm").removeClass("rfix");
-				 		isrf=false;
-				 	}
-				 }
 			 });
 		 },
-		 
+
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
@@ -406,11 +434,12 @@ var home = {//首页js
 			 home.search(); 
 			 if(location.href.indexOf('detail')>-1){
 				 home.goodsDetail();
+				 home.goodsRecommed(1);
+				 home.goodsRecommed(2);
 			 }
 			 if(location.href.indexOf('femal')>-1){
 				 home.goodsType();
 			 }
-			 
 		 }
 }
 
@@ -484,4 +513,20 @@ function fbuy(gid){
 		}
 	}
 	addToCart(gid,0,0,0);
+}
+
+function zom(obj){
+
+	var mg = $(obj);
+	var bg = mg.attr("data-b");
+	var ia = mg.attr("data-n");
+	var box = mg.parent().parent().find(".s_db");
+	mg.toggleClass("on").siblings("img").removeClass("on");
+	if(ia==0){
+		box.hide();
+		mg.attr("data-n","1").siblings("img").removeAttr("data-n");
+	}else{
+		box.html("<img src='"+bg+"' >").show();
+		mg.attr("data-n","0").siblings("img").removeAttr("data-n");
+	}
 }
