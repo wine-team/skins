@@ -480,26 +480,32 @@ var home = {//首页js
 			    }
 			 
 			    if ($('.shopping-s-submit').size() > 0) { //商品详情-立即购买
-			        $('.property-s-submit').on('click', '.shopping-s-submit', function () {
-			            
+			    	
+			        $('body').on('click', '.shopping-s-submit', function () {
+			        	
 			        	var spec = new Array();
-			        	var qty = parseInt($('.qty').val());
-			            var attr_id = parseInt($('#attr_id').val());
-			            $('.tall-all  input:checked').each(function(i){
+			            var qty = parseInt($('.number').val());
+			            var goods_id = $('.goods-image .hand').attr('goods-id');
+			            $('.catt  input:checked').each(function(i){
 			                spec[i] = $(this).val();
 			            })
 			            $.ajax({
 			                type: 'post',
 			                async: false,
 			                dataType: 'json',
-			                url: hostUrl() + '/tourism/purchase_confirm',
-			                data: {qty: qty, attr_id: attr_id,sp:spec},
+			                url: home.url() + '/goods/purchase_confirm',
+			                data: {qty: qty, goods_id: goods_id,spec:spec},
 			                success: function (data) {
-			                    if (data.status == 0) {
-			                        layer.msg(data.msg);
-			                    } else {
-			                        window.location.href = data.msg;
-			                    }
+			                	if (data.status == 0) {
+			                		layer.msg(data.msg);
+			                	}
+			                	if (data.status == 1) {
+			                        $('.denglu').removeClass('hid');
+			                        $('.mask').removeClass('hid');
+			                    } 
+			                	if (data.status == 2) {
+			                		window.location.href=data.msg;
+			                	}
 			                }
 			            });
 			        });
