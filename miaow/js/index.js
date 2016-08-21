@@ -332,6 +332,7 @@ var home = {//首页js
 							 if(data.status){
 								 $('.kan .change').attr('pg',data.pg);
 								 $('.kan .recommend').html(data.html);
+								 $('img.lazy').lazyload();
 							 }
 						 }
 				   })
@@ -374,7 +375,10 @@ var home = {//首页js
 			 });
 			 
 			 $('.additive').delegate('.catt a','click',function(e){ //属性选择 
+				 
+				 $(this).parent().children('.spec').prop('checked',false);
 				 $(this).addClass('hover').siblings('a').removeClass('hover');
+				 $(this).children('.spec').prop('checked',true);
 				 e.stopPropagation();
 			 });
 			 
@@ -400,7 +404,7 @@ var home = {//首页js
 			     if (hs||c_s==0) {return;}
 			     $(this).addClass("on").siblings().removeClass("on");
 			     var wc_top = $(document).scrollTop();
-		 		 if(wc_top>ctop){
+		 		 if (wc_top>ctop) {
 		 			$("html,body").animate({scrollTop:ctop},300)
 		 		 }
 			 });
@@ -434,6 +438,143 @@ var home = {//首页js
 					 isf = 0;
 				 }
 			 });
+			 
+			 if ($('.add_to_cart').size() > 0) { // 加入购物车
+			        $('body').on('click', '.add_to_cart', function () {
+			        	var spec = new Array();
+			            var qty = parseInt($('.number').val());
+			            var goods_id = $('.goods-image .hand').attr('goods-id');
+			            $('.catt  input:checked').each(function(i){
+			                spec[i] = $(this).val();
+			            })
+			            $.ajax({
+			                type: 'get',
+			                dataType: 'jsonp',
+			                jsonCallback: 'jsonCallback',
+			                url:  home.url() + '/home/addToCart',
+			                data: {goods_id: goods_id, qty: qty,spec:spec},
+			                success: function (data) {
+			                	if (data.status == 0) {
+			                		layer.msg(data.msg);
+			                	}
+			                	if (data.status == 1) {
+			                        $('.denglu').removeClass('hid');
+			                        $('.mask').removeClass('hid');
+			                    } 
+			                	if (data.status == 2) {
+			                		$.ajax({
+			                			type: 'post',
+			                			url:  home.url() + '/home/getCartInfor',
+			                			dataType : 'json',
+			                			success : function(data) {
+			                				if (data.status) {
+			                					$('.tishi').removeClass('hid');
+			                					$('.tishi .cat-infor').text('您的购物车中有'+data.num+'件商品，总计￥'+data.sum)
+			                				}
+			                			}
+			                		})
+			                	}
+			                }
+			            });
+			        });
+			    }
+			 
+			    if ($('.shopping-s-submit').size() > 0) { //商品详情-立即购买
+			        $('.property-s-submit').on('click', '.shopping-s-submit', function () {
+			            
+			        	var spec = new Array();
+			        	var qty = parseInt($('.qty').val());
+			            var attr_id = parseInt($('#attr_id').val());
+			            $('.tall-all  input:checked').each(function(i){
+			                spec[i] = $(this).val();
+			            })
+			            $.ajax({
+			                type: 'post',
+			                async: false,
+			                dataType: 'json',
+			                url: hostUrl() + '/tourism/purchase_confirm',
+			                data: {qty: qty, attr_id: attr_id,sp:spec},
+			                success: function (data) {
+			                    if (data.status == 0) {
+			                        layer.msg(data.msg);
+			                    } else {
+			                        window.location.href = data.msg;
+			                    }
+			                }
+			            });
+			        });
+			    }
+			    
+			    $('.denglu').on('click','.close',function(e){  //login close
+			    	$('.denglu').addClass('hid');
+			        $('.mask').addClass('hid');
+			        e.stopPropagation();
+			    })
+			    
+			    $('.tishi').on('click','.close',function(e){
+			    	$('.tishi').addClass('hid');
+			    	e.stopPropagation();
+			    })
+			    
+			    if ($('.loginform').size() > 0) { //登录提交页面
+			        $('.loginform').submit(function(e) {
+			            e.preventDefault();
+			        }).validate({
+			            errorPlacement: function(e, el) {
+			            	if ($(el).hasClass('error')) {
+				            	if ($('#username').val() == '' && $('#password').val() == '' ) {
+				            		$(el).parents('.loginform').find('.goods-error').removeClass('hid').text('请输入您的用户名');
+				            	}else{
+				            		$(el).parents('.loginform').find('.goods-error').removeClass('hid').text(e.text());
+				            	}
+			            	}
+			            },
+			            success: function(e, el) {
+			                if ($(el).hasClass('error')) {
+			                    $(el).parents('.loginform').find('.goods-error').addClass('hid');
+			                }
+			            },
+			        	rules: {
+			                 username: {
+			                     required: true,
+			                 },
+			                 password: {
+			                     required: true,
+			                 },
+			            },
+			            messages: {
+			                username: {
+			                	required: '请输入您的用户名',
+			                },
+			                password: {
+			                    required: '请输入您的密码',
+			                },
+			            },
+			            submitHandler: function(f) {
+			                $.ajax({
+			                    type: 'post',
+			                    async: false,
+			                    dataType : 'json',
+			                    url: home.url()+'/login/loginPost',
+			                    data: $('.loginform').serialize(),
+			                    beforeSend: function() {
+			                        $('.d-login').val('正在登录').attr('disabled', true);
+			                    },
+			                    success: function(json) {
+			                        if (json.status) {
+			                            window.location.href = location.href;
+			                        } else {
+			                        	$('.login-form-validate').find('.remind').children('p').text(json.messages);
+			                        	$(this).val('登 录').removeAttr('disabled');
+			                        	
+			                        }
+			                    }
+			                });
+			                return false;
+			            }
+			        });
+			    }
+			 
 		 },
 
 		 'initial':function(){
@@ -449,6 +590,7 @@ var home = {//首页js
 			 if(location.href.indexOf('femal')>-1){
 				 home.goodsType();
 			 }
+			 $('img.lazy').lazyload();
 		 }
 }
 
@@ -462,29 +604,51 @@ function pnav(i){
 	$("#pes_z").find(".pes_o").eq(i).show().siblings().hide();
 }
 
-function cadd(){
-	
-	var nb = $("#number");
-	var n_b = parseInt(nb.val());
-	if (!isNaN(n_b)){
-		if (n_b<50){
-			nb.attr("value",n_b+1);
-		}
-	}else{
-		nb.attr("value",1);
-	}
+function goodsQtyUpdate(kind, obj) {
+    var qtyObj = obj.parents('.purchase').find('.number');
+    var limit_num =  qtyObj.attr('limit-num');
+    var n = qtyObj.attr('goods-num');
+    var c = qtyObj.val();
+    if (kind == "up") {
+        c++;
+    } else if (kind == "down") {
+        if (c > 1) c--;
+    }
+    if (limit_num>0) {
+    	if (c>limit_num) {
+    		layer.msg('限购'+limit_num+'件');
+    		c = limit_num ;
+    	}
+    } else{
+    	if (c > n) {
+            layer.msg('库存不足,只能购买'+n+'件');
+            c = n;
+        }
+    }
+    qtyObj.val(parseInt(c));
 }
-function cdec(){
+function goodsQtyChange(obj) {
 	
-	var nb = $("#number");
-	var n_b = parseInt(nb.val());
-	if (!isNaN(n_b)){
-		if(n_b>1){
-			nb.attr("value",n_b-1);
-		}
-	 }else{
-		    nb.attr("value",1);
-		}
+    var c = obj.val();
+    var n = obj.attr('goods-num');
+    var limit_num =  obj.attr('limit-num');
+    c = parseInt(c);
+    n = parseInt(n);
+    if (isNaN(c) || c==0) {
+        c = 1;
+    }
+    if (limit_num>0) {
+    	if (c>limit_num) {
+    		layer.msg('限购'+limit_num+'件');
+    		c = limit_num ;
+    	}
+    } else{
+	    if (c > n) {
+	    	layer.msg('库存不足,只能购买'+n+'件');
+	        c = n;
+	    }
+    }
+    obj.val(c);
 }
 
 function tobuy(gid){
@@ -511,7 +675,8 @@ function gopen(i){
 	$("#mask").show();
 }
 
-function fbuy(gid){
+function fbuy(gid) {
+	
 	var wrap = $("#wrap");
 	var lep = wrap.length;
 	if (lep>0) {

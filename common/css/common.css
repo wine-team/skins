@@ -2324,7 +2324,6 @@ a:hover {
     bottom: 0;
     box-shadow: 1px 1px 3px #ccc;
     color: #333;
-    display: none;
     height: 90px;
     left: 0;
     line-height: 25px;
@@ -3046,14 +3045,12 @@ a:hover {
     height: 20px;
     text-indent: 5px;
 }
-.error, .ok {
+.ok {
     background: rgba(0, 0, 0, 0) url("../images/i.png") no-repeat scroll 4px -440px;
     display: block;
     padding-left: 20px;
 }
-.error {
-    background-position: 4px -414px;
-}
+
 .cd_d {
     width: 100%;
 }
