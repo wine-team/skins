@@ -307,7 +307,8 @@ var home = {//首页js
 							 data.isShrine ?  _this.addClass('active') : _this.removeClass('active')
 						 } else {
 							 if(data.message.indexOf('passport')>-1){
-								window.location.href = data.message;
+								 $('.denglu').removeClass('hid');
+			                     $('.mask').removeClass('hid');
 							 } else {
 								layer.msg(data.message);
 							 }
@@ -579,8 +580,25 @@ var home = {//首页js
 			            }
 			        });
 			    }
+			    
+			    
+			    
 			 
 		 },
+		 ajaxRegion : function(regionId,regionType,type){
+        	$.ajax({
+				type:'post',
+				async:false,
+				dataType:'json',
+				data:{parent_id:regionId,region_type:regionType},
+				url:home.url()+'/region/ajaxRegion',
+				success:function(data){
+					if( data.status ){
+						$('#'+type+' dl').html(data.html);
+					}
+				}
+			})
+	     },
 
 		 'initial':function(){
 			 home.cartLoad();
