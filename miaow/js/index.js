@@ -564,9 +564,8 @@ var home = {//首页js
 			                        if (json.status) {
 			                            window.location.href = location.href;
 			                        } else {
-			                        	$('.login-form-validate').find('.remind').children('p').text(json.messages);
-			                        	$(this).val('登 录').removeAttr('disabled');
-			                        	
+			                        	$('.loginform').find('.goods-error').removeClass('hid').text(json.messages);
+			                        	$('.d-login').val('登 录').removeAttr('disabled');
 			                        }
 			                    }
 			                });
