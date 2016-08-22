@@ -289,8 +289,10 @@ var home = {//首页js
 			 $('.region').delegate("li","click",function(){ // 地区
 			 	 var i = $(this).index();
 			 	 $(this).addClass("on").siblings().removeClass("on");
-			 	 $("#pes_z").find(".pes_o").eq(i).show().siblings().hide();
+			 	 $("#pes_z").find(".pes_o").eq(i).removeClass('hid').siblings().addClass('hid');
 		     });
+			 
+			 
 			 
 			 $('.goods-image').on('click','.hand',function(){// 收藏
 				 
@@ -523,6 +525,43 @@ var home = {//首页js
 			    	e.stopPropagation();
 			    })
 			    
+			    $('.p-list').on('click','li a',function(e){ //省 份
+			    	 var region_name = $(this).text();
+			    	 var region_id = $(this).attr('region-id');
+			    	 $('.region .province').text(region_name);
+			    	 $(this).parents('.p-list').addClass('hid').siblings('.c-list').removeClass('hid');
+			    	 $('.region li').removeClass('on').eq(1).addClass('on');
+			    	 home.ajaxRegion(region_id,'2','c-list');
+			    })
+			    
+			    $('.c-list').on('click','li a',function(e){ //市 份
+			    	
+			    	 var region_name = $(this).text();
+			    	 var region_id = $(this).attr('region-id');
+			    	 $('.region .city').text(region_name);
+			    	 $(this).parents('.c-list').addClass('hid').siblings('.a-list').removeClass('hid');
+			    	 $('.region li').removeClass('on').eq(2).addClass('on');
+			    	 home.ajaxRegion(region_id,'3','a-list');
+			    })
+			    
+			    $('.a-list').on('click','li a',function(e){ //区份
+			    	
+			    	var region_name = $(this).text(),
+			    	code = [
+    						$('.province').text(),
+    						$('.city').text()
+    					],
+    					name = '';
+			    	if( code[0]===code[1] ){
+    					name = code[0]+region_name;
+    				}else{
+    					name = code[0]+code[1]+region_name;
+    				}
+			    	$('.region .area').text(region_name);
+			    	$('.gdl .pes').removeClass("pes_on");
+			    	$('.address').text(name);
+			    })
+			    
 			    if ($('.loginform').size() > 0) { //登录提交页面
 			        $('.loginform').submit(function(e) {
 			            e.preventDefault();
@@ -580,26 +619,22 @@ var home = {//首页js
 			            }
 			        });
 			    }
-			    
-			    
-			    
-			 
 		 },
+		 
 		 ajaxRegion : function(regionId,regionType,type){
-        	$.ajax({
+         	$.ajax({
 				type:'post',
 				async:false,
-				dataType:'json',
+		 		dataType:'json',
 				data:{parent_id:regionId,region_type:regionType},
 				url:home.url()+'/region/ajaxRegion',
 				success:function(data){
 					if( data.status ){
-						$('#'+type+' dl').html(data.html);
+						$('.'+type).html(data.html);
 					}
 				}
 			})
 	     },
-
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
