@@ -525,6 +525,11 @@ var home = {//首页js
 			    	e.stopPropagation();
 			    })
 			    
+			    $('.jba').on('click','.rbuy',function(e){
+			    	$('.shopping-s-submit').trigger('click');
+			    	e.stopPropagation();
+			    })
+			    
 			    $('.p-list').on('click','li a',function(e){ //省 份
 			    	 var region_name = $(this).text();
 			    	 var region_id = $(this).attr('region-id');
