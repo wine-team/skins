@@ -156,7 +156,7 @@ var home = {//首页js
 			     } else {
 			    	 selectFlag.addClass('hid'); 
 			     }
-				 e.stopPragination();
+			     e.preventDefault();
 			 })
 		 },
 		 'search':function(){
