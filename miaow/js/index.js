@@ -640,17 +640,25 @@ var home = {//首页js
 				}
 			})
 	     },
+	     
+	     cart : function(){
+	    	
+	     },
+	     
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
 			 home.cart();
 			 home.search(); 
-			 if(location.href.indexOf('detail')>-1){
+			 if (location.href.indexOf('cart')>-1) {
+				 home.cart();
+			 }
+			 if (location.href.indexOf('detail')>-1) {
 				 home.goodsDetail();
 				 home.goodsRecommed(1);
 				 home.goodsRecommed(2);
 			 }
-			 if(location.href.indexOf('femal')>-1){
+			 if (location.href.indexOf('femal')>-1) {
 				 home.goodsType();
 			 }
 			 $('img.lazy').lazyload();
