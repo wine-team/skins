@@ -144,6 +144,8 @@ var home = {//首页js
 		 'cart':function(){ // 购物车
 			 
 			 $('.pay-type').on('click','.zfu',function(e){
+				 $(this).parent().children('.pay').prop('checked',false);
+				 $(this).children('.pay').prop('checked',true);
 				 $(this).addClass('zon').siblings().removeClass('zon');
 				 e.preventDefault();
 			 })
@@ -154,9 +156,10 @@ var home = {//首页js
 			     if ($(this).is(':checked')) {
 			    	 selectFlag.removeClass('hid');
 			     } else {
+			    	 selectFlag.find('option').eq(0).attr('selected','selected');
 			    	 selectFlag.addClass('hid'); 
 			     }
-			     e.preventDefault();
+			     //e.preventDefault();
 			 })
 		 },
 		 'search':function(){
@@ -640,11 +643,7 @@ var home = {//首页js
 				}
 			})
 	     },
-	     
-	     cart : function(){
-	    	
-	     },
-	     
+
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
