@@ -15,7 +15,7 @@ var home = {
 						$(this).addClass("hv");
 						if (cart_flag == 0) {
 							$.ajax({
-								url:home.url()+'/Home/getCart',
+								url:home.url()+'/home/getCart',
 								type: 'get',
 								dataType:'jsonp',
 								jsonCallback: 'jsonCallback',
@@ -101,7 +101,7 @@ var ucenterH = {
 			        type:"POST",
 			        dataType:'json',
 			        async: false,
-                    url: home.hostUrl()+'/Address/addPost',
+                    url: home.hostUrl()+'/address/addPost',
                     data: $('form.address-form').serialize(),
                     beforeSend: function() {
                         $('.address-form input[type="submit"]').val('正在保存').attr('disabled', true);
@@ -181,7 +181,7 @@ var ucenterH = {
 			        type:"POST",
 			        dataType:'json',
 			        async: false,
-			        url: home.hostUrl()+'/Ucenter/edit_user_info',
+			        url: home.hostUrl()+'/ucenter/edit_user_info',
                     data: $('.user-info').serialize(),
                     beforeSend: function() {
                         $('.user-info input[type=submit]').val('正在提交...').attr('disabled', true);
@@ -227,7 +227,7 @@ var ucenterH = {
                     },
 			        dataType:'json',
 			        async: false,
-			        url: home.hostUrl()+'/Ucenter/reset_password',
+			        url: home.hostUrl()+'/ucenter/reset_password',
                     data: $('form.formPassword').serialize(),
                     success: function(json) {
                         if (json.status) {

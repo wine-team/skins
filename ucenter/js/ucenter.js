@@ -15,7 +15,7 @@ var ucenter = {
 				var total = parseFloat($('#weixinzhifu').data('total'));
 				total = Math.round(total*100);
 				$.ajax({
-					url : url()+'/Ucenter/get_wxpay_code',
+					url : url()+'/ucenter/get_wxpay_code',
 					data : {
 						'out_trade_no' : order_sn,
 						'body' : "妙网商城-购物消费",
@@ -41,7 +41,7 @@ var ucenter = {
 						} else {
 							/**获取扫码支付结果*/
 							var get_trade_state = function(){
-								$.post(url()+'/Ucenter/get_trade_state',{out_trade_no:res.data},function(json){
+								$.post(url()+'/ucenter/get_trade_state',{out_trade_no:res.data},function(json){
 									if(json.status){
 										clearTimeout(t_out);
 										alert(json.msg);
