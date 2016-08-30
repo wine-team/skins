@@ -14,7 +14,7 @@ var help = {
 						$(this).addClass("hv");
 						if (cart_flag == 0) {
 							$.ajax({
-								url:help.url()+'/Home/getCart',
+								url:help.url()+'/home/getCart',
 								type: 'get',
 								dataType:'jsonp',
 								jsonCallback: 'jsonCallback',
@@ -61,7 +61,7 @@ var help = {
 			            type: 'get',
 			            async: false,
 			            dataType : 'json',
-			            url: help.hostUrl()+'/User_feedback/ajax_captcha',
+			            url: help.hostUrl()+'/user_feedback/ajax_captcha',
 			            success: function(json) {
 			                $('.captcha').html(json.image+'看不清点我');
 			            }
@@ -87,7 +87,7 @@ var help = {
 	                    type: 'post',
 	                    async: false,
 	                    dataType : 'json',
-	                    url: help.hostUrl()+'/User_feedback/feedback',
+	                    url: help.hostUrl()+'/user_feedback/feedback',
 	                    data: $('.feedback-form').serialize(),
 	                    beforeSend: function() {
 	                        $('button[type=submit]').text('正在提交').attr('disabled', true);
