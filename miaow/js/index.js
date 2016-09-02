@@ -149,18 +149,6 @@ var home = {//首页js
 				 $(this).addClass('zon').siblings().removeClass('zon');
 				 e.preventDefault();
 			 })
-			 
-			 $('.free').on('click','.youhuiquan',function(e){ //优惠券
-				 
-				 var selectFlag = $(this).parents('.free').find('.select-free');
-			     if ($(this).is(':checked')) {
-			    	 selectFlag.removeClass('hid');
-			     } else {
-			    	 selectFlag.find('option').eq(0).attr('selected','selected');
-			    	 selectFlag.addClass('hid'); 
-			     }
-			     //e.preventDefault();
-			 })
 		 },
 		 'search':function(){
 			 			 
@@ -721,43 +709,7 @@ function goodsQtyChange(obj) {
     obj.val(c);
 }
 
-function tobuy(gid){
-	
-	var wrap = $("#wrap");
-	var lep = wrap.length;
-	if (lep>0) {
-		var clep = wrap.find(".hover").length;
-		if (clep<1) {
-			gopen(1);
-			return;
-		}
-	}
-	if(ac!=1){return;}
-	addToCart(gid,0,0,1);
-}
 
-function gopen(i){
-	var k_s = 1;
-	k_s = i;
-	var ohtml = $("#wrap").html();
-	$("#wrapg").html(ohtml);
-	$("#pbox").show();
-	$("#mask").show();
-}
-
-function fbuy(gid) {
-	
-	var wrap = $("#wrap");
-	var lep = wrap.length;
-	if (lep>0) {
-		var clep=wrap.find(".hover").length;
-		if(clep<1){
-			gopen(0);
-			return;
-		}
-	}
-	addToCart(gid,0,0,0);
-}
 
 function zom(obj){
 
