@@ -1,9 +1,14 @@
+
+/**
+ * 根地址
+ * @returns {String}
+ */
+function hostUrl() {
+	return location.protocol+'//'+location.host;
+}
+
 var home = {//首页js
 		
-		'url':function(){
-			return location.protocol+'//'+location.host;
-		 },
-		 
 		 'cartLoad':function(){
 			 if ($('#tcar').size()>0) {
 				 var cart_flag = 0;  //购物车状态位 
@@ -11,7 +16,7 @@ var home = {//首页js
 						$(this).addClass("hv");
 						if (cart_flag == 0) {
 							$.ajax({
-								url:home.url()+'/Home/getCart',
+								url:hostUrl()+'/Home/getCart',
 								type: 'get',
 								dataType:'jsonp',
 								jsonCallback: 'jsonCallback',
@@ -34,7 +39,7 @@ var home = {//首页js
 				 $("#minarg").bind("mouseenter",function(){
 					 if (flag == 0) {
 						$.ajax({
-							url:home.url()+'/Home/getCart',
+							url:hostUrl()+'/Home/getCart',
 							type: 'get',
 							jsonCallback: 'jsonCallback',
 							dataType:'jsonp',
@@ -54,7 +59,7 @@ var home = {//首页js
 				 $("#rhist").bind("mouseenter",function(){
 					   if (hflag==0) {
 					   	  $.ajax({
-							  url:home.url()+'/Home/getHistory',
+							  url:hostUrl()+'/Home/getHistory',
 							  type:'post',
 							  dataType:'jsonp',
 							  beforeSend:function(){
@@ -263,7 +268,7 @@ var home = {//首页js
 				 type:'post',
 				 data:{cat:cat},
 				 dataType:'json',
-				 url:home.url()+'/goods/getHot',
+				 url:hostUrl()+'/goods/getHot',
 				 success:function(data){
 					 _this.html(data.html)
 				 }
@@ -293,7 +298,7 @@ var home = {//首页js
 					 type:'post',
 					 data:{goods_id:goods_id},
 					 dataType:'json',
-					 url:home.url()+'/goods/enshrine',
+					 url:hostUrl()+'/goods/enshrine',
 					 success:function(data){
 						 if(data.status){
 							 layer.msg(data.message);
@@ -321,7 +326,7 @@ var home = {//首页js
 						 type:'post',
 						 data:{from:from,pg:pg},
 						 dataType:'json',
-						 url:home.url()+'/goods/ajaxMoreSee',
+						 url:hostUrl()+'/goods/ajaxMoreSee',
 						 success:function(data){
 							 if(data.status){
 								 $('.kan .change').attr('pg',data.pg);
@@ -445,7 +450,7 @@ var home = {//首页js
 			                type: 'get',
 			                dataType: 'jsonp',
 			                jsonCallback: 'jsonCallback',
-			                url:  home.url() + '/home/addToCart',
+			                url:  hostUrl() + '/home/addToCart',
 			                data: {goods_id: goods_id, qty: qty,spec:spec},
 			                success: function (data) {
 			                	if (data.status == 0) {
@@ -458,7 +463,7 @@ var home = {//首页js
 			                	if (data.status == 2) {
 			                		$.ajax({
 			                			type: 'post',
-			                			url:  home.url() + '/home/getCartInfor',
+			                			url:  hostUrl() + '/home/getCartInfor',
 			                			dataType : 'json',
 			                			success : function(data) {
 			                				if (data.status) {
@@ -487,7 +492,7 @@ var home = {//首页js
 			                type: 'post',
 			                async: false,
 			                dataType: 'json',
-			                url: home.url() + '/goods/purchase_confirm',
+			                url: hostUrl() + '/goods/purchase_confirm',
 			                data: {qty: qty, goods_id: goods_id,spec:spec},
 			                success: function (data) {
 			                	if (data.status == 0) {
@@ -597,7 +602,7 @@ var home = {//首页js
 			                    type: 'post',
 			                    async: false,
 			                    dataType : 'json',
-			                    url: home.url()+'/login/loginPost',
+			                    url: hostUrl()+'/login/loginPost',
 			                    data: $('.loginform').serialize(),
 			                    beforeSend: function() {
 			                        $('.d-login').val('正在登录').attr('disabled', true);
@@ -623,7 +628,7 @@ var home = {//首页js
 				async:false,
 		 		dataType:'json',
 				data:{parent_id:regionId,region_type:regionType},
-				url:home.url()+'/region/ajaxRegion',
+				url:hostUrl()+'/region/ajaxRegion',
 				success:function(data){
 					if( data.status ){
 						$('.'+type).html(data.html);
