@@ -10,6 +10,39 @@ var ucenter = {
 		 * */
 		order_weixin_pay : function(){
 			if($('#weixinzhifu').size() > 0){
+				var order_id = $('#weixinzhifu').data('order_id');
+				$.ajax({
+			        type:"POST",
+			        dataType:'json',
+			        async: false,
+			        url: url()+'/ucenter/productEwm',
+                    data: {order_id:order_id},
+                    success: function(json) {
+                        if (json) {
+                        	$('#codeimg').html('<img width="230" src="'+json+'" />');
+                        	/**获取支付结果*/
+							var get_order_status = function(){
+								$.post(url()+'/ucenter/get_order_status',{order_id:order_id},function(res){
+									if(res.status){
+//										window.location.href = res.url;
+									}else{
+										clearTimeout(t_out);
+										layer.msg(res.messages);
+										setTimeout(function(){window.location.href = url()}, 1000);
+									}
+								},'json');
+								var t_out = setTimeout(get_order_status,5000);
+							}
+							get_order_status();
+                        }
+                    }
+			    });
+			}
+		},
+		
+		
+		order_weixin_pay_1 : function(){
+			if($('#weixinzhifu').size() > 0){
 				var order_sn = $('#weixinzhifu').data('order_id');
 				var ip = "127.0.0.1";
 				var total = parseFloat($('#weixinzhifu').data('total'));
