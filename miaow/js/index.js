@@ -16,7 +16,7 @@ var home = {//首页js
 						$(this).addClass("hv");
 						if (cart_flag == 0) {
 							$.ajax({
-								url:hostUrl()+'/Home/getCart',
+								url:hostUrl()+'/home/getCart',
 								type: 'get',
 								dataType:'jsonp',
 								jsonCallback: 'jsonCallback',
@@ -39,7 +39,7 @@ var home = {//首页js
 				 $("#minarg").bind("mouseenter",function(){
 					 if (flag == 0) {
 						$.ajax({
-							url:hostUrl()+'/Home/getCart',
+							url:hostUrl()+'/home/getCart',
 							type: 'get',
 							jsonCallback: 'jsonCallback',
 							dataType:'jsonp',
@@ -59,7 +59,7 @@ var home = {//首页js
 				 $("#rhist").bind("mouseenter",function(){
 					   if (hflag==0) {
 					   	  $.ajax({
-							  url:hostUrl()+'/Home/getHistory',
+							  url:hostUrl()+'/home/getHistory',
 							  type:'post',
 							  dataType:'jsonp',
 							  beforeSend:function(){
