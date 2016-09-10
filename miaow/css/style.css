@@ -10,7 +10,7 @@
 
 /*¹ºÎï³µ*/
 .cart .cart-empty {background-position: 202px 47px;padding-left:507px;}
-.cart .cart-empty {background: #fff url("../images/bg2.png") no-repeat scroll 124px 47px; height: 156px; margin-top: 30px;padding: 47px 0 57px 407px;}
+.cart .cart-empty {background: #fff url("../images/bg3.jpg") no-repeat scroll 124px 47px; height: 156px; margin-top: 30px;padding: 47px 0 57px 407px;}
 .cart .cart-empty h2 {font:400 18px/40px "Microsoft YaHei";padding-top: 40px;}
 .cart .cart-empty .link-btn {padding: 5px 12px;}
 .cart a.cart-btn {background-color:#cc4026;border-radius: 2px; color: #fff;font-family: "Microsoft YaHei";}
