@@ -250,7 +250,7 @@ var home = {//首页js
 							 $("#konav").show();
 							 has_nav = true;
 					 	}
-					 }else{
+					 } else {
 					 	if (has_nav) {
 					 		$blnav.removeClass("ccat");
 					 		$("#konav").hide();
@@ -287,8 +287,6 @@ var home = {//首页js
 			 	 $(this).addClass("on").siblings().removeClass("on");
 			 	 $("#pes_z").find(".pes_o").eq(i).removeClass('hid').siblings().addClass('hid');
 		     });
-			 
-			 
 			 
 			 $('.goods-image').on('click','.hand',function(){// 收藏
 				 
@@ -640,7 +638,6 @@ var home = {//首页js
 		 'initial':function(){
 			 home.cartLoad();
 			 home.headRightMenu();
-			 home.cart();
 			 home.search(); 
 			 if (location.href.indexOf('cart')>-1) {
 				 home.cart();
@@ -714,8 +711,6 @@ function goodsQtyChange(obj) {
     obj.val(c);
 }
 
-
-
 function zom(obj){
 
 	var mg = $(obj);
@@ -730,4 +725,26 @@ function zom(obj){
 		box.html("<img src='"+bg+"' >").show();
 		mg.attr("data-n","0").siblings("img").removeAttr("data-n");
 	}
+}
+
+/**
+ *计算运费
+ */
+function ajaxFreight(){
+	
+	var province = $('.province').text();
+	var qty = $('input[name="number"]').val();
+	var goodsId = $('.number').attr('goods-id');
+	$.ajax({
+		type:'post',
+		async:false,
+ 		dataType:'json',
+		data:{province:province,qty:qty,goods_id:goodsId},
+		url:hostUrl()+'/goods/ajaxFreight',
+		success:function(data){
+			if (data.status) {
+				$('.freight .cost').text(data.message);
+			}
+		}
+	})
 }
