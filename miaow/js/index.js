@@ -1,4 +1,3 @@
-
 /**
  * 根地址
  * @returns {String}
@@ -7,7 +6,7 @@ function hostUrl() {
 	return location.protocol+'//'+location.host;
 }
 
-var home = {//首页js
+var home = {
 		
 		 'cartLoad':function(){
 			 if ($('#tcar').size()>0) {
@@ -276,6 +275,8 @@ var home = {//首页js
 		 },
 		 'goodsDetail':function(){  //产品详情页
 			
+			 ajaxRecommend(1,$('.change').attr('from'));
+			 
 			 $('.goods-pic').delegate('li','mouseenter',function(){
 			 	 var n = $(this).attr('data-src');
 			 	 $(this).addClass('on').siblings('li').removeClass('on');
@@ -318,22 +319,11 @@ var home = {//首页js
 			 });
 			 
 			 $('.kan').on('click','.change',function(e){ //查看更多
-				   var from = $(this).attr('from');
-				   var pg = parseInt($(this).attr('pg'))+1;
-				   $.ajax({
-						 type:'post',
-						 data:{from:from,pg:pg},
-						 dataType:'json',
-						 url:hostUrl()+'/goods/ajaxMoreSee',
-						 success:function(data){
-							 if(data.status){
-								 $('.kan .change').attr('pg',data.pg);
-								 $('.kan .recommend').html(data.html);
-								 $('img.lazy').lazyload();
-							 }
-						 }
-				   })
-				   e.preventDefault();
+				   
+				  var from = $(this).attr('from');
+				  var pg = parseInt($(this).attr('pg')) + 1;
+				  ajaxRecommend(pg,from);
+				  e.preventDefault();
 			 });
 			 
 			 if ($('.product-review').size()>0) {
@@ -349,7 +339,7 @@ var home = {//首页js
 			            }
 			       });
 				   
-				   $('.product-review').on('click', 'ul.pagination a', function (eve) {
+				   $('.product-review').on('click', '.page a', function (eve) {
 			            var url = $(this).attr('href');
 			            $.ajax({
 			                type: 'get',
@@ -362,6 +352,7 @@ var home = {//首页js
 			                }
 			            });
 			            eve.preventDefault();
+			            return false;
 			       });
 			 }		 
 
@@ -559,6 +550,7 @@ var home = {//首页js
 			    	$('.region .area').text(region_name);
 			    	$('.gdl .pes').removeClass("pes_on");
 			    	$('.address').text(name);
+			    	ajaxFreight();
 			    })
 			    
 			    if ($('.loginform').size() > 0) { //登录提交页面
@@ -618,6 +610,8 @@ var home = {//首页js
 			            }
 			        });
 			    }
+			    
+			    ajaxFreight()// 运费计算
 		 },
 		 
 		 ajaxRegion : function(regionId,regionType,type){
@@ -732,7 +726,7 @@ function zom(obj){
  */
 function ajaxFreight(){
 	
-	var province = $('.province').text();
+	var province = $.trim($('.province').text());
 	var qty = $('input[name="number"]').val();
 	var goodsId = $('.number').attr('goods-id');
 	$.ajax({
@@ -743,8 +737,30 @@ function ajaxFreight(){
 		url:hostUrl()+'/goods/ajaxFreight',
 		success:function(data){
 			if (data.status) {
-				$('.freight .cost').text(data.message);
+				$('.freight .cost').text(data.message.toFixed(2));
 			}
 		}
 	})
+}
+
+ /**
+ * ajax 刷新推荐产品
+ * @param pg
+ * @param from
+ */
+function ajaxRecommend(pg,from) {
+	$.ajax({
+		 type:'post',
+		 data:{from:from,pg:pg},
+		 dataType:'json',
+		 async:false,
+		 url:hostUrl()+'/goods/ajaxMoreSee',
+		 success:function(data){
+			 if (data.status) {
+				 $('.kan .change').attr('pg',data.pg);
+				 $('.kan .recommend').html(data.html);
+				 $('img.lazy').lazyload();
+			 }
+		 }
+  })
 }
