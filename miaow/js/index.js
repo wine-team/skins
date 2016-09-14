@@ -145,7 +145,7 @@ var home = {
 			 }
 		 },
 		 
-		 'cart':function(){ // 购物车
+		'cart':function(){ // 购物车
 			 
 			 $('.pay-type').on('click','.zfu',function(e){
 				 $(this).parent().children('.pay').prop('checked',false);
@@ -154,6 +154,7 @@ var home = {
 				 e.preventDefault();
 			 })
 		 },
+		 
 		 'search':function(){
 			 			 
 			 $('.simg').on('mouseenter','img',function(event){
@@ -161,6 +162,7 @@ var home = {
 			 	 var g = $(this).attr("data-s");
 			 	 $(this).addClass("on").siblings("img").removeClass("on");
 			 	 m.attr("src",g);
+			 	 m.attr("data-original",g);
 			 	 event.preventDefault();
 			 });
 			 
@@ -223,14 +225,14 @@ var home = {
 			 $("#gdls").delegate(".lwen","hover",function(event){
 				 
 				 var wenv = $(this).parent().parent().find(".b_h4");
-				 var did = Number($(this).attr("data-id"))-2;
+				 var did = Number($(this).attr("data-id")) - 2;
 				 if (event.type == 'mouseenter') {
-					 var tx = wenv.html();
-					 if(tx.indexOf("<!--") > 0 ){
-						 tx = tx.replace("<!--","");
-						 tx = tx.replace("-->","");
-						 wenv.text(tx);
-					 }
+				 	 var tx = wenv.html();
+				 	 if(tx.indexOf("<!--") > 0 ){
+				 		 tx = tx.replace("<!--","");
+				 		 tx = tx.replace("-->","");
+				 		 wenv.text(tx);
+				 	 }
 					 wenv.show();
 				 } else {
 				 	 wenv.hide();
@@ -261,15 +263,15 @@ var home = {
 		 },
 		 'goodsRecommed':function(type){
 			 
-			 var cat = (type==1) ? $('.same-hot').attr('cat') : '';
-			 var _this = (type==1) ? $('.same-hot') : $('.all-hot');
+			 var cat = $('.same-hot').attr('cat');
 			 $.ajax({
 				 type:'post',
 				 data:{cat:cat},
 				 dataType:'json',
 				 url:hostUrl()+'/goods/getHot',
 				 success:function(data){
-					 _this.html(data.html)
+					 $('.same-hot').html(data.same);
+					 $('.all-hot').html(data.all);
 				 }
 			 })
 		 },
@@ -638,8 +640,7 @@ var home = {
 			 }
 			 if (location.href.indexOf('detail')>-1) {
 				 home.goodsDetail();
-				 home.goodsRecommed(1);
-				 home.goodsRecommed(2);
+				 home.goodsRecommed();
 			 }
 			 if (location.href.indexOf('femal')>-1) {
 				 home.goodsType();
@@ -749,7 +750,8 @@ function ajaxFreight(){
  * @param from
  */
 function ajaxRecommend(pg,from) {
-	$.ajax({
+	
+   $.ajax({
 		 type:'post',
 		 data:{from:from,pg:pg},
 		 dataType:'json',
@@ -762,5 +764,5 @@ function ajaxRecommend(pg,from) {
 				 $('img.lazy').lazyload();
 			 }
 		 }
-  })
+   })
 }
