@@ -145,16 +145,6 @@ var home = {
 			 }
 		 },
 		 
-		'cart':function(){ // 购物车
-			 
-			 $('.pay-type').on('click','.zfu',function(e){
-				 $(this).parent().children('.pay').prop('checked',false);
-				 $(this).children('.pay').prop('checked',true);
-				 $(this).addClass('zon').siblings().removeClass('zon');
-				 e.preventDefault();
-			 })
-		 },
-		 
 		 'search':function(){
 			 			 
 			 $('.simg').on('mouseenter','img',function(event){
@@ -635,9 +625,6 @@ var home = {
 			 home.cartLoad();
 			 home.headRightMenu();
 			 home.search(); 
-			 if (location.href.indexOf('cart')>-1) {
-				 home.cart();
-			 }
 			 if (location.href.indexOf('detail')>-1) {
 				 home.goodsDetail();
 				 home.goodsRecommed();

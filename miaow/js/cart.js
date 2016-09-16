@@ -91,49 +91,16 @@ var carLoad = function() {
 }
 
 var cart = function() {
+	
+	var payChose = function() {
 		
-
-    var enshrine = function() {
-    	
-    	$('.operate').delegate('a.enshirne','click',function(e){
-    		var goods_id = $(this).attr('goods-id');
-    		$.ajax({
-    	        type: 'post',
-    	        async: false,
-    	        dataType : 'json',
-    	        url: hostUrl()+'/cart/enshrine',
-    	        data:{goods_id:goods_id},
-    	        success: function(json) {
-    	            layer.msg(json.message);
-    	        }
-    	    });
-    		e.stopPropagation();
-    		return false;
-    	})
-    }
-    
-    var del = function () {
-    	
-    	$('.operate').on('click','a.delete',function(e){
-    		var goods_id = $(this).attr('goods-id');
-    		layer.confirm('你确认要删除吗', {icon: 3, title:'提示'}, function(index){
-    			$.ajax({
-    	            type: 'post',
-    	            async: false,
-    	            dataType : 'json',
-    	            url: hostUrl()+'/cart/delete',
-    	            data:{goods_id:goods_id},
-    	            success: function(json) {
-    	                if (json.status) {
-    	                	window.location.href = location.href;
-    	                } else {
-    	                	layer.msg(json.message);
-    	                }
-    	            }
-    	        });
-    		});
-    	})
-    }
+		$('.pay-type').on('click','.zfu',function(e){
+			$(this).parent().children('.pay').prop('checked',false);
+			$(this).children('.pay').prop('checked',true);
+			$(this).addClass('zon').siblings().removeClass('zon');
+			e.preventDefault();
+		})
+	} 
 
     var cartSubmit = function() {
     	
@@ -198,10 +165,9 @@ var cart = function() {
     	
 	   	init: function () {
 	   		cartSubmit();
-	   		enshrine();
-	   		del();
+	   		payChose();
 	   	}
-   }
+    }
 }();
 
 jQuery(function(){
