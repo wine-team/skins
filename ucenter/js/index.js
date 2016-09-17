@@ -247,6 +247,7 @@ var ucenterH = {
 		ucenterH.ershire();
 		ucenterH.address();
 		ucenterH.userIfor();
+		$('img.lazy').lazyload();
 	}
 }
 jQuery(function(){

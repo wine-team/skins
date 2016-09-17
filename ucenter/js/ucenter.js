@@ -15,14 +15,14 @@ var ucenter = {
 			        type:"POST",
 			        dataType:'json',
 			        async: false,
-			        url: url()+'/ucenter/productEwm',
+			        url: url()+'/order/productEwm',
                     data: {order_id:order_id},
                     success: function(json) {
                         if (json) {
                         	$('#codeimg').html('<img width="230" src="'+json+'" />');
                         	/**获取支付结果*/
 							var get_order_status = function(){
-								$.post(url()+'/ucenter/get_order_status',{order_id:order_id},function(res){
+								$.post(url()+'/order/get_order_status',{order_id:order_id},function(res){
 									if(res.status){
 //										window.location.href = res.url;
 									}else{
