@@ -243,10 +243,48 @@ var ucenterH = {
 	        });
 		}
 	},
+	'order_reviews' : function(){
+		if ($('#myform').size()>0) {
+			$(".mup").change(function() {
+				var id = $(this).attr("data-id");
+				var input = this;
+				if (window.navigator.userAgent.indexOf("MSIE") >= 1) {
+					var sFilter = 'filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src="';
+					var src = input.value;
+					$("#p" + id).html("<div id=divhead style='width:"+100+"px;height:"+100+"px;"+sFilter+src+"\"'></div>")
+					$("#p" + id).parent().find("a").show();
+				} else {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$("#p" + id).html('<img src="'+e.target.result+'" />');
+							$("#p" + id).parent().find("a").show();
+						}
+						reader.readAsDataURL(input.files[0]);
+					}
+				}
+			});
+			
+			$('.uu_p').on('click', 'a', function(){
+				$(this).hide();
+				$(this).parents('.uu_p').find('p.img_uv').html('+');
+				$(this).parents('.uu_p').find('input.mup').val('');
+			});
+			
+			$('#myform').submit(function(){
+				if ($("#sd_des").val().length < 6) {
+					alert("您的评论太简单了吧！至少6个字哦~");
+					$("#sd_des").focus();
+					return false;
+				}
+			});
+		}
+	},
 	'initial':function(){
 		ucenterH.ershire();
 		ucenterH.address();
 		ucenterH.userIfor();
+		ucenterH.order_reviews();
 		$('img.lazy').lazyload();
 	}
 }
