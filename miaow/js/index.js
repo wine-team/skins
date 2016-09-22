@@ -725,7 +725,7 @@ function ajaxFreight(){
 		url:hostUrl()+'/goods/ajaxFreight',
 		success:function(data){
 			if (data.status) {
-				$('.freight .cost').text(data.message.toFixed(2));
+				$('.freight .cost').text(data.message);
 			}
 		}
 	})
