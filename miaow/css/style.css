@@ -5,6 +5,12 @@
 .top-active-wrap img {display:block;width:100%; margin: 0 auto;}
 .top-active .btn-close {position:absolute;top: 3px;right: 56px; width: 15px;height: 15px;background: url(../images/close.png) -106px -145px;}
 
+/*首页样式*/
+
+.hs_t .home-search{margin:0 110px;}
+
+
+
 /*产品详情登录注册*/
 .denglu .goods-error{color:#C40000 !important;font-size:13px !important;font-weight:normal !important;}
 
