@@ -42,10 +42,10 @@ $(document).ready(function(){
     }
     
     if ($('.login').size()>0) { // 点击快捷和会员登陆的切换
-    	$('.login').on('click','.hd',function(){
+        $('.login').on('click','.hd',function(){
             $('.normal-login').toggle();
-    		$('.quick-login').toggle();
-    	});
+            $('.quick-login').toggle();
+        });
     }
     
     //登录验证码
@@ -68,14 +68,14 @@ $(document).ready(function(){
         $('.register-form-validate').on('click', '.btnsend', function(event){
             var obj = $(this);
             obj.attr('disabled', 'true');
-            var phone = $.trim($('input[name=mobile_phone]').val());
+            var phone = $.trim($('input[name=phone]').val());
             var captcha = $.trim($('input[name=captcha]').val());
             var mobile = /^1[34578]\d{9}$/
             if (!phone || !mobile.test(phone)) {
-                if (!$('input[name=mobile_phone]').hasClass('error')) {
-                    $('input[name=mobile_phone]').addClass('error').after('<label for="mobile_phone" class="error">手机号码格式有误</label>');
+                if (!$('input[name=phone]').hasClass('error')) {
+                    $('input[name=phone]').addClass('error').after('<label for="phone" class="error">手机号码格式有误</label>');
                 } else {
-                    $('input[name=mobile_phone]').focus();
+                    $('input[name=phone]').focus();
                 }
                 obj.removeAttr('disabled');
                 return;
@@ -97,7 +97,7 @@ $(document).ready(function(){
                         if (data.status) {
                             jump(obj, 60);
                         } else {
-                        	if (!$('input[name=captcha]').hasClass('error')) {
+                            if (!$('input[name=captcha]').hasClass('error')) {
                                 $('input[name=captcha]').next('label.error').text(data.messages).show();
                             } else {
                                 $('input[name=captcha]').addClass('error').after('<label for="verify" class="error">'+data.messages+'</label>');
@@ -116,20 +116,20 @@ $(document).ready(function(){
         $('.fast-code').on('click', '.getpwd', function(event){
             var obj = $(this);
             obj.attr('disabled', 'true');
-            var phone = $.trim($('input[name=mobile_phone]').val());
+            var phone = $.trim($('input[name=phone]').val());
             var captcha = $.trim($('.e-captcha').val());
             var mobile = /^1[34578]\d{9}$/
             if (!phone || !mobile.test(phone)) {
-                if (!$('input[name=mobile_phone]').hasClass('error')) {
-                	$('input[name=mobile_phone]').parents('.quick-login').find('.remind').children('p').text('手机号码格式有误');
+                if (!$('input[name=phone]').hasClass('error')) {
+                    $('input[name=phone]').parents('.quick-login').find('.remind').children('p').text('手机号码格式有误');
                 }
-                $('input[name=mobile_phone]').focus();
+                $('input[name=phone]').focus();
                 obj.removeAttr('disabled');
                 return false;
             }
             if( !captcha ) {
                 if (!$('input[name=captcha]').hasClass('error')) {
-                	$('input[name=mobile_phone]').parents('.quick-login').find('.remind').children('p').text('请输入验证码');
+                    $('input[name=phone]').parents('.quick-login').find('.remind').children('p').text('请输入验证码');
                 } 
                 $('input[name=captcha]').focus();
                 obj.removeAttr('disabled');
@@ -142,10 +142,10 @@ $(document).ready(function(){
                 dataType:'json',
                 success:function(data) {
                     if (data.status) {
-                    	$('.quick-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
+                        $('.quick-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
                         jump(obj, 60);
                     } else {
-                    	$('input[name=mobile_phone]').parents('.quick-login').find('.remind').children('p').text(data.messages);
+                        $('input[name=phone]').parents('.quick-login').find('.remind').children('p').text(data.messages);
                         obj.removeAttr('disabled');
                     }
                 }
@@ -173,16 +173,16 @@ $(document).ready(function(){
             e.preventDefault();
         }).validate({
             rules: {
-            	mobile_phone: {
+                phone: {
                     required: true,
                     mobile:true,
                     remote: {
-                        url:hostUrl()+'/register/validateMobilePhone',
+                        url:hostUrl()+'/register/validatePhone',
                         type: 'post',
                         dataType: 'json',
                         data: {
-                            mobile_phone:function(json) {
-                                return $('input[name=mobile_phone]').val();
+                            phone:function(json) {
+                                return $('input[name=phone]').val();
                             }
                         }
                     }
@@ -202,8 +202,8 @@ $(document).ready(function(){
                         type: 'post',
                         dataType: 'json',
                         data: {
-                            mobile_phone:function(json) {
-                                return $('input[name=mobile_phone]').val();
+                            phone:function(json) {
+                                return $('input[name=phone]').val();
                             },
                             verify:function(json) {
                                 return $('input[name=verify]').val();
@@ -225,7 +225,7 @@ $(document).ready(function(){
                 }
             },
             messages: {
-            	mobile_phone: {
+                phone: {
                     required: '请输入您的手机号码',
                     mobile: '手机号码格式有误',
                     remote: '手机号已注册'
@@ -279,20 +279,20 @@ $(document).ready(function(){
             e.preventDefault();
         }).validate({
             errorPlacement: function(e, el) {
-            	if ($(el).hasClass('error')) {
-	            	if ($('#username').val() == '' && $('#password').val() == '' ) {
-	            		$(el).parents('.normal-login').find('.remind').children('p').text('请输入您的用户名');
-	            	}else{
-	            		$(el).parents('.normal-login').find('.remind').children('p').text(e.text());
-	            	}
-            	}
+                if ($(el).hasClass('error')) {
+                    if ($('#username').val() == '' && $('#password').val() == '' ) {
+                        $(el).parents('.normal-login').find('.remind').children('p').text('请输入您的用户名');
+                    }else{
+                        $(el).parents('.normal-login').find('.remind').children('p').text(e.text());
+                    }
+                }
             },
             success: function(e, el) {
                 if ($(el).hasClass('error')) {
                     $(el).parents('.normal-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
                 }
             },
-        	rules: {
+            rules: {
                  username: {
                      required: true,
                  },
@@ -303,11 +303,11 @@ $(document).ready(function(){
             },
             messages: {
                 username: {
-                	required: '请输入您的用户名',
+                    required: '请输入您的用户名',
                 },
                 password: {
                     required: '请输入您的密码',
-                	rangelength: '密码长度只能在6-20位字符之间'
+                    rangelength: '密码长度只能在6-20位字符之间'
                 },
             },
             submitHandler: function(f) {
@@ -324,20 +324,20 @@ $(document).ready(function(){
                         if (json.status) {
                             window.location.href = json.messages;
                         } else {
-                        	$('.d-login').text('正在登录...').attr('disabled', true);
-                        	if (json.data >= 3) {
-                        		$('.forget-form-account').css('display', 'block');
-                        		if (!$('.d-captcha').val()) {
-                        			$('.login-form-validate').find('.remind').children('p').text('必选字段');
-                        		}
-                        	}
-                        	if (json.input == 'captcha') {
-                        		$('.d-captcha').focus();
-                        	}
-                        	$('.login-form-validate').find('.remind').children('p').text(json.messages);
-                        	$('.d-login').animate({'top':'+=0'}, 200, function(){
-                        	    $(this).text('登 录').removeAttr('disabled');
-                        	});
+                            $('.d-login').text('正在登录...').attr('disabled', true);
+                            if (json.data >= 3) {
+                                $('.forget-form-account').css('display', 'block');
+                                if (!$('.d-captcha').val()) {
+                                    $('.login-form-validate').find('.remind').children('p').text('必选字段');
+                                }
+                            }
+                            if (json.input == 'captcha') {
+                                $('.d-captcha').focus();
+                            }
+                            $('.login-form-validate').find('.remind').children('p').text(json.messages);
+                            $('.d-login').animate({'top':'+=0'}, 200, function(){
+                                $(this).text('登 录').removeAttr('disabled');
+                            });
                         }
                     }
                 });
@@ -353,13 +353,13 @@ $(document).ready(function(){
         }).validate({
             errorPlacement: function(e, el) {
                 if ($(el).hasClass('error')) {
-                	if ($('#mobile_phone').val() == '' && $('#captcha').val() == '' && $('#verify').val() == '' ) {
-	            		$(el).parents('.quick-login').find('.remind').children('p').text('请输入您的手机号码');
-	            	}else if ($('#captcha').val() == '' && $('#verify').val() == '' ){
-	            		$(el).parents('.quick-login').find('.remind').children('p').text('请输入验证码');
-	            	}else {
-	            		$(el).parents('.quick-login').find('.remind').children('p').text(e.text());
-	            	}
+                    if ($('#phone').val() == '' && $('#captcha').val() == '' && $('#verify').val() == '' ) {
+                        $(el).parents('.quick-login').find('.remind').children('p').text('请输入您的手机号码');
+                    }else if ($('#captcha').val() == '' && $('#verify').val() == '' ){
+                        $(el).parents('.quick-login').find('.remind').children('p').text('请输入验证码');
+                    }else {
+                        $(el).parents('.quick-login').find('.remind').children('p').text(e.text());
+                    }
                 }
             },
             success: function(e, el) {
@@ -367,8 +367,8 @@ $(document).ready(function(){
                     $(el).parents('.quick-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
                 }
             },
-        	rules: {
-        	    mobile_phone: {
+            rules: {
+                phone: {
                     required: true,
                 },
                 captcha: {
@@ -379,8 +379,8 @@ $(document).ready(function(){
                 },
             },
             messages: {
-            	mobile_phone: {
-                	required: '请输入您的手机号码',
+                phone: {
+                    required: '请输入您的手机号码',
                 },
                 captcha: {
                     required: '请输入验证码',
@@ -488,7 +488,7 @@ $(document).ready(function(){
                     async: false,
                     dataType : 'json',
                     url: hostUrl()+'/forget/confirmValidate',
-                    data: {username:$('input[name=username]').val(), verify:$('input[name=verify]').val(), mobile_phone:$('button.btnsend').attr('data-attr')},
+                    data: {username:$('input[name=username]').val(), verify:$('input[name=verify]').val(), phone:$('button.btnsend').attr('data-attr')},
                     beforeSend: function() {
                         $('button[type=submit]').text('加载中...').attr('disabled', true);
                     },
