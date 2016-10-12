@@ -772,7 +772,7 @@ a:hover {
 #m_mid {
     /*margin-top: -210px;*/
     position: absolute;
-    top: 38%;
+    top: 30%;
 }
 .m_li {
     background-color: #7A6E6E;
@@ -919,7 +919,7 @@ a:hover {
     top: 56px;
 }
 #m_fid {
-    bottom: 5px;
+    bottom: 20px;
     position: absolute;
     right: 0;
 }
