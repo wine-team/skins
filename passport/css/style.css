@@ -251,13 +251,13 @@
 .login-header .header .service a{ color: #666;}
 .login-header .header .service .cutoff-line{ color: #aaa;}
 
-.bz-login{height:600px;width:100%;min-width:1200px;position:relative;}
+.bz-login{height:500px;width:100%;min-width:1200px;position:relative;}
 .bz-login button:active{ border-color:#fff;}
-.bz-login .login-img img{width:100%; height:600px;}
+.bz-login .login-img img{width:100%; height:500px;}
 .bz-login .quick-login{display:none;}
 .bz-login .login-img{ position:absolute; top:0; left:0; width:100%;}
-.bz-login .login-con{ width:1200px; height:600px; margin:0 auto; position:relative;}
-.bz-login .login{position:absolute;top:115px;right:65px;width:345px;height:370px;background-color:#fff; opacity: 0.9;filter:alpha(opacity=90);}
+.bz-login .login-con{ width:1200px; height:500px; margin:0 auto; position:relative;}
+.bz-login .login{position:absolute;top:65px;right:65px;width:345px;height:370px;background-color:#fff; opacity: 0.9;filter:alpha(opacity=90);}
 .bz-login .login .hd{position:absolute;top:0;right:0;cursor:pointer;}
 .bz-login .login ul{padding:20px 20px;}
 .bz-login .login .title{font-size:20px;color:#333;}
