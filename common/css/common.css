@@ -3202,9 +3202,6 @@ a:hover {
     overflow: visible;
     z-index: 3;
 }
-.h_pa, .ha_po, .hx_a, .h_fm, .tp_a, .gl dt, .w_hd, .ll_r, .s_ul li, .dn_a {
-    background: #fff url("qu.gif") no-repeat scroll 50% 50%;
-}
 .dn_a {
     background-position: 50% 30%;
 }
