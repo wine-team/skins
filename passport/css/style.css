@@ -206,8 +206,8 @@
 .add-body .add-progress .fonter hr{position: absolute; top: 10px; width:160px;  border: 2px solid #ccc; border-radius: 2px;}
 .add-body .add-progress .fonter p{ text-align: center; margin-top: 5px; color: #999;}
 .add-body .add-progress .fonter i{ color: #fff; display: block; background-color: #ccc; width: 20px; height: 20px; border-radius: 50%; text-align: center; font-style: normal; line-height: 21px; position: relative; z-index: 1; left: 70px;}
-.add-body .add-progress li.active i{ background-color: #00a1f2; color: #fff;}
-.add-body .add-progress li.active hr{ border: 2px solid #00a1f2;}
+.add-body .add-progress li.active i{ background-color: #ff4c4c; color: #fff;}
+.add-body .add-progress li.active hr{ border: 2px solid #ff4c4c;}
 
 .add-body{width: 1000px;height:400px;border:1px solid #eee;margin:0 auto;background: #FFF}
 .add-body .forget-form-type{width: 500px;height: 200px;margin: 60px auto}
@@ -215,10 +215,10 @@
 .add-body .add-group span.error{line-height: 35px;margin-left:5px;color: red;}
 .add-body .add-label {margin-bottom: 0;padding-top: 7px;text-align: right;float: left;font-weight:normal;margin-right: 10px;width: 70px}
 .add-body .add-control{float: left;border-radius: 1px;color: #555;display: block;font-size: 14px;height: 25px;line-height: 27px;width:270px;border:1px solid #DCDCDC;padding:5px 12px;}
-.add-body .add-control:focus {border-color: #1C96D5;}
+.add-body .add-control:focus {border-color: #ff4c4c;}
 .add-body .add-group .yest{width: 100px}
 .add-body .add-group .btn{color: #fff;width: 100px;height: 36px;line-height: 30px;padding: 0;margin-left: 80px;border:none;border-radius: 0px}
-.add-body .add-group .btn-default{background: #1C96D5;}
+.add-body .add-group .btn-default{background: #ff4c4c;}
 .add-body .add-group img{background: #fff;width: 100px;height: 35px;float: left;border:0;margin-left: 10px;color:#1BC0C4 }
 
 /*ȷ����֤��Ϣ*/
@@ -238,7 +238,7 @@
 .add-body .aly-ccx .ccx-li img{float: left;width: 53px;height: 51px}
 .aly-ccx .ccx-li p{display: inline-block;;float: left;height: 51px;line-height: 51px;margin-left: 10px;font-size: 20px;font-weight:500;color: #3D3E41}
 .add-body .aly-ccx .rutuer{text-align: center;margin-top: 20px}
-.aly-ccx .rutuer a,.aly-ccx .rutuer a:hover{color:#4FA6DB;margin:0 10px;}
+.aly-ccx .rutuer a,.aly-ccx .rutuer a:hover{color:#ff4c4c;margin:0 10px;}
 
 
 /*login  2016-2-2*/
@@ -270,6 +270,8 @@
 .bz-login .quick-login .fast-login .input-box{float:left;height:38px;}
 .bz-login .quick-login .fast-login .input-box span{height:28px;line-height:40px;}
 .bz-login .quick-login .fast-login .input-text{float:left;height:28px;line-height:30px;width:140px;padding:6px 6px 4px 12px;_padding:5px 6px 5px 10px;}
+.bz-login .quick-login .fast-login .input-text:focus{ border:1px solid #ff4c4c;}
+.bz-login .quick-login .fast-code .input-text:focus{ border:1px solid #ff4c4c;}
 .bz-login .quick-login .fast-login a{font-size:12px;color:#333;line-height:38px;}
 .bz-login .quick-login .fast-login a img{margin-left:10px;vertical-align:middle;}
 .bz-login .quick-login .fast-code{margin-bottom:10px;}
@@ -286,10 +288,10 @@
 .bz-login .login form{position:relative;}
 .bz-login .login .erro-code input:focus{ border:1px solid #3aa2e4;}
 .bz-login .login .init-login{width:100%;height:40px; position: relative;}
-.bz-login .login .init-login .input-text:focus{ border:1px solid #3aa2e4;}
-.bz-login .login .login-pwd .input-text:focus{ border:1px solid #3aa2e4;}
-.bz-login .login .init-login .input-text:focus+.photo-icon{ border: 1px solid #3aa2e4; color: #3aa2e4;background-color: #f1faff}
-.bz-login .login .login-pwd .input-text:focus+.photo-icon{ border: 1px solid #3aa2e4; color: #3aa2e4;background-color: #f1faff}
+.bz-login .login .init-login .input-text:focus{ border:1px solid #ff4c4c;}
+.bz-login .login .login-pwd .input-text:focus{ border:1px solid #ff4c4c;}
+.bz-login .login .init-login .input-text:focus+.photo-icon{ border: 1px solid #ff4c4c; color: #ff4c4c;background-color: #f1faff}
+.bz-login .login .login-pwd .input-text:focus+.photo-icon{ border: 1px solid #ff4c4c; color: #ff4c4c;background-color: #f1faff}
 
 .bz-login .login span{height:28px;line-height:40px;}
 .bz-login .login .init-login .photo-icon{float:left;color:#fff;background-color:#dbdbdb;width:40px;height:38px;text-align:center;line-height: 36px; position: absolute;left: 0px; border: 1px solid #ccc;}
