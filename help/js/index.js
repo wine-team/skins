@@ -1,8 +1,8 @@
 
 var help = {
 		
-		url:function(){
-			return 'http://miaow.localhost';
+		mainUrl:function(){
+			return 'http://www.miaocw.com';
 		},
 		hostUrl:function(){
 			return location.protocol+'//'+location.host;
@@ -14,7 +14,7 @@ var help = {
 						$(this).addClass("hv");
 						if (cart_flag == 0) {
 							$.ajax({
-								url:help.url()+'/home/getCart',
+								url:help.mainUrl()+'/home/getCart',
 								type: 'get',
 								dataType:'jsonp',
 								jsonCallback: 'jsonCallback',
