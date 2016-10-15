@@ -185,17 +185,17 @@
 .register .apartfrom-position-hao input{_margin-top: 13px;}
 
 /*ע��ɹ�*/
-.success-register{background: #FFFFFF;width:1190px;height: 595px;margin: 20px auto;border: 6px solid #E1E1E1;}
-.success-register .success-text{width: 650px;height: 175px;margin: 110px auto 0;background: url(../images/success.png) no-repeat 54px 0px;}
+.success-register{background: #FFFFFF;width:990px;margin: 20px auto;border: 6px solid #E1E1E1;}
+.success-register .success-text{width: 650px;height: 175px;margin: 60px auto 0;background: url(../images/success.png) no-repeat 54px 0px;}
 .success-register .success-text p.suc-your{margin-left: 130px;height: 52px;line-height: 52px;color: #000;font-size: 22px;font-weight: bold;margin-bottom: 5px}
 .success-register .success-text p.suc-zhang{margin-left: 130px;color: #3E3E3E;margin-bottom: 30px}
-.success-register .success-text p.suc-zhang i{font-style: normal;color: #FF7900;margin-left: 3px;margin-right: 3px}
+.success-register .success-text p.suc-zhang i{font-style: normal;color: #ff4c4c;margin-left: 3px;margin-right: 3px}
 .success-register .success-text .success-button{margin-left: 130px}
 .success-register .success-text .success-button span{float: left;margin-top: 5px}
 .success-register .success-text .success-button a.btn{float: left;padding: 0;width: 100px;height: 34px;color: #fff;line-height: 34px;margin-right:30px;margin-left: 5px;border: none;border-radius: 0;text-align: center;color: #fff;font-weight: bold;font-size: 15px}
-.success-register .success-button .btn-success{background-color: #12B522}
-.success-register .success-button .btn-primary{background-color: #1C96D5}
-.success-register .success-text-footer{width: 940px;height: 295px;border-top:1px solid #E7E7E7;margin: 0 auto;}
+.success-register .success-button .btn-success{background-color: #12B522;background-image: none;}
+.success-register .success-button .btn-primary{background-color: #ff4c4c;background-image: none;}
+.success-register .success-text-footer{width: 940px;border-top:1px solid #E7E7E7;margin: 0 auto;}
 .success-register .success-text-footer .text-footer{width:270px;margin: 40px auto}
 .success-register .success-text-footer img{float: left;width: 116px;height: 116px}
 .success-register .success-text-footer p{float: left;margin-top: 10px;margin-left: 25px;width: 110px;font-size: 20px;color: #3E3E3E}
