@@ -7,7 +7,7 @@ ul,p,label,hr,dd{margin: 0;padding: 0;}
 li{ list-style:none;}
 .clearfix{*zoom:1;}
 
-.screen-width{width: 1200px;margin: 0 auto;}
+.screen-width{width: 1000px;margin: 0 auto;}
 .screen-min-width{width: 1000px;margin: 0 auto;}
 
 @font-face {font-family: "iconfont";
