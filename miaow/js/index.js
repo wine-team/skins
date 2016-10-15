@@ -102,6 +102,12 @@ var home = {
 		    	 $("#lnav").hide();
 		     });
 			 
+			 $(".chosen-aside").find("li").hover(function () { //楼层的显示效果
+			     $(this).addClass("current").find('.chosen-aside-img').removeClass('hide');
+			     $(this).siblings().removeClass("current").find('.chosen-aside-img').addClass('hide');
+			     $('img.lazy').lazyload();
+			 })
+			 
 			 $('.m_tops').delegate('.top','click',function(event){ //顶部 公用函数
 				 $('html,body').stop().animate({scrollTop:'0px'},600);
 				 event.preventDefault();
