@@ -141,9 +141,9 @@
 .register .apartfrom .apartfrom-right{width:298px;float: left;border-left: 1px #E3E3E3 solid;}
 .register .apartfrom .apartfrom-left .title{height: 51px;width: 100%;margin: 0;border-bottom: 1px #E6E6E6 solid;}
 .register .apartfrom .apartfrom-left .title i,.register .apartfrom .apartfrom-left h3 p{float: left;}
-.register .apartfrom .apartfrom-left .title .apartfrom-left-center{width: 360px;margin: 0 auto;height: 51px;position: relative;border-bottom: 3px #ff4c4c solid;top: 1px;}
-.register .apartfrom .apartfrom-left .title p{font-size: 20px;display: block;height: 51px;line-height: 55px;margin: 0 0 0 142px;}
-.register .apartfrom .apartfrom-left .title .apartfrom-left-center .apartfrom-triangle{width: 0px;height:0px;line-height: 0px;border-width: 5px 5px 0;border-style: solid dashed dashed dashed;border-left-color: transparent;border-right-color: transparent;position: absolute;left: 175px;color:#ff4c4c;bottom: -8px;_bottom: -9px;}
+.register .apartfrom .apartfrom-left .title .apartfrom-left-center{width: 350px;margin: 0 auto;height: 51px;position: relative;border-bottom: 3px #ff4c4c solid;top: 1px;}
+.register .apartfrom .apartfrom-left .title p{font-size: 20px;height: 51px;line-height: 55px;text-align: center;}
+.register .apartfrom .apartfrom-left .title .apartfrom-left-center .apartfrom-triangle{width: 0px;height:0px;line-height: 0px;border-width: 5px 5px 0;border-style: solid dashed dashed dashed;border-left-color: transparent;border-right-color: transparent;position: absolute;left: 50%;color:#ff4c4c;bottom: -8px;_bottom: -9px;}
 .register .apartfrom .apartfrom-right .apartfrom-rapid{width: 220px;height: 200px;margin: 25px 0px 0px 20px;}
 .register .apartfrom .apartfrom-right .apartfrom-img,.register .apartfrom .apartfrom-right .apartfrom-img img{height: 400px;width: 100%;}
 .register .apartfrom-regter{height: 71px;}
