@@ -342,3 +342,6 @@
 .newregister-footer .aboutus ul{padding-left:305px;*padding-left:290px;}
 .newregister-footer .aboutus li{float:left;text-align:center;margin-right:30px;}
 .newregister-footer .aboutus li a{padding:0 10px;font-size:12px;color:#666;}
+
+/*底部统计隐藏*/
+#cnzz_stat_icon_1259975445{display:none;}
