@@ -262,7 +262,7 @@ a:hover {
     background-color: #fff;
 }
 .load img, .gdes img {
-    background: #fff url("load.gif") no-repeat scroll 50% 50%;
+    background: #fff url("../images/load.gif") no-repeat scroll 50% 50%;
 }
 #top, #header, #footer, #l_nav {
     min-width: 990px;
