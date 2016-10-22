@@ -514,10 +514,15 @@ var home = {
 			    })
 			    
 			    $('.p-list').on('click','li a',function(e){ //省 份
+			    	
+			    	 var _parent = $(this).parents('.p-list');
 			    	 var region_name = $(this).text();
 			    	 var region_id = $(this).attr('region-id');
 			    	 $('.region .province').text(region_name);
-			    	 $(this).parents('.p-list').addClass('hid').siblings('.c-list').removeClass('hid');
+			    	 $('.region .city').text('请选择');
+			    	 $('.region .area').hide();
+			    	 _parent.addClass('hid').siblings('.c-list').removeClass('hid');
+			    	 
 			    	 $('.region li').removeClass('on').eq(1).addClass('on');
 			    	 home.ajaxRegion(region_id,'2','c-list');
 			    })
@@ -529,6 +534,7 @@ var home = {
 			    	 $('.region .city').text(region_name);
 			    	 $(this).parents('.c-list').addClass('hid').siblings('.a-list').removeClass('hid');
 			    	 $('.region li').removeClass('on').eq(2).addClass('on');
+			    	 $('.region .area').show().text('请选择');
 			    	 home.ajaxRegion(region_id,'3','a-list');
 			    })
 			    
@@ -549,9 +555,9 @@ var home = {
 			    	$('.gdl .pes').removeClass("pes_on");
 			    	$('.address').text(name);
 			    	ajaxFreight();
-			    })
+			   })
 			    
-			    if ($('.loginform').size() > 0) { //登录提交页面
+			   if ($('.loginform').size() > 0) { //登录提交页面
 			        $('.loginform').submit(function(e) {
 			            e.preventDefault();
 			        }).validate({
@@ -608,7 +614,6 @@ var home = {
 			            }
 			        });
 			    }
-			    
 			    ajaxFreight()// 运费计算
 		 },
 		 

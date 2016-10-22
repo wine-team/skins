@@ -53,7 +53,7 @@ ol, ul {list-style:outside none none;}
 
 /*列表页搜索无结果*/
 
-.no-find.lack-goods { height: 110px; padding: 0 0 0 40px;}
+.no-find.lack-goods {height: 110px; padding: 0 0 0 40px;}
 .no-find {background: #fff none repeat scroll 0 0; border: 1px solid #ffefe2;color: #666;font-size: 12px;height: 66px;margin: 20px auto;padding: 87px 0 87px 388px;}
 .no-find i { display: block;float: left;height: 66px; padding: 0 20px 0 0;width: 54px;}
 .no-find.lack-goods i {background-position: -239px -152px;height: 68px;margin: 21px 0;width: 54px;}
