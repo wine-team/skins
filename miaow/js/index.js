@@ -267,7 +267,6 @@ var home = {
 				 url:hostUrl()+'/goods/getHot',
 				 success:function(data){
 					 $('.same-hot').html(data.same);
-					 $('.all-hot').html(data.all);
 				 }
 			 })
 		 },
