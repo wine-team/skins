@@ -76,6 +76,10 @@ ol, ul {list-style:outside none none;}
 .cart .cart-empty p a {color:#cc4026;}
 .cart .free .select-free {width:100px;}
 
+/*订单提交页面*/
+.payment .order-creat{padding:30px 30px 30px 80px;}
+.payment .order-creat .l_icon{font-size:40px !important;}
+
 /*微信支付*/
 .weixinzhifu td.pay-wx{background:url(../images/weipay.png) 320px 52px no-repeat;}
 .weixinzhifu td.pay-wx .pay-wx-content{border:1px solid #ddd;width:280px;margin-top:20px;padding-top:10px;}
