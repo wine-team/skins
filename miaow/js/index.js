@@ -300,12 +300,7 @@ var home = {
 							 layer.msg(data.message);
 							 data.isShrine ?  _this.addClass('active') : _this.removeClass('active')
 						 } else {
-							 if(data.message.indexOf('passport')>-1){
-								 $('.denglu').removeClass('hid');
-			                     $('.mask').removeClass('hid');
-							 } else {
-								layer.msg(data.message);
-							 }
+							 layer.msg(data.message);
 						 }
 					 }
 				 })
@@ -442,10 +437,6 @@ var home = {
 			                	if (data.status == 0) {
 			                		layer.msg(data.msg);
 			                	}
-			                	if (data.status == 1) {
-			                        $('.denglu').removeClass('hid');
-			                        $('.mask').removeClass('hid');
-			                    } 
 			                	if (data.status == 2) {
 			                		$.ajax({
 			                			type: 'post',
@@ -484,10 +475,6 @@ var home = {
 			                	if (data.status == 0) {
 			                		layer.msg(data.msg);
 			                	}
-			                	if (data.status == 1) {
-			                        $('.denglu').removeClass('hid');
-			                        $('.mask').removeClass('hid');
-			                    } 
 			                	if (data.status == 2) {
 			                		window.location.href=data.msg;
 			                	}
