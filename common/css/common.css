@@ -2605,7 +2605,7 @@ a:hover {
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #fff;
-    border-color: #fff #fff -moz-use-text-color;
+    border-color: #fff #fff;
     border-image: none;
     border-style: solid solid none;
     border-width: 2px 2px medium;
@@ -2770,7 +2770,7 @@ a:hover {
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #fff;
-    border-color: -moz-use-text-color #e5e5e5 #e5e5e5;
+    border-color:  #e5e5e5 #e5e5e5;
     border-image: none;
     border-style: none solid solid;
     border-width: medium 1px 1px;
