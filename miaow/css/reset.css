@@ -20,11 +20,19 @@ li{ list-style:none;}
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-shouji:before { content: "\e608"; }
 .icon-zhinenghuaxuanpinicon1:before { content: "\e600"; }
+.icon-shoucang:before { content: "\e60d"; }
+.icon-shouji1:before { content: "\e60e"; }
 .icon-bianji:before { content: "\e601"; }
+.icon-gouwuche:before { content: "\e609"; }
 .icon-shijian:before { content: "\e602"; }
-.icon-gouwuche:before { content: "\e603"; }
+.icon-gouwuche1:before { content: "\e603"; }
 .icon-huidaodingbu:before { content: "\e604"; }
+.icon-shouye:before { content: "\e60a"; }
 .icon-kefu:before { content: "\e605"; }
 .icon-xingxing:before { content: "\e606"; }
 .icon-erweima:before { content: "\e607"; }
+.icon-erji:before { content: "\e60b"; }
+.icon-cf-c42:before { content: "\e60c"; }
+.icon-chenggong:before { content: "\e60f"; }
