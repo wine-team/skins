@@ -108,10 +108,26 @@ var help = {
 				});
 			}
 		},
+		share:function(){
+			window._bd_share_config = {
+				common : {
+					bdText : $('.title').text(),
+					bdDesc : ($('.details').text()).replace(/<[^>]+>/g,"").substr(0,300),
+					bdUrl  : location.href,
+					bdPic  : '../images/logo.jpg'
+				},
+				share : {
+					"tag" : "share-more",
+					"bdSize" : 32
+				}
+			}
+			with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+		},
 		initial:function(){
 			help.cartLoad();
 			help.headRightMenu();
 			help.feedback();
+			help.share();
 		}
 }
 jQuery(function(){
