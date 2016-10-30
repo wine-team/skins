@@ -267,6 +267,7 @@ var home = {
 				 url:hostUrl()+'/goods/getHot',
 				 success:function(data){
 					 $('.same-hot').html(data.same);
+					 $('img.lazy').lazyload();
 				 }
 			 })
 		 },
