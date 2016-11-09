@@ -109,10 +109,12 @@
 
 /*性爱翻页 */
 .pagination{margin:25px 38px;font-size:14px;}
-.pagination a{color:#7b7b7b}
-.pagination a.active{background-color: #F5F5F5;}
+.pagination-right { text-align: right;}
+.pagination a,.pagination strong{color:#7b7b7b;padding: 4px 12px;line-height: 20px;text-decoration: none;background-color: #fff;border: 1px solid #ddd;}
+.pagination a.active,.pagination a:focus,{background-color: #F5F5F5;}
 .pagination font{margin-left:10px;}
 .pagination font span{color:#009FF0;}
+
 
 /*暂无性爱  */
 .no-data{width:150px;margin:75px auto 100px;}
