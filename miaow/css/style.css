@@ -31,7 +31,7 @@ ol, ul {list-style:outside none none;}
 .home-content .chosen-aside { padding: 0 10px;}
 .home-content .chosen-aside-item { line-height: 22px;padding: 8px 0 8px 34px; position: relative;overflow: hidden; border-bottom: solid 1px #f1f1f1; cursor: pointer}
 .home-content .serial-number {width: 22px; height: 22px;line-height: 24px;text-align: center;background-color: #C40000;color: #fff; position: absolute;left: 0;top: 8px;display: block; border-radius: 2px;overflow: hidden}
-.home-content .chosen-aside-img,.chosen-aside-img img { width: 70px;height: 70px}
+.home-content .chosen-aside-img,.chosen-aside-img img { width: 60px;height: 60px}
 .home-content .chosen-aside-img {padding-right: 10px}
 .home-content .chosen-aside-price { color: #ff503c; padding-top: 8px;font-size: 16px}
 .home-content .chosen-aside .current {line-height: 18px;padding: 20px 0; overflow: visible}
