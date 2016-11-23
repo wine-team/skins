@@ -439,17 +439,3 @@ if(!navigator.cookieEnabled){
 	);
 }
 
-
-/**最新的js整改技术---2016-05-16*--慢慢替代它的写法**/
-
-function hostUrl() {
-    return location.protocol+'//'+location.host;
-}
-
-jQuery(function(){
-		
-	$('#tul').on('click','.contact-kf',function(event){ //客服的点击触发
-		var curl="http://"+page_h+"/live800.php?pagetitle="+page_t;window.open(curl,'在线客服',pez)
-	})
-
-})
