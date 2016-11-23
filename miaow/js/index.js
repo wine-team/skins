@@ -271,7 +271,7 @@ var home = {
 				 }
 			 })
 		 },
-		 'goodsDetail':function(){  //产品详情页
+		 'goodsDetail' : function(){  //产品详情页
 			
 			 ajaxRecommend(1,$('.change').attr('from'));
 			 
@@ -618,8 +618,16 @@ var home = {
 				}
 			})
 	     },
-
-		 'initial':function(){
+	     'imgLazyLoad' : function() {
+	    	 
+	    	 $('img.lazy').lazyload({
+	    		  effect : "fadeIn", 
+	    		  threshold : 400
+	    	 });
+	     },
+		 'initial': function() {
+			 
+			 home.imgLazyLoad();
 			 home.cartLoad();
 			 home.headRightMenu();
 			 home.search(); 
@@ -630,7 +638,6 @@ var home = {
 			 if (location.href.indexOf('femal')>-1) {
 				 home.goodsType();
 			 }
-			 $('img.lazy').lazyload();
 		 }
 }
 
