@@ -369,7 +369,7 @@ var ucenterH = {
 			
 			$('#myform').submit(function(){
 				if ($("#sd_des").val().length < 6) {
-					alert("您的评论太简单了吧！至少6个字哦~");
+					layer.msg("您的评论太简单了吧！至少6个字哦~");
 					$("#sd_des").focus();
 					return false;
 				}
