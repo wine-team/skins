@@ -354,6 +354,13 @@ a.ab{background-color:#999;color:#fff;}
 @media only screen and (min-width:640px){.bigm .ga{width:33.33%;}}
 .ltag{padding:0.5rem;background-color:#fff;overflow:hidden;border-bottom:1px solid #e5e5e5;}
 
+/*产品详情页*/
+.header{border-bottom:1px solid #910101;}
+.bkw{word-break:break-all;padding:8px 10px 0 10px;}
+#gslider{-webkit-backface-visibility:hidden;}
+.se_p{padding:0 10px 10px 10px;overflow:hidden;}
+.des img{background:url(http://img.qw.cc/mobile/css/load.gif) 50% 50% no-repeat;}
+
 /**购物车*/
 @-webkit-keyframes fadeo{0%,100%{color:#FFF} 50%{color:#FF0}}
 .nxl{-webkit-animation:fadeo 1s linear infinite;}
@@ -370,6 +377,11 @@ a.ab{background-color:#999;color:#fff;}
 /*关于我们*/
 .about .qabout{text-indent:20px;word-break:break-all;}
 .about .des img{max-width:100%;height:auto;}
+
+/*产品需求*/
+.need{min-height:25rem;background-color:#fff;padding:0 5px 10px 5px;margin-bottom:10px;border-bottom:1px solid #eaeaea;}
+.need a{display:inline-block;padding:0 10px;border-radius:4px; line-height:36px;color:#333; background-color:#f1f0f0;margin:10px 5px 0 5px;}
+.area{border:1px solid #ddd; height:80px;width:99%;border-radius:4px;}
 
 /*app下载*/
 .app{background-color:#ac73e6;padding:1rem 0;}
