@@ -60,3 +60,25 @@ var mL=defObj.length;
 var imgLoad=function(){defObj.each(function(){var tmtop=$(this).offset().top;if(tmtop<=pageTop()){var src2=$(this).attr("src2");if(src2){$(this).attr("src",src2).removeAttr("src2");iom++;if(iom>=mL){removeL();}}}});};imgLoad();$(window).bind("scroll",imgLoad);}
 if(!navigator.cookieEnabled){$("body").prepend("<p style='background-color:#ffa627' class='alC lh30 c3'>您的浏览器禁用了cookie，会导致购物车、登录等操作异常,请启用cookie或更换浏览器</p>");}
 function GetQueryString(name) {var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");var r = window.location.search.substr(1).match(reg);if(r!=null)return  unescape(r[2]); return '';}
+function getSfexpress(goods_sn,sku_sn,province,city,num){
+ var goods_sn = goods_sn ? goods_sn : '';
+ var sku_sn = sku_sn ? sku_sn : '';
+ var province = province ? province : '';
+ var city = city ? city : '';
+ var num = num ? num : 1;
+ 
+ $.ajax({
+  url: "/!asyncexpress/sfexpress/",
+  data:{'g':goods_sn,'s':sku_sn,'v':province,'y':city,'n':num},
+  dataType: "json",
+  success: function(data){
+		if(data.t != ''){
+			$('#yuji').html('由 <span class="red">'+data.warehouse_province_name.replace('市','仓').replace('省','仓')+'</span> 发货，预计'+data.t+'送达');
+			$('.yuji').html('由 <span class="red">'+data.warehouse_province_name.replace('市','仓').replace('省','仓')+'</span> 发货，预计'+data.t+'送达');
+		} else {
+			$('#yuji').html('由 <span class="red">'+data.warehouse_province_name.replace('市','仓').replace('省','仓')+'</span> 发货，预计'+default_time+'送达');
+			$('.yuji').html('由 <span class="red">'+data.warehouse_province_name.replace('市','仓').replace('省','仓')+'</span> 发货，预计'+default_time+'送达');
+		}
+  }
+ })
+}
