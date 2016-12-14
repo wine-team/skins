@@ -44,7 +44,6 @@ $(window).resize(function(){
 goodsinit();
 gslider.vganswiper({auto:false,bi:1});
 
-
 function gclose() {
     $("#cok").hide();
 	$("#nok").show();

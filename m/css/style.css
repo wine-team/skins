@@ -371,7 +371,7 @@ a.ab{background-color:#999;color:#fff;}
 
 /*列表页*/
 @media only screen and (min-width:640px){.bigm .ga{width:33.33%;}}
-.ltag{padding:0.5rem;background-color:#fff;overflow:hidden;border-bottom:1px solid #e5e5e5;}
+.home-list .ltag{padding:0.5rem;background-color:#fff;overflow:hidden;border-bottom:1px solid #e5e5e5;}
 
 /*产品详情页*/
 .header{border-bottom:1px solid #910101;}
@@ -398,9 +398,9 @@ a.ab{background-color:#999;color:#fff;}
 .about .des img{max-width:100%;height:auto;}
 
 /*产品需求*/
-.need{min-height:25rem;background-color:#fff;padding:0 5px 10px 5px;margin-bottom:10px;border-bottom:1px solid #eaeaea;}
-.need a{display:inline-block;padding:0 10px;border-radius:4px; line-height:36px;color:#333; background-color:#f1f0f0;margin:10px 5px 0 5px;}
-.area{border:1px solid #ddd; height:80px;width:99%;border-radius:4px;}
+.home-need .need{min-height:25rem;background-color:#fff;padding:0 5px 10px 5px;margin-bottom:10px;border-bottom:1px solid #eaeaea;}
+.home-need .need a{display:inline-block;padding:0 10px;border-radius:4px; line-height:36px;color:#333; background-color:#f1f0f0;margin:10px 5px 0 5px;}
+.home-need .area{border:1px solid #ddd; height:80px;width:99%;border-radius:4px;}
 
 /*app下载*/
 .app{background-color:#ac73e6;padding:1rem 0;}
@@ -450,47 +450,47 @@ a.ab{background-color:#999;color:#fff;}
 #sel_g{height:3rem;border:1px solid #eaeaea;}
 
 /*今日抢购**/
-.qg_icon{background:url(http://s.qw.cc/mobile/css/loot/qqg.png) 50% 50% no-repeat; background-size:7.7rem 2.5rem;width:100%;height:4.5rem;}
-.tw_tab{line-height:1.4rem; height:4.5rem;width:100%;overflow:hidden; background-color:#fff;text-align:center;}
-.tw_tab li{float:left;width:50%;height:3.5rem;padding-top:0.8rem;display:block;font-size:1.5rem;border-bottom:2px solid #fff;}
-.tw_tab li.on{border-color:#be0000;color:#be0000;font-weight:bold;}
-.l_sbn{font-size:1rem;color:#999;}
-.tg_key{background-color:#ffecec;border:1px solid #f59797;color:#e45c5c; line-height:16px;font-size:10px; display:inline-block;padding:0 5px;margin-right:5px;border-radius:2px;}
-.daj b{background-color:#000;border-radius:2px;color:#fff;padding:3px 3px;margin:0 2px;}
-.loota{width:100%;padding:1rem 0;border-bottom:1px solid #eaeaea;color:#ddd;background-color:#fff;display:block;height:13rem;overflow:hidden;position:relative;}
-.loota .pm{padding:0 10px;overflow:hidden;}
-.loota h3{font-size:1.4rem;color:#333;line-height:1.8rem;height:3.6rem;overflow:hidden;margin-bottom:0.8rem;}
-.loimg{width:13rem;height:13rem;float:left;margin:0 10px 0 0;}
-.loota .xj{float:left;font-size:1.6rem;}
-.masq{width:8rem;height:4.5rem;background:url(http://s.qw.cc/mobile/ui/lootbtn2.png) right 50% no-repeat;background-size:contain; position:absolute;right:10px;bottom:10px;}
-.l_bq{margin:1rem 0;}
-.loota .ov{height:4.2rem;line-height:4.2rem;}
-.huany{padding-right:1.8rem;color:#999;font-size:1rem;margin-right:10px;background:url(http://s.qw.cc/mobile/css/huan.png) right 50% no-repeat;background-size:1.7rem 1.7rem;}
-.word_l{border-top:1px solid #efefef;padding-top:1rem;overflow:hidden;line-height:2.6rem;}
-.word_l li{width:50%;float:left;overflow:hidden;white-space:nowrap;}
-.word_l li a{display:block;width:96%;overflow:hidden; text-overflow:ellipsis;color:#888;}
-.loot_tp{background-color:#fff;margin-top:1rem;min-height:260px;overflow:hidden;position:relative;}
-.lt_img{position:relative;z-index:1;}
-.lt_topic{position:absolute;left:0;top:0;width:100%;height:57%;display:block;z-index:2;}
-.lt_ap{position:absolute;width:100%;height:40%;bottom:0;left:0;z-index:2;overflow:hidden;}
-.lt_a1{float:left;width:25%;display:block;height:100%;font-size:1rem;color:#333;text-align:center;}
-.lt_a1 p{margin-top:92%;}
-.hx_line{height:4rem;line-height:4rem;position:relative; text-align:center;}
-.hx_line b{display:inline-block; background-color:#f5f5f5; font-size:1.5rem;color:#333;padding:0 1rem; position:relative;z-index:2;}
-.hx_fline{position:absolute;width:100%;height:1px; background-color:#ddd; overflow:hidden;left:0;top:50%;z-index:1;}
+.home-today .qg_icon{background:url(http://s.qw.cc/mobile/css/loot/qqg.png) 50% 50% no-repeat; background-size:7.7rem 2.5rem;width:100%;height:4.5rem;}
+.home-today .tw_tab{line-height:1.4rem; height:4.5rem;width:100%;overflow:hidden; background-color:#fff;text-align:center;}
+.home-today .tw_tab li{float:left;width:50%;height:3.5rem;padding-top:0.8rem;display:block;font-size:1.5rem;border-bottom:2px solid #fff;}
+.home-today .tw_tab li.on{border-color:#be0000;color:#be0000;font-weight:bold;}
+.home-today .l_sbn{font-size:1rem;color:#999;}
+.home-today .tg_key{background-color:#ffecec;border:1px solid #f59797;color:#e45c5c; line-height:16px;font-size:10px; display:inline-block;padding:0 5px;margin-right:5px;border-radius:2px;}
+.home-today .daj b{background-color:#000;border-radius:2px;color:#fff;padding:3px 3px;margin:0 2px;}
+.home-today .loota{width:100%;padding:1rem 0;border-bottom:1px solid #eaeaea;color:#ddd;background-color:#fff;display:block;height:13rem;overflow:hidden;position:relative;}
+.home-today .loota .pm{padding:0 10px;overflow:hidden;}
+.home-today .loota h3{font-size:1.4rem;color:#333;line-height:1.8rem;height:3.6rem;overflow:hidden;margin-bottom:0.8rem;}
+.home-today .loimg{width:13rem;height:13rem;float:left;margin:0 10px 0 0;}
+.home-today .loota .xj{float:left;font-size:1.6rem;}
+.home-today .masq{width:8rem;height:4.5rem;background:url(http://s.qw.cc/mobile/ui/lootbtn2.png) right 50% no-repeat;background-size:contain; position:absolute;right:10px;bottom:10px;}
+.home-today .l_bq{margin:1rem 0;}
+.home-today .loota .ov{height:4.2rem;line-height:4.2rem;}
+.home-today .huany{padding-right:1.8rem;color:#999;font-size:1rem;margin-right:10px;background:url(http://s.qw.cc/mobile/css/huan.png) right 50% no-repeat;background-size:1.7rem 1.7rem;}
+.home-today .word_l{border-top:1px solid #efefef;padding-top:1rem;overflow:hidden;line-height:2.6rem;}
+.home-today .word_l li{width:50%;float:left;overflow:hidden;white-space:nowrap;}
+.home-today .word_l li a{display:block;width:96%;overflow:hidden; text-overflow:ellipsis;color:#888;}
+.home-today .loot_tp{background-color:#fff;margin-top:1rem;min-height:260px;overflow:hidden;position:relative;}
+.home-today .lt_img{position:relative;z-index:1;}
+.home-today .lt_topic{position:absolute;left:0;top:0;width:100%;height:57%;display:block;z-index:2;}
+.home-today .lt_ap{position:absolute;width:100%;height:40%;bottom:0;left:0;z-index:2;overflow:hidden;}
+.home-today .lt_a1{float:left;width:25%;display:block;height:100%;font-size:1rem;color:#333;text-align:center;}
+.home-today .lt_a1 p{margin-top:92%;}
+.home-today .hx_line{height:4rem;line-height:4rem;position:relative; text-align:center;}
+.home-today .hx_line b{display:inline-block; background-color:#f5f5f5; font-size:1.5rem;color:#333;padding:0 1rem; position:relative;z-index:2;}
+.home-today .hx_fline{position:absolute;width:100%;height:1px; background-color:#ddd; overflow:hidden;left:0;top:50%;z-index:1;}
 
 /**news--新品首发*/
-.xinp{background-color:#fff;padding:10px;margin-top:10px;overflow:hidden;line-height:2rem;}
-.xinp dt{padding-bottom:0.5rem;font-size:1.5rem; font-weight:700;}
-.xinp dd{width:100%;overflow:hidden;line-height:2.2rem;}
-.xinp dd.lh16{line-height:1.6rem;padding:0.5rem 0 1rem 0;font-size:1.2rem;}
-.xin_r{width:33.3%;display:block;min-height:93px;float:left;border-left:1px solid #fff;margin-left:-1px;}
-.xj{float:left;color:#ff4040;font-size:1.6rem;}
-.z_tiyan{border:1px solid #119927;color:#119927;display:inline-block;float:right;text-align:center;padding:0 1rem;border-radius:20px;}
-.tg_key{background-color:#ffecec;border:1px solid #f59797;color:#e45c5c; line-height:16px;font-size:10px; display:inline-block;padding:0 5px;margin-left:5px;border-radius:2px;}
-.lsul{position:relative;z-index:1;width:100%;height:100%;overflow:hidden;text-align:center;}
-.lsul li{width:100%;height:100%;float:left;}
-.lsul img{min-height:125px;width:100%;}
+.home-new .xinp{background-color:#fff;padding:10px;margin-top:10px;overflow:hidden;line-height:2rem;}
+.home-new .xinp dt{padding-bottom:0.5rem;font-size:1.5rem; font-weight:700;}
+.home-new .xinp dd{width:100%;overflow:hidden;line-height:2.2rem;}
+.home-new .xinp dd.lh16{line-height:1.6rem;padding:0.5rem 0 1rem 0;font-size:1.2rem;}
+.home-new .xin_r{width:33.3%;display:block;min-height:93px;float:left;border-left:1px solid #fff;margin-left:-1px;}
+.home-new .xj{float:left;color:#ff4040;font-size:1.6rem;}
+.home-new .z_tiyan{border:1px solid #119927;color:#119927;display:inline-block;float:right;text-align:center;padding:0 1rem;border-radius:20px;}
+.home-new .tg_key{background-color:#ffecec;border:1px solid #f59797;color:#e45c5c; line-height:16px;font-size:10px; display:inline-block;padding:0 5px;margin-left:5px;border-radius:2px;}
+.home-new .lsul{position:relative;z-index:1;width:100%;height:100%;overflow:hidden;text-align:center;}
+.home-new .lsul li{width:100%;height:100%;float:left;}
+.home-new .lsul img{min-height:125px;width:100%;}
 /*hslider*/
 .choose-pannel{width:100%;height:4.3rem;}
 .choose-nav-ht{width:100%;height:4.2rem;border-bottom:1px solid #eaeaea;}
@@ -509,20 +509,20 @@ a.ab{background-color:#999;color:#fff;}
 .vd_msk{width:4rem;height:4rem;position:absolute;left:50%;top:34%;margin-left:-2rem;z-index:3; background:url(http://s.qw.cc/mobile/ui/play-icon.png) 50% 50% no-repeat; background-size:contain;}
 
 /*hot--热销排行*/
-.each_categroy{margin-top:0.5rem;}
-.load{padding-top:1rem;overflow:hidden;background-color:#fff;}
-.gah{height:12.5rem;display:block;overflow:hidden;padding:10px;border-bottom:1px solid #efefef;}
-.hgm{height:12.5rem;width:12.5rem;border-right:10px solid #fff;float:left;}
-.sn_ra{height:12.5rem;}
-.sftt{position:relative;height:4rem;overflow:hidden;}
-.redu{width:4rem;height:2.8rem;padding-top:1.2rem;background:url(http://s.qw.cc/mobile/ui/hot_bg.png) 0 50% no-repeat;background-size:4rem 4rem;line-height:1.1rem;font-size:1rem;color:#fff;text-align:center;float:left;}
-.gah em{display:block;}
-.gah .left{margin:0.7rem 0 0 1rem;}
-.h_gt{font-size:1.3rem;line-height:1.5rem;height:3.2rem;color:#333;text-overflow: ellipsis;overflow: hidden;word-break: break-all;margin-bottom:1rem;font-weight:700;}
-.snote{font-size:1rem;max-height:3rem;line-height:1.5rem;overflow:hidden;margin-bottom:1rem;color:#999;}
-.xj{padding-right:0.5rem;font-size:1.5rem;color:#ff5252;}
-.h_gb{font-size:1rem;color:#999;}
-.hmore{width:4rem;border:1px solid #ff396c;line-height:2rem;border-radius:20px;text-align:center;color:#ff5252;position:absolute;right:0;top:1.2rem;}
-.lsul{position:relative;z-index:1;width:100%;height:100%;overflow:hidden;text-align:center;}
-.lsul li{width:100%;height:100%;float:left;}
-.lsul img{min-height:125px;width:100%;}
+.home-hot .each_categroy{margin-top:0.5rem;}
+.home-hot .load{padding-top:1rem;overflow:hidden;background-color:#fff;}
+.home-hot .gah{height:12.5rem;display:block;overflow:hidden;padding:10px;border-bottom:1px solid #efefef;}
+.home-hot .hgm{height:12.5rem;width:12.5rem;border-right:10px solid #fff;float:left;}
+.home-hot .sn_ra{height:12.5rem;}
+.home-hot .sftt{position:relative;height:4rem;overflow:hidden;}
+.home-hot .redu{width:4rem;height:2.8rem;padding-top:1.2rem;background:url(http://s.qw.cc/mobile/ui/hot_bg.png) 0 50% no-repeat;background-size:4rem 4rem;line-height:1.1rem;font-size:1rem;color:#fff;text-align:center;float:left;}
+.home-hot .gah em{display:block;}
+.home-hot .gah .left{margin:0.7rem 0 0 1rem;}
+.home-hot .h_gt{font-size:1.3rem;line-height:1.5rem;height:3.2rem;color:#333;text-overflow: ellipsis;overflow: hidden;word-break: break-all;margin-bottom:1rem;font-weight:700;}
+.home-hot .snote{font-size:1rem;max-height:3rem;line-height:1.5rem;overflow:hidden;margin-bottom:1rem;color:#999;}
+.home-hot .xj{padding-right:0.5rem;font-size:1.5rem;color:#ff5252;}
+.home-hot .h_gb{font-size:1rem;color:#999;}
+.home-hot .hmore{width:4rem;border:1px solid #ff396c;line-height:2rem;border-radius:20px;text-align:center;color:#ff5252;position:absolute;right:0;top:1.2rem;}
+.home-hot .lsul{position:relative;z-index:1;width:100%;height:100%;overflow:hidden;text-align:center;}
+.home-hot .lsul li{width:100%;height:100%;float:left;}
+.home-hot .lsul img{min-height:125px;width:100%;}
