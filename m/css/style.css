@@ -101,13 +101,13 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .pd10{padding:10px;}
 /*index*/
 .headers{max-width:640px;margin:0 auto;height:45px;line-height:45px;background-color:#be0000;color:#fff;position:relative;z-index:10;}
-.homehd{background:url(tpbg.png) 0 0 repeat-x;background-size:1px 44px;}
+.homehd{background:url(../images/tpbg.png) 0 0 repeat-x;background-size:1px 44px;}
 .homez{position:relative;z-index:2;}
 .homez .t_se{height:33px;background-color:#fff;left:60px;top:6px;right:60px;}
 .homez .t_sl{height:33px;}
 .homez .t_sr{background:url(homesc.png) 50% 50% no-repeat;background-size:16px 16px;height:33px;width:33px;}
 .h_t{position:absolute;height:45px;width:60px;color:#fff;line-height:45px;text-align:center;font-size:12px;overflow:hidden;}
-.h_fl{left:0;background:url(item.png) 50% 50% no-repeat; background-size:20px 20px;}
+.h_fl{left:0;background:url(../images/item.png) 50% 50% no-repeat; background-size:20px 20px;}
 .h_wl{right:0;}
 .hmnv{padding:0.8rem 0 0.5rem 0;background-color:#fff;border:1px solid #efefef;border-width:0 0 1px 0;overflow:hidden;}
 .hslider,.slider{width:100%;overflow:hidden;min-height:100px;max-height:200px;position:relative;}
@@ -548,7 +548,7 @@ a.ab{background-color:#999;color:#fff;}
 .okline{border-top:1px solid #efefef;padding-top:1rem;margin-top:1rem;line-height:1.6rem;}
 
 /*µÇÂ½×¢²á*/
-body{background-color:#fff;}
+.login-reg{background-color:#fff;}
 .linput{width:90%;height:5rem;line-height:normal;padding:0 0 0 10%;margin-bottom:1rem;border-radius:0;font-size:1.5rem;border:none;background:url(http://s.qw.cc/mobile/css/l_user.png) 0 50% no-repeat;background-size:2rem 2rem;border-bottom:1px solid #ddd;}
 .lpass{background-image:url(http://s.qw.cc/mobile/css/l_pass.png);}
 .lgqq,.lgweibo{color:#555;padding:0 2.4rem;display:inline-block;}
@@ -566,3 +566,6 @@ body{background-color:#fff;}
 .wx_av{width:4rem;height:4rem;float:left;margin:0 0.6rem 0 1rem;}
 .wx_txt{background-color:#d80d0d;color:#fff;padding:0 5px;}
 .hmnv{padding:0.8rem 0 0.5rem 0;background-color:#fff;border:1px solid #efefef;border-width:0 0 1px 0;overflow:hidden;}
+
+/*¶©µ¥ÁÐ±í*/
+.uorder li{background-position:right 30%;}
