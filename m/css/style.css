@@ -75,7 +75,7 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .header{background-color:#be0000;height:4.5rem;line-height:4.5rem;overflow:hidden;color:#fff;z-index:10;position:absolute;top:0;left:0;right:0;}
 .t_se{height:3rem;background-color:#f9e6e6;border-radius:2px;position:absolute;left:5rem;top:0.7rem;right:5rem;overflow:hidden;-webkit-transition:all 0.3s;}
 .t_sl{width:100%;height:3rem;border:none;background:none;float:left;font-size:1.4rem;margin-left:10px;}
-.t_sr{position:absolute;z-index:2;right:0;background:url(sbox.png) 50% 50% no-repeat;background-size:1.8rem 1.8rem;height:3rem;width:3.2rem;border:none;}
+.t_sr{position:absolute;z-index:2;right:0;background:url(../images/sbox.png) 50% 50% no-repeat;background-size:1.8rem 1.8rem;height:3rem;width:3.2rem;border:none;}
 .hfix{position:fixed;z-index:9;}
 .header h2,.header h1{width:100%;text-align:center;font-size:1.6rem;color:#fff;}
 .b_l,.b_r,#qxs{position:absolute;top:0;font-size:1.4rem;color:#efdcdc;min-width:3.2rem;display:block;height:4.4rem;}
@@ -99,22 +99,23 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .w_cb{width:6rem;height:5.5rem;margin-top:0.2rem;}
 .bgw{background-color:#fff;border:1px solid #eaeaea;border-width:1px 0;overflow:hidden;}
 .pd10{padding:10px;}
+
 /*index*/
-.headers{max-width:640px;margin:0 auto;height:45px;line-height:45px;background-color:#be0000;color:#fff;position:relative;z-index:10;}
-.homehd{background:url(../images/tpbg.png) 0 0 repeat-x;background-size:1px 44px;}
-.homez{position:relative;z-index:2;}
-.homez .t_se{height:33px;background-color:#fff;left:60px;top:6px;right:60px;}
-.homez .t_sl{height:33px;}
-.homez .t_sr{background:url(homesc.png) 50% 50% no-repeat;background-size:16px 16px;height:33px;width:33px;}
-.h_t{position:absolute;height:45px;width:60px;color:#fff;line-height:45px;text-align:center;font-size:12px;overflow:hidden;}
-.h_fl{left:0;background:url(../images/item.png) 50% 50% no-repeat; background-size:20px 20px;}
-.h_wl{right:0;}
-.hmnv{padding:0.8rem 0 0.5rem 0;background-color:#fff;border:1px solid #efefef;border-width:0 0 1px 0;overflow:hidden;}
-.hslider,.slider{width:100%;overflow:hidden;min-height:100px;max-height:200px;position:relative;}
-.hslider{min-height:155px;max-height:300px;}
-.sul,.lsul,.gfs{position:relative;z-index:1;width:100%;height:100%;overflow:hidden;}
-.sul li,.lsul li{width:100%;height:100%;float:left;text-align:center;}
-.sul a{display:block;width:100%;}
+.home-top .headers{max-width:640px;margin:0 auto;height:45px;line-height:45px;background-color:#be0000;color:#fff;position:relative;z-index:10;}
+.home-top .homehd{background:url(../images/tpbg.png) 0 0 repeat-x;background-size:1px 44px;}
+.home-top .homez{position:relative;z-index:2;}
+.home-top .homez .t_se{height:33px;background-color:#fff;left:60px;top:6px;right:60px;}
+.home-top .homez .t_sl{height:33px;}
+.home-top .homez .t_sr{background:url(../images/homesc.png) 50% 50% no-repeat;background-size:16px 16px;height:33px;width:33px;}
+.home-top .h_t{position:absolute;height:45px;width:60px;color:#fff;line-height:45px;text-align:center;font-size:12px;overflow:hidden;}
+.home-top .h_fl{left:0;background:url(../images/item.png) 50% 50% no-repeat; background-size:20px 20px;}
+.home-top .h_wl{right:0;}
+.home-category .hmnv{padding:0.8rem 0 0.5rem 0;background-color:#fff;border:1px solid #efefef;border-width:0 0 1px 0;overflow:hidden;}
+.home-category .hslider,.home-category .slider{width:100%;overflow:hidden;min-height:100px;max-height:200px;position:relative;}
+.home-category .hslider{min-height:155px;max-height:300px;}
+.home-category .sul,.lsul,.gfs{position:relative;z-index:1;width:100%;height:100%;overflow:hidden;}
+.home-category .sul li,.lsul li{width:100%;height:100%;float:left;text-align:center;}
+.home-category .sul a{display:block;width:100%;}
 #gslider{position:relative;width:100%;min-height:320px;max-height:640px;overflow:hidden;background-color:#fff;}
 .gfs li{width:100%;height:100%;display:block;float:left;min-height:320px;text-align:center;}
 .jdt{max-width:640px;min-height:320px;}
