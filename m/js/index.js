@@ -2,10 +2,10 @@
   * 根地址
   * @returns {String}
   */
- function hostUrl() {
+ var hostUrl = function () {
      return location.protocol + '//' + location.host;
  }
-
+ 
  var home = {
 
      index: function () {
@@ -50,20 +50,31 @@
                  event.stopPropagation();
              });
 
-             lazyload({
-                 defObj: "#lazy"
-             });
 
              $(".hslider").vganswiper({
                  bi: 0.484
              });
+             
+             $('form.home-search').on('submit',function(e){ //表单提交
+            	 
+            	 var wo = $('input[name=keyword]').val()
+        	     if (wo == null || wo == "") {
+        	        alert("请输入关键字");
+        	        //return false;
+        	     }
+             })
+             
+             lazyload({
+                 defObj: "#lazy"
+             });
+             
          },
-
          init: function () {
-
              home.index();
          }
  }
+ 
  jQuery(function () {
+	 
      home.init();
  })
