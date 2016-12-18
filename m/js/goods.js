@@ -508,6 +508,7 @@ function cpg(obj, type, id) {
 }
 
 function cpk() {
+	
     var ctid = selc.eq(1).val();
     var strs = pe1 + pe2 + pe3;
     var slen = strs.length;
@@ -529,6 +530,7 @@ function cpk() {
 
 //晒单
 function zom(obj) {
+	
     var mg = $(obj);
     var bg = mg.attr("data-b");
     var ia = mg.attr("data-n");

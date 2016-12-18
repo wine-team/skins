@@ -219,8 +219,8 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 /*goods*/
 /*产品详情页*/
 .goods-header .header{border-bottom:1px solid #910101;}
-.bkw{word-break:break-all;padding:8px 10px 0 10px;}
-#gslider{-webkit-backface-visibility:hidden;}
+.home-goods .bkw{word-break:break-all;padding:8px 10px 0 10px;}
+.home-goods .gslider{-webkit-backface-visibility:hidden;}
 .se_p{padding:0 10px 10px 10px;overflow:hidden;}
 .des img{background:url(../images/load.gif) 50% 50% no-repeat;}
 .tnav{position:absolute;left:60px;right:60px;line-height:4.5rem;height:4.5rem;top:0;text-align:center;}
@@ -570,3 +570,22 @@ a.ab{background-color:#999;color:#fff;}
 
 /*订单列表*/
 .uorder li{background-position:right 30%;}
+
+/*支付成功*/
+.pay-result .yzt{padding:20px 10px 10px 10px;}
+.pay-result .dyes{width:60px;height:60px;margin-bottom:1.5rem;}
+.pay-result .zfjg{font-size:2rem;color:#000;line-height:4rem;}
+.pay-result .green{color:#21b101;font-weight:700;}
+.pay-result .help{word-break:break-all;}
+
+/**
+ * 404
+ */
+.show-404 .cwpic{width:90%;margin:1rem 0;}
+.show-404 .cw_bxx{color:#999;line-height:2rem;padding:1rem;background-color:#fff;position:relative; overflow:hidden;}
+.show-404 .gbtn{margin-top:3rem;}
+.show-404 .fengche{width:9rem;height:11rem; background:url(../images/4043.png) 50% bottom no-repeat;background-size:4.2rem 6.7rem; position:absolute;right:6%;bottom:4rem;}
+.show-404 .fengche_s{width:9rem;height:9rem; position:absolute;left:0;top:0;-webkit-animation: spin 6s linear infinite;animation: spin 6s linear infinite;}
+.show-404 .cuo_info{background-color:#fff; text-align:center;padding:0 1.6rem;margin-bottom:2rem; line-height:2.5rem;}
+@-webkit-keyframes spin{0% {transform:rotate(0deg);}100% {transform:rotate(360deg);}}
+@keyframes spin{0% {transform:rotate(0deg);}100% {transform:rotate(360deg);}}
