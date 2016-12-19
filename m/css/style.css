@@ -154,7 +154,7 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .tag{display:inline-block;width:23%;float:left;background-color:#f3f3f3;line-height:3rem;margin:0 1% 0.5rem 1%;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .lma,.lwa{line-height:3.4rem;color:#333;width:25%;background-color:#fff;text-align:center;overflow:hidden;white-space:nowrap;display:block;float:left;margin-left:-1px;border:1px solid #eee;border-width:0 0 1px 1px;}
 .lwa{background-color:#fff;}
-.lmon{background-color:#d31313;color:#fff;}
+.lmon{background-color:#d31313 !important;color:#fff;}
 /*goodlist*/
 .xj{color:#f15353;font-size:13px;font-size:1.3rem;font-weight:bold;}
 .gd{width:100%;background-color:#fff;overflow:hidden;}
