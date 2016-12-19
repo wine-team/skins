@@ -216,9 +216,120 @@
 		 }
  }
  
+ var login = {
+		 
+		index:function() {
+			
+			var dao = 5,
+		    intervalid;
+	
+			function login() {
+			    var u = $("#username").val();
+			    var p = $("#password").val();
+			    if (u.length < 2 || p.length < 5) {
+			        alert("用户名不少与2位，密码不少于5位！");
+			        return false;
+			    }
+			    $.post('login.php', {
+			        act: 'login',
+			        username: u,
+			        password: p,
+			        token: '116e359ca38e73ec9f9347d160b2e20d'
+			    }, function (data) {
+			        if (data.error == 1) {
+			            alert(data.msg);
+			        } else {
+			            $("#lbefore").hide();
+			            $("#loginscuess").show();
+			            intervalid = setInterval("loginsf()", 1000);
+			        }
+			    }, 'json');
+			    return false;
+			}
+	
+			function loginsf() {
+			    if (dao <= 0) {
+			        window.location.href = document.referrer
+			        clearInterval(intervalid);
+			    }
+			    document.getElementById("tims").innerHTML = dao;
+			    dao--;
+			}
+		},
+		init:function() {
+			login.index();
+		}
+ }
+ 
+ var reg = {
+		 
+		index:function(){
+			$("#regist").bind("submit",function(){
+				var u=$("#username").val();
+				var p=$("#password").val();
+				var token = $("#token").val();
+				if(u.length<2){
+				alert("用户名不少与2位");
+				return false;
+				}
+				if(!Validator.isMobile(u)){
+					if(!Validator.isEmail(u)){
+					alert("请输入正确手机号或者邮箱");
+					return false;
+					}
+				}
+				if(p=='123456'){
+					alert("密码过于简单！");
+					return false;
+				}
+				
+				if(p.length<5){
+				alert("密码不少于5位");
+				return false;
+				}
+
+				$.ajax({    
+			        type:'post',        
+			        url:'reg.php',    
+			        data:{act:"regist",username:u,password:p,token:token},    
+			        cache:false,    
+			        dataType:'json',    
+			        success:function(data){  
+						if (data.error==1) {
+							alert(data.msg);
+						} else {
+							$("#u_name").text(u);
+							$("#u_pass").text(p.substring(0,4)+'***');
+							$("#ok").show();
+							$("#regist").hide();
+						}
+			        }    
+			    });
+				return false;	
+			});
+
+			$("#username").blur(function(){
+				var u=$(this).val();
+				if(u){
+					$.post('reg.php?act=validate', {u:u}, function(result){
+						if(result.code == 1){
+							alert(result.msg);
+							$("#username").val("");
+						}
+					},'json');
+				}
+			})
+		},
+		init:function(){
+			reg.index();
+		}
+ }
+ 
  jQuery(function () {
 	 
      home.init();
      cart.init();
      buy.init();
+     login.init();
+     reg.init();
  })
