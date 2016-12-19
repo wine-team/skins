@@ -386,7 +386,7 @@ a.ab{background-color:#999;color:#fff;}
 .fen_img {height: 70px;width: auto;}
 
 /*列表页*/
-@media only screen and (min-width:640px){.bigm .ga{width:33.33%;}}
+@media only screen and (min-width:640px){.home-list .bigm .ga{width:33.33%;}}
 .home-list .ltag{padding:0.5rem;background-color:#fff;overflow:hidden;border-bottom:1px solid #e5e5e5;}
 
 /**购物车*/
