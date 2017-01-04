@@ -33,7 +33,7 @@ $(document).ready(function(){
                 type: 'get',
                 async: false,
                 dataType : 'json',
-                url: location.origin+'/forget/ajaxJsonCaptcha',
+                url: location.origin+'/pc/forget/ajaxJsonCaptcha',
                 success: function(json) {
                     $('#ajaxJsonCaptcha').html(json.image);
                 }
@@ -55,7 +55,7 @@ $(document).ready(function(){
                 type: 'get',
                 async: false,
                 dataType : 'json',
-                url: location.origin+'/forget/ajaxJsonCaptcha',
+                url: location.origin+'/pc/forget/ajaxJsonCaptcha',
                 success: function(json) {
                     $('.ajaxJsonCaptcha').html(json.image);
                 }
@@ -89,7 +89,7 @@ $(document).ready(function(){
                 return;
             } else {
                 $.ajax({
-                    url:hostUrl()+'/register/checkPhone',
+                    url:hostUrl()+'/pc/register/checkPhone',
                     type:'post',
                     data:{phone:phone, captcha:captcha},
                     dataType:'json',
@@ -136,7 +136,7 @@ $(document).ready(function(){
                 return false;
             }
             $.ajax({
-                url:hostUrl()+'/login/checkPhone',
+                url:hostUrl()+'/pc/login/checkPhone',
                 type:'post',
                 data:{phone:phone, captcha:captcha},
                 dataType:'json',
@@ -177,7 +177,7 @@ $(document).ready(function(){
                     required: true,
                     mobile:true,
                     remote: {
-                        url:hostUrl()+'/register/validatePhone',
+                        url:hostUrl()+'/pc/register/validatePhone',
                         type: 'post',
                         dataType: 'json',
                         data: {
@@ -198,7 +198,7 @@ $(document).ready(function(){
                 verify: {
                     required: true,
                     remote: {
-                        url:hostUrl()+'/register/validateVerify',
+                        url:hostUrl()+'/pc/register/validateVerify',
                         type: 'post',
                         dataType: 'json',
                         data: {
@@ -213,7 +213,7 @@ $(document).ready(function(){
                 },
                 parent_id: {
                     remote: {
-                        url:hostUrl()+'/register/validateParentId',
+                        url:hostUrl()+'/pc/register/validateParentId',
                         type: 'post',
                         dataType: 'json',
                         data: {
@@ -254,7 +254,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/register/doRegister',
+                    url: hostUrl()+'/pc/register/doRegister',
                     data: $('.register-form-validate').serialize(),
                     beforeSend: function() {
                         $('button[type=submit]').text('正在注册...').attr('disabled', true);
@@ -315,7 +315,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/login/loginPost',
+                    url: hostUrl()+'/pc/login/loginPost',
                     data: $('.login-form-validate').serialize(),
                     beforeSend: function() {
                         $('.d-login').text('正在登录...').attr('disabled', true);
@@ -394,7 +394,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/login/loginPost',
+                    url: hostUrl()+'/pc/login/loginPost',
                     data: $('.quick-login').serialize(),
                     beforeSend: function() {
                         $('.e-login').text('正在登录...').attr('disabled', true);
@@ -429,7 +429,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/forget/alidateUser',
+                    url: hostUrl()+'/pc/forget/alidateUser',
                     data: $('.forget-form-account').serialize(),
                     beforeSend: function() {
                         $('button[type=submit]').text('加载中...').attr('disabled', true);
@@ -454,7 +454,7 @@ $(document).ready(function(){
             var obj = $(this);
             obj.attr('disabled', 'true');
             $.ajax({
-                url:hostUrl()+'/forget/checkPhone',
+                url:hostUrl()+'/pc/forget/checkPhone',
                 type:'post',
                 data:{phone:$('button.btnsend').attr('data-attr')},
                 dataType:'json',
@@ -487,7 +487,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/forget/confirmValidate',
+                    url: hostUrl()+'/pc/forget/confirmValidate',
                     data: {username:$('input[name=username]').val(), verify:$('input[name=verify]').val(), phone:$('button.btnsend').attr('data-attr')},
                     beforeSend: function() {
                         $('button[type=submit]').text('加载中...').attr('disabled', true);
@@ -542,7 +542,7 @@ $(document).ready(function(){
                     type: 'post',
                     async: false,
                     dataType : 'json',
-                    url: hostUrl()+'/forget/modifyValidate',
+                    url: hostUrl()+'/pc/forget/modifyValidate',
                     data: $('.forget-modify-password').serialize(),
                     beforeSend: function() {
                         $('button[type=submit]').text('加载中...').attr('disabled', true);
