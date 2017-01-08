@@ -5,6 +5,19 @@
  var hostUrl = function () {
      return location.protocol + '//' + location.host;
  }
+
+ /**
+  * 返回历史记录上一页，如果没有则指定返回页面
+  * @param redirect 指定返回页面
+  */
+ var goback = function (redirect) {
+     if (history.length > 1) {
+         javascript:history.go(-1);
+     } else {
+         window.location.href = redirect;
+     }
+ }
+
  $(document).ready(function(){
 
      //登录提交页面
