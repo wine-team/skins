@@ -65,6 +65,7 @@
                  alertMessage('密码为6-18位数字和字母组合');
                  return;
              }
+             
              $.ajax({
                  type: 'POST',
                  async: false,
