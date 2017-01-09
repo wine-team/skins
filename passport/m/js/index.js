@@ -18,78 +18,72 @@
      }
  }
 
- $(document).ready(function(){
+ var validMobile = function (tel) {
+     var reg = /^1[3|4|5|7|8][0-9]\d{8}$/;
+     return reg.test(tel);
+ }
 
+ var validEmail = function (email){
+     var reg = /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/;
+     return reg.test(email);
+ }
+
+ var alertMessage = function (msg) {
+     if ($('#timing-msg').size() == 0) {
+         var tag = '<div class="am-modal am-modal-no-btn pahod-alert am-modal-active" tabindex="-1" id="timing-msg">' + msg + '</div>';
+         $('body').append(tag);
+     }
+     setTimeout(function () {
+         $('#timing-msg').remove();
+     }, 2000);
+ }
+
+ var myalert = function (msg) {
+     $('#my-alert').remove();
+     var confirm = arguments[1] ? arguments[1] : '知道了';
+     var tag = '<div class="alert-explain am-modal" tabindex="-1" id="my-alert"><p>' + msg + '</p><div class="am-modal-footer"><span class="am-modal-btn">' + confirm + '</span></div></div>';
+     $('body').append(tag);
+     $('#my-alert').modal({'closeViaDimmer': false});
+ }
+
+ $(document).ready(function(){
      //登录提交页面
-     if ($('.normal-login').size() > 0) {
-         $('.normal-login').submit(function(e) {
-             e.preventDefault();
-         }).validate({
-             errorPlacement: function(e, el) {
-                 if ($(el).hasClass('error')) {
-                     if ($('#username').val() == '' && $('#password').val() == '' ) {
-                         $(el).parents('.normal-login').find('.remind').children('p').text('请输入您的用户名');
-                     } else {
-                         $(el).parents('.normal-login').find('.remind').children('p').text(e.text());
-                     }
-                 }
-             },
-             success: function(e, el) {
-                 if ($(el).hasClass('error')) {
-                     $(el).parents('.normal-login').find('.remind').children('p').text('公共场所不建议自动登录，以防账号丢失');
-                 }
-             },
-             rules: {
-                 username: {
-                     required: true,
-                 },
-                 password: {
-                     required: true,
-                     rangelength:[6,20]
-                 },
-             },
-             messages: {
-                 username: {
-                     required: '请输入您的用户名',
-                 },
-                 password: {
-                     required: '请输入您的密码',
-                     rangelength: '密码长度只能在6-20位字符之间'
-                 },
-             },
-             submitHandler: function(f) {
-                 $.ajax({
-                     type: 'post',
-                     async: false,
-                     dataType : 'json',
-                     url: hostUrl()+'/pc/login/loginPost',
-                     data: $('.login-form-validate').serialize(),
-                     beforeSend: function() {
-                         $('.d-login').text('正在登录...').attr('disabled', true);
-                     },
-                     success: function(json) {
-                         if (json.status) {
-                             window.location.href = json.messages;
-                         } else {
-                             $('.d-login').text('正在登录...').attr('disabled', true);
-                             if (json.data >= 3) {
-                                 $('.forget-form-account').css('display', 'block');
-                                 if (!$('.d-captcha').val()) {
-                                     $('.login-form-validate').find('.remind').children('p').text('必选字段');
-                                 }
-                             }
-                             if (json.input == 'captcha') {
-                                 $('.d-captcha').focus();
-                             }
-                             $('.login-form-validate').find('.remind').children('p').text(json.messages);
-                             $('.d-login').animate({'top':'+=0'}, 200, function(){
-                                 $(this).text('登 录').removeAttr('disabled');
-                             });
-                         }
-                     }
-                 });
-                 return false;
+     if ($('#login').size() > 0) {
+         $('#login').submit(function(e) {
+             var verify = $.trim($('input[name=verify]').val());
+             var username = $.trim($('input[name=username]').val());
+             var password = $.trim($('input[name=password]').val());
+             if (!validMobile(username) || !validEmail(username)) {
+                 alertMessage('请输入手机号或邮箱');
+                 return;
              }
+             if (!password) {
+                 alertMessage('请输入密码');
+                 return;
+             }
+             if (password.length < 6 || password.length > 18) {
+                 alertMessage('密码为6-18位数字和字母组合');
+                 return;
+             }
+             e.preventDefault();
+             $.ajax({
+                 type: 'POST',
+                 async: false,
+                 dataType : 'json',
+                 url: hostUrl()+'/m/login/loginPost',
+                 data: $('#login').serialize(),
+                 beforeSend: function() {
+                     $('[type=submit]').text('正在登录...').attr('disabled', true);
+                 },
+                 success: function(json) {
+                     if (json.status) {
+                         window.location.href = json.messages;
+                     } else {
+                         $('[type=submit]').text('登 录').removeAttr('disabled');
+                     }
+                 }
+             });
+             e.preventDefault();
          });
      }
 
