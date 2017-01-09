@@ -67,7 +67,7 @@
              }
 
              $.ajax({
-                 type: 'POST',
+                 type: 'post',
                  async: false,
                  dataType : 'json',
                  url: hostUrl()+'/m/login/loginPost',
