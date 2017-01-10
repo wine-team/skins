@@ -73,7 +73,7 @@
      }
 
      /*注册提交*/
-     if ($('form.login').size() > 0) {
+     if ($('form.register').size() > 0) {
          $('form.register').submit(function(event) {
              //var verify = $.trim($('input[name=verify]').val());
              var username = $.trim($('input[name=username]').val());
