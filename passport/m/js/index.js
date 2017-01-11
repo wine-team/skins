@@ -51,12 +51,12 @@
                  layer.msg('密码为6-18位数字和字母组合', {time: 1000});
                  return false;
              }
-             $(this).ajaxSubmit({
+             $.ajax({
                  type: 'post',
                  async: false,
                  dataType : 'json',
                  url: hostUrl()+'/m/login/loginPost',
-                 data: $('#login').serialize(),
+                 data: $('form.login').serialize(),
                  beforeSend: function() {
                      $('[type=submit]').text('正在登录...').attr('disabled', true);
                  },
@@ -64,6 +64,7 @@
                      if (json.status) {
                          window.location.href = json.messages;
                      } else {
+                         layer.msg(json.messages, {time: 1000});
                          $('[type=submit]').text('登 录').removeAttr('disabled');
                      }
                  }
@@ -76,14 +77,14 @@
      if ($('form.register').size() > 0) {
          $('form.register').submit(function(event) {
              //var verify = $.trim($('input[name=verify]').val());
-             var username = $.trim($('input[name=username]').val());
+             var phone = $.trim($('input[name=phone]').val());
              var password = $.trim($('input[name=password]').val());
-             if (!username) {
-                 layer.msg('请输入手机号或邮箱', {time: 1000});
+             if (!phone) {
+                 layer.msg('请输入手机号', {time: 1000});
                  return false;
              }
-             if (!validMobile(username) && !validEmail(password)) {
-                 layer.msg('手机号或邮箱格式不对', {time: 1000});
+             if (!validMobile(phone)) {
+                 layer.msg('手机号格式不对', {time: 1000});
                  return false;
              }
              if (!password) {
@@ -94,12 +95,12 @@
                  layer.msg('密码为6-18位数字和字母组合', {time: 1000});
                  return false;
              }
-             $(this).ajaxSubmit({
+             $.ajax({
                  type: 'post',
                  async: false,
                  dataType : 'json',
                  url: hostUrl()+'/m/register/doRegister',
-                 data: $('#login').serialize(),
+                 data: $('form.register').serialize(),
                  beforeSend: function() {
                      $('[type=submit]').text('正在注册...').attr('disabled', true);
                  },
@@ -107,6 +108,7 @@
                      if (json.status) {
                          window.location.href = json.messages;
                      } else {
+                         layer.msg(json.messages, {time: 1000});
                          $('[type=submit]').text('注 册').removeAttr('disabled');
                      }
                  }
