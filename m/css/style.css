@@ -139,6 +139,7 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .hpre,.hpre img{min-height:120px;}
 .w64{width:64%;}
 .w36{width:36%;}
+.w100{width:100%;}
 .hpx,.hpx img{min-height:148px;}
 .hpx a{width:33.33%;display:inline-block;}
 .zk{background-color:#dd2727;color:#fff;padding:0 5px;margin-left:5px;}
