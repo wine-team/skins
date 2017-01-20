@@ -103,13 +103,19 @@ function loadData() {
         }
     });
 }
+
 if (page == 1) {
     prpage.attr("href", "javascript:;").text("第一页了");
 }
+
 yem.click(function () {
     $("#pgl").show();
 })
 
 function gxl() {
     $("#pgl").hide();
+}
+
+function gtns(){
+	$("#gtn").toggle();
 }

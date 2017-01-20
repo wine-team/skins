@@ -369,22 +369,22 @@ a.ab{background-color:#999;color:#fff;}
 
 
 /***分类 */
-.t_se{left:6rem;right:6rem}
-.c_l{width:30%;background-color:#f2f2f2;min-height:300px;position:relative;overflow:hidden;}
-.c_r{width:70%;background-color:#fff;overflow:hidden;min-height:300px;position:relative;}
-.c_lul{position:relative;width:100%;padding-bottom:4rem;}
-.c_lul li{line-height:4.5rem;text-indent:2rem;font-size:1.4rem;color:#666;border-bottom:1px solid #e5e5e5;}
-.c_lul li.on{background-color:#fff;color:#c40000;font-weight:bold;}
-.cla{width:46%;display:inline-block;text-align:center;overflow:hidden;padding:1rem 0;}
-.nbtn{width:80%;line-height:4rem;border:1px solid #ddd;border-radius:6px; text-align:center; display:block;color:#333;font-size:1.4rem;margin:15px auto 15px auto;}
-.c_img{width:5.4rem;height:5.4rem;}
-#page{overflow:hidden;}
-#cbox{position:relative;width:100%;height:auto;padding-bottom:30px;}
+.category {overflow:hidden;}
+.category .t_se{left:6rem;right:6rem}
+.category .c_l{width:30%;background-color:#f2f2f2;min-height:300px;position:relative;overflow:hidden;}
+.category .c_r{width:70%;background-color:#fff;overflow:hidden;min-height:300px;position:relative;}
+.category .c_lul{position:relative;width:100%;padding-bottom:4rem;}
+.category .c_lul li{line-height:4.5rem;text-indent:2rem;font-size:1.4rem;color:#666;border-bottom:1px solid #e5e5e5;}
+.category .c_lul li.on{background-color:#fff;color:#c40000;font-weight:bold;}
+.category .cla{width:46%;display:inline-block;text-align:center;overflow:hidden;padding:1rem 0;}
+.category .nbtn{width:80%;line-height:4rem;border:1px solid #ddd;border-radius:6px; text-align:center; display:block;color:#333;font-size:1.4rem;margin:15px auto 15px auto;}
+.category .c_img{width:5.4rem;height:5.4rem;}
+.category #cbox{position:relative;width:100%;height:auto;padding-bottom:30px;}
 @media only screen and (min-width:768px){
-    .cla{width:31%;padding:2rem 0;}
+   .category  .cla{width:31%;padding:2rem 0;}
 }
-.fen_a {height:70px;margin:1rem auto 0;overflow:hidden;text-align:center;width: 90%;}
-.fen_img {height: 70px;width: auto;}
+.category .fen_a {height:70px;margin:1rem auto 0;overflow:hidden;text-align:center;width: 90%;}
+.category .fen_img {height:70px;width:100%;}
 
 /*列表页*/
 @media only screen and (min-width:640px){.home-list .bigm .ga{width:33.33%;}}
