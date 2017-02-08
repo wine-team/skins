@@ -50,22 +50,27 @@ function goodsinit() {
         });
     }
 }
+
 $(window).resize(function () {
     goodsinit();
 });
+
 goodsinit();
+
 gslider.vganswiper({
     auto: false,
     bi: 1
 });
 
 function gclose() {
+	
     $("#cok").hide();
     $("#nok").show();
     $num.val(1);
 }
 
 function nclose() {
+	
     $num.val(1);
     $("#nosf").hide();
 }
@@ -75,8 +80,17 @@ function tclose() {
     $("#sx").show();
 }
 
+/**
+ * 根地址
+ * @returns {String}
+ */
+function hostUrl() {
+	return location.protocol+'//'+location.host;
+}
+
 $("#sx").delegate("label", "click", function (event) {
-    var p = $(this).attr("data-p");
+    
+	var p = $(this).attr("data-p");
     var h = $(this).attr("data-h");
     $(this).addClass("on").siblings("label").removeClass("on");
     $(this).find("input").prop("checked", "true");
@@ -87,7 +101,8 @@ $("#sx").delegate("label", "click", function (event) {
 });
 
 $("#shx").delegate("label", "click", function (event) {
-    var i = $(this).index();
+    
+	var i = $(this).index();
     $(this).addClass("on").siblings("label").removeClass("on");
     $("#sx").find("label").eq(i).trigger("click");
     event.preventDefault();
@@ -96,7 +111,8 @@ $("#shx").delegate("label", "click", function (event) {
 
 
 function shuxing() {
-    var sxhtml = $("#sx").html();
+    
+	var sxhtml = $("#sx").html();
     $("#shx").html(sxhtml);
     $("#shx").find("input").remove();
     $("#sx").hide();
@@ -104,7 +120,8 @@ function shuxing() {
 }
 
 function okcar() {
-    var attr = "";
+    
+	var attr = "";
     var attr = getAttr("sx");
     if (attr == "" || attr == null) {
         alert("请选择产品规格,如颜色、尺寸等");
@@ -119,78 +136,74 @@ function okcar() {
     }
 }
 
-function sbs() {
-    var n = $num.val();
-    var attr = "";
-    var sxl = $("#sx input");
-    if (sxl.length >= 1) {
-        attr = getAttr("sx");
-        if (attr == "" || attr == null) {
-            ks = true;
-            shuxing();
-            return false;
+ /**
+  * 立即购买
+ */
+function sbs(id) {
+    
+	var spec = new Array();
+    var qty = parseInt($num.val());
+    $('.catt  input:checked').each(function(i){
+        spec[i] = $(this).val();
+    })
+    $.ajax({
+        type: 'post',
+        url:  hostUrl() + '/sex/home/addToCart',
+        dataType: 'json',
+        data: {goods_id: id, qty: qty,spec:spec},
+        success: function (data) {
+        	if (data.status) {
+        		window.location.href = hostUrl() + '/sex/home/buy.html';
+        	} else {
+        		layer.msg(data.msg);
+        	}
         }
-    }
-    if (!Validator.isNumber(n) || n > 50 || n < 0) {
-        alert("只能购买1-50件");
-        $num.val(1);
-        return false;
-    }
-    $("#buyn").text("提交中...");
-    $.getJSON("flow.php?act=buy&goods_id=" + goods_id + "&number=" + n + "&spec=" + attr,
-        function (data) {
-            if (data.code == 0) {
-                window.location.href = "buy1.php?style=2";
-            } else {
-                alert("加入购物车失败！请稍后再试!");
-            }
-            $("#buyn").text("立即购买");
-        });
+    });
 }
 
-
-function addCar(id, is_zhu) {
-    is_new = is_zhu;
-    var n = $num.val();
-    var is_pro = gis_pro;
-    var attr = "";
-    var sxl = $("#sx input");
-    if (sxl.length > 0) {
-        attr = getAttr("sx");
-        if (attr == "" || attr == null) {
-            ks = false;
-            shuxing();
-            return false;
+/**
+ * 加入购物车
+ * @param id
+ * @param is_zhu
+ * @returns {Boolean}
+ */
+function addCar(id) {
+	
+	var spec = new Array();
+    var qty = parseInt($num.val());
+    $('.catt  input:checked').each(function(i){
+        spec[i] = $(this).val();
+    })
+    $.ajax({
+        type: 'post',
+        url:  hostUrl() + '/sex/home/addToCart',
+        dataType: 'json',
+        beforeSend:function() {
+        	$(".lr10 .add-cart").text("正在加入...").attr("disabled",true);
+        },
+        data: {goods_id: id, qty: qty,spec:spec},
+        success: function (data) {
+        	if (data.status) {
+        		$.ajax({
+        			type: 'post',
+        			url:  hostUrl() + '/sex/home/getCartInfor',
+        			async : false,
+        			dataType : 'json',
+        			success : function(data) {
+        				if (data.status) {
+        					 $("#rnum").text(data.num);
+        		             $("#rsum").text("￥" + data.sum.toFixed(2));
+        		             $("#cok").show();
+        	                 $("#nok").hide();
+        				}
+        			}
+        		})
+        	} else {
+        		layer.msg(data.msg);
+        	}
+        	$(".lr10 .add-cart").text("加入购物车").attr("disabled",false);
         }
-    }
-    if (!Validator.isNumber(n) || n > 50 || n < 0) {
-        alert("只能购买1-50件");
-        $num.val(1);
-        return false;
-    } else if (n > 5 && is_pro == 1) {
-        alert("只能购买5件促销产品");
-        $num.val(5);
-        return false;
-    }
-    $("#adcar").text("正在加入...");
-    $.getJSON("flow.php?act=buy&goods_id=" + id + "&number=" + n + "&spec=" + attr,
-        function (data) {
-            if (data.code == 0) {
-                $("#rnum").text(data.number);
-                $("#rsum").text("￥" + data.amount);
-                $("#cnumb").text(data.number);
-                $("#cnum").text(data.number);
-                if (is_new == 1) {
-                    $("#nosf").show();
-                } else {
-                    $("#cok").show();
-                    $("#nok").hide();
-                }
-            } else {
-                alert("加入购物车失败！请稍后再试!");
-            }
-            $("#adcar").text("加入购物车");
-        });
+    });
 }
 
 
@@ -228,24 +241,32 @@ function fav(gid) {
     });
 }
 
+/**
+ * 购买数量的加减
+ * @param i
+ */
 function jia(i) {
+	
     var n = parseInt($num.val());
+    var limit_num = $num.attr('limit-num');
+    var in_stock = $num.attr('in-stock');
     if (i == '1') {
-        if (n > 4 && is_pro == 1) {
-            alert("只能购买5件促销产品");
-            $num.val(5);
-        } else if (n > 50) {
-            alert("最多只能购买50件");
-            $num.val(1);
-            return false;
-        }
-        $("#num").val(n + 1);
+        n++;
     } else {
-        if (n < 2) {
-            return false;
-        }
-        $("#num").val(n - 1);
+        if (n >1)  n--;
     }
+    if (limit_num>0) {
+    	if (n>limit_num) {
+    		layer.msg('限购'+limit_num+'件');
+    		n = limit_num ;
+    	}
+    } else{
+    	if (n > in_stock) {
+            layer.msg('库存不足,只能购买'+in_stock+'件');
+            n = in_stock;
+        }
+    }
+    $num.val(n);
 }
 
 //new
@@ -320,6 +341,7 @@ function commentimg() {
 var is_ok = true;
 
 function loadpic() {
+	
         $.getJSON("detail.php?act=pic&id=" + goods_id, function (data) {
             $("#loadf").hide();
             $("#bfload").show();
@@ -346,6 +368,7 @@ function loadpic() {
     //video
 
 function video_click() {
+	
     $.ajax({
         url: "goods.php",
         type: "POST",
@@ -363,6 +386,7 @@ function video_click() {
 }
 
 function setView(i) {
+	
     if (i == 1) {
         viewport.setAttribute('content', 'width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes');
     } else {
@@ -400,6 +424,7 @@ function inm(k) {
 }
 
 window.onscroll = function () {
+	
     if (vpage == 0 && gon) {
         var sTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop);
         if (sTop >= 300) {
@@ -420,6 +445,7 @@ window.onscroll = function () {
 }
 
 function firstload(ele) {
+	
         var sxop = document.documentElement.clientHeight + Math.max(document.documentElement.scrollTop, document.body.scrollTop);
         ele.each(function () {
             var mftop = $(this).offset().top;

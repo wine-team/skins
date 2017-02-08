@@ -55,16 +55,10 @@ cv.delegate("a", "click", function (event) {
     event.stopPropagation();
 });
 
-function mod(obj) {
-    if (mo == 0) {
-        mods.addClass("von")
-        glist.addClass("bigm");
-        mo = 1;
-    } else {
-        mods.removeClass("von")
-        glist.removeClass("bigm");
-        mo = 0;
-    }
+function mod() {
+	
+    mods.toggleClass("von")
+    glist.toggleClass("bigm");
 }
 
 window.onscroll = function () {
