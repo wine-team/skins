@@ -153,7 +153,7 @@ function sbs(id) {
         data: {goods_id: id, qty: qty,spec:spec},
         success: function (data) {
         	if (data.status) {
-        		window.location.href = hostUrl() + '/sex/home/buy.html';
+        		window.location.href = hostUrl() + '/sex/cart/buy.html';
         	} else {
         		layer.msg(data.msg);
         	}

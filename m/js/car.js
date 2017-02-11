@@ -116,47 +116,6 @@ function carb() {
     ck++;
     $("#tijiao").val("订单正在提交中...");
 }
-var region = new Object();
-var yum = "http://" + document.domain + "/region.php";
-region.loadRegions = function (parent, type, target) {
-    $.getJSON(yum + "?type=" + type + "&target=" + target + "&parent=" + parent, region.response)
-};
-region.loadProvinces = function (country, selName) {
-    var objName = (typeof selName == "undefined") ? "selProvinces" : selName;
-    region.loadRegions(country, 1, objName)
-};
-region.loadCities = function (province, selName) {
-    var objName = (typeof selName == "undefined") ? "selCities" : selName;
-    region.loadRegions(province, 2, objName)
-};
-region.loadDistricts = function (city, selName) {
-    var objName = (typeof selName == "undefined") ? "selDistricts" : selName;
-    region.loadRegions(city, 3, objName)
-};
-region.changed = function (obj, type, selName) {
-    var parent = obj.options[obj.selectedIndex].value;
-    region.loadRegions(parent, type, selName)
-};
-region.response = function (result, text_result) {
-    var sel = document.getElementById(result.target);
-    sel.length = 1;
-    sel.selectedIndex = 0;
-    sel.style.display = (result.regions.length == 0 && !region.isAdmin && result.type + 0 == 3) ? "none" : "";
-    if (document.all) {
-        sel.fireEvent("onchange")
-    } else {
-        var evt = document.createEvent("HTMLEvents");
-        evt.initEvent("change", true, true);
-        sel.dispatchEvent(evt)
-    } if (result.regions) {
-        for (i = 0; i < result.regions.length; i++) {
-            var opt = document.createElement("OPTION");
-            opt.value = result.regions[i].region_id;
-            opt.text = result.regions[i].region_name;
-            sel.options.add(opt)
-        }
-    }
-};
 
 function trim(str) {
     return str.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
@@ -202,6 +161,7 @@ function validate_bonus(bonus_sn) {
 }
 
 function setw(result, i) {
+	
     $('#goods_price').text(result.data.goods_price_formated);
     $('#shipping_fee').text(result.data.shipping_fee_formated);
     $('#bonus').text(result.data.bonus_formated);
@@ -228,4 +188,5 @@ function delGoods(id) {
         location.href = 'car.php?goods_id=' + id + '&act=del&fdel=buy';
     }
 }
+
 changeBonus(0);
