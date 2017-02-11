@@ -143,8 +143,7 @@ var cart = function() {
     	        url: hostUrl()+'/payment/create_order',
     	        data: $('form.order-form').serialize(),
     	        beforeSend: function() {
-    	            $('.order-form input[type="submit"]').val('正在提交');
-    	            //attr('disabled', true);
+    	            $('.order-form input[type="submit"]').val('正在提交').attr('disabled', true);
     	        },
     	        success: function(json) {
     	            

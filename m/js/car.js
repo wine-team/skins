@@ -75,48 +75,7 @@ function fee(pay_id) {
     });
 
 }
-
-function carb() {
-    if (ck > 1) {
-        alert("您的订单正在提交中....");
-        return false;
-    }
-    var con = $("#consignee").val();
-    var mobile = $("#mobile").val();
-    var address = $("#address").val();
-    var $pr = $("#selProvinces");
-    var $pc = $("#selCities");
-    var $pd = $("#selDistricts");
-    if (trim(con).length < 2 || trim(con).length > 8) {
-        alert("收货人姓名2-8位");
-        return false
-    }
-    if (!Validator.isMobile(mobile)) {
-        alert("请填写正确的手机号码");
-        return false
-    }
-    if ($pr.val() == "") {
-        alert("请选择您的所在省份");
-        return false
-    }
-    if ($pc.val() == "") {
-        alert("请选择您的所在地区");
-        return false
-    }
-    if ($pd.children().length > 1) {
-        if ($pd.val() == "") {
-            alert("请选择您的所在区县");
-            return false
-        }
-    }
-    if (trim(address).length < 3) {
-        alert("收货地址不得少于3位");
-        return false
-    }
-    ck++;
-    $("#tijiao").val("订单正在提交中...");
-}
-
+  
 function trim(str) {
     return str.replace(/^(\s|\u00A0)+/, '').replace(/(\s|\u00A0)+$/, '');
 }
@@ -183,10 +142,94 @@ function setw(result, i) {
 
 }
 
-function delGoods(id) {
-    if (confirm("您确实要把该商品移出购物车吗？")) {
-        location.href = 'car.php?goods_id=' + id + '&act=del&fdel=buy';
-    }
+/**
+ * 删除购物车
+ * @param id
+ */
+var delGoods =  function(id) {
+	
+	layer.confirm('你确认要删除吗', {icon: 3, title:'提示'}, function(index){
+    	$.ajax({
+    	    type: 'post',
+    	    async: false,
+    	    dataType: 'json',
+    	    url: hostUrl()+'/sex/cart/delete',
+    	    data:{goods_id:id},
+    	    success: function(json) {
+    	        if (json.status) {
+    	            window.location.href = location.href;
+    	        } else {
+    	            layer.msg(json.message);
+    	        }
+    	    }
+    	});
+    });
 }
 
-changeBonus(0);
+
+
+jQuery(function(){
+	
+	changeBonus(0);
+	
+	/**
+	 * 购买生成订单
+	 * @returns {Boolean}
+	*/
+	$('form.order-form').on('submit',function(e){
+		
+		var con = $("#consignee").val();
+	    var mobile = $("#mobile").val();
+	    var $pr = $("#province_id");
+	    var $pc = $("#city_id");
+	    var $pd = $("#district_id");
+	    var address = $("#address").val();
+	    var pay_bank = $('#pay_bank').val();
+	    var isMobile = /^(13|14|15|17|18)+[0-9]{9}$/;
+	    if (trim(con).length < 2 || trim(con).length > 8) {
+	    	layer.msg("收货人姓名2-8位");
+	        return false
+	    }
+	    if (!isMobile.test(mobile)) {
+	    	layer.msg("请填写正确的手机号码");
+	        return false
+	    }
+	    if ($pr.val() == "") {
+	    	layer.msg("请选择您的所在省份");
+	        return false
+	    }
+	    if ($pc.val() == "") {
+	    	layer.msg("请选择您的所在地区");
+	        return false
+	    }
+	    if (trim(address).length < 3) {
+	    	layer.msg("收货地址不得少于3位");
+	        return false
+	    }
+	    if (pay_bank.length<=0) {
+	    	layer.msg('请选择支付方式');
+	    	return false;
+	    }
+	    $.ajax({
+	    	type:'post',
+	        dataType:'json',
+	        async: false,
+	        url: hostUrl()+'/sex/cart/creatOrder',
+	        data: $('form.order-form').serialize(),
+	        beforeSend: function() {
+	            $('.order-form input[type="submit"]').val('正在提交');
+	            //.attr('disabled', true)
+	        },
+	        success: function(json) {
+	            if (json.status) {
+	                window.location.href = json.messages;
+	            } else {
+	            	layer.msg(json.messages);
+	                $('.order-form input[type="submit"]').val('提交订单').removeAttr('disabled');
+	            }
+	        }
+	    })
+		e.preventDefault();
+		return false;
+	})
+})

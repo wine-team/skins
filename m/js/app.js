@@ -1054,6 +1054,10 @@ function gotop() {
 	$('html,body').stop().animate({scrollTop:'0px'},300);
 }
 
+function hostUrl() {
+	return location.protocol+'//'+location.host;
+}
+
 function lazyload(option) {
     var iom = 0;
     var settings = {
@@ -1100,7 +1104,8 @@ function GetQueryString(name) {
 }
 
 function getSfexpress(goods_sn, sku_sn, province, city, num) {
-    var goods_sn = goods_sn ? goods_sn : '';
+    
+	var goods_sn = goods_sn ? goods_sn : '';
     var sku_sn = sku_sn ? sku_sn : '';
     var province = province ? province : '';
     var city = city ? city : '';

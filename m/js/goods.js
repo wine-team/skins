@@ -80,13 +80,6 @@ function tclose() {
     $("#sx").show();
 }
 
-/**
- * 根地址
- * @returns {String}
- */
-function hostUrl() {
-	return location.protocol+'//'+location.host;
-}
 
 $("#sx").delegate("label", "click", function (event) {
     
