@@ -1056,8 +1056,8 @@ var goback = function () {
     }
 }
 
-var lazyload = function () {
-	$('img.lzay').lazyload();
+var lazy = function () {
+	$('img.lazy').lazyload();
 }
 
 var gotop = function () {
