@@ -49,6 +49,14 @@
              
          },
          
+         catInit: function() {
+        	 var wh = $(window).height();
+ 		     var th = $("#top").height();
+ 		     c_l.css("height", wh - th);
+ 		     c_r.css("height", wh - th);
+ 		     $(".category").css("height", wh)
+         },
+         
          category: function() {
         	 
         	var chongzhi = false;
@@ -57,15 +65,7 @@
     		var cbox = $("#cbox");
     		var cr = cbox.children();
     		var clp = $("#c_lul").children();
-    		
-    		function inits() {
-    		    var wh = $(window).height();
-    		    var th = $("#top").height();
-    		    c_l.css("height", wh - th);
-    		    c_r.css("height", wh - th);
-    		    $(".category").css("height", wh)
-    		}
-    		
+
     		clp.click(function (e) {
     		    var i = $(this).attr("data-id");
     		    $(this).addClass("on").siblings().removeClass("on");
@@ -85,9 +85,8 @@
     		    e.stopPropagation();
     		});
     		$(window).resize(function () {
-    		    inits();
+    			home.catInit();
     		});
-    		inits();
     		c_l.vganvswiper();
     		c_r.vganvswiper({
     		    "cool": 1
@@ -96,8 +95,9 @@
          
          init: function () {
              home.index();
-             if (location.href.indexOf('category')) {
+             if (location.href.indexOf('category')>0) {
             	 home.category();
+            	 home.catInit();
              }
          }
  }
