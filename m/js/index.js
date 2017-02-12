@@ -47,13 +47,6 @@
                  bi: 0.484
              });
              
-             $('form.home-search').on('submit',function(e){ //表单提交
-            	 
-            	 var wo = $('input[name=keyword]').val()
-        	     if (wo == null || wo == "") {
-        	        alert("请输入关键字");
-        	     }
-             })
          },
          init: function () {
              home.index();

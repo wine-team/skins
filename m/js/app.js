@@ -992,7 +992,7 @@ if (!window.af || "function" !== typeof af) {
     })
 };
 
-function se(obj) {
+var se = function (obj) {
 	
     var wo = obj.keyword.value;
     if (wo == null || wo == "") {
@@ -1001,7 +1001,8 @@ function se(obj) {
     }
 };
 
-function getAttr(id) {
+var getAttr = function (id) {
+	
     var fipt = $("#" + id).find("input");
     var ilen = fipt.length;
     var spec_arr = new Array();
@@ -1043,11 +1044,11 @@ for (s = 0; s < 4; s++) {
     }
 }
 
-function pageJump() {
+var pageJump = function () {
     location.href = $("#pageIndex").val()
 }
 
-function goback() {
+var goback = function () {
     if (ref) {
         history.go(-1);
     } else {
@@ -1055,18 +1056,28 @@ function goback() {
     }
 }
 
-function lazyload() {
+var lazyload = function () {
 	$('img.lzay').lazyload();
 }
 
-function gotop() {
+var gotop = function () {
 	$('html,body').stop().animate({scrollTop:'0px'},300);
 }
 
-function hostUrl() {
+var hostUrl = function () {
 	return location.protocol+'//'+location.host;
 }
 
+var gtns = function () {
+	$("#gtn").toggle();
+}
+
+window.onload = function() {
+	
+	$("#gtn").bind("click",function(){
+		$(this).hide();
+	});
+}
 
 if (!navigator.cookieEnabled) {
     $("body").prepend("<p style='background-color:#ffa627' class='alC lh30 c3'>您的浏览器禁用了cookie，会导致购物车、登录等操作异常,请启用cookie或更换浏览器</p>");
