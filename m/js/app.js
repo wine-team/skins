@@ -993,6 +993,7 @@ if (!window.af || "function" !== typeof af) {
 };
 
 function se(obj) {
+	
     var wo = obj.keyword.value;
     if (wo == null || wo == "") {
         alert("请输入关键字");
@@ -1017,14 +1018,18 @@ function getAttr(id) {
 var Validator = {
     isMobile: function (s) {
         return this.test(s, /(^0{0,1}1[3|4|5|6|7|8|9][0-9]{9}$)/)
-    }, isEmail: function (a) {
+    }, 
+    isEmail: function (a) {
         var b = "^[-!#$%&'*+\\./0-9=?A-Z^_`a-z{|}~]+@[-!#$%&'*+\\/0-9=?A-Z^_`a-z{|}~]+.[-!#$%&'*+\\./0-9=?A-Z^_`a-z{|}~]+$";
         return this.test(a, b);
-    }, isNumber: function (s, d) {
+    }, 
+    isNumber: function (s, d) {
         return !isNaN(s.nodeType == 1 ? s.value : s) && (!d || !this.test(s, "^-?[0-9]*\\.[0-9]*$"))
-    }, isEmpty: function (s) {
+    }, 
+    isEmpty: function (s) {
         return !jQuery.isEmptyObject(s)
-    }, test: function (s, p) {
+    }, 
+    test: function (s, p) {
         s = s.nodeType == 1 ? s.value : s;
         return new RegExp(p).test(s)
     }
@@ -1050,6 +1055,10 @@ function goback() {
     }
 }
 
+function lazyload() {
+	$('img.lzay').lazyload();
+}
+
 function gotop() {
 	$('html,body').stop().animate({scrollTop:'0px'},300);
 }
@@ -1058,40 +1067,7 @@ function hostUrl() {
 	return location.protocol+'//'+location.host;
 }
 
-function lazyload(option) {
-    var iom = 0;
-    var settings = {
-        defObj: null,
-        defHeight: 0
-    };
-    settings = $.extend(settings, option || {});
-    var defHeight = settings.defHeight,
-        defObj = (typeof settings.defObj == "object") ? settings.defObj.find("img") : $(settings.defObj).find("img");
-    var pageTop = function () {
-        return document.documentElement.clientHeight + Math.max(document.documentElement.scrollTop, document.body.scrollTop) - settings.defHeight;
-    };
-    var removeL = function () {
-        $(window).unbind("scroll", imgLoad);
-    }
-    var mL = defObj.length;
-    var imgLoad = function () {
-        defObj.each(function () {
-            var tmtop = $(this).offset().top;
-            if (tmtop <= pageTop()) {
-                var src2 = $(this).attr("src2");
-                if (src2) {
-                    $(this).attr("src", src2).removeAttr("src2");
-                    iom++;
-                    if (iom >= mL) {
-                        removeL();
-                    }
-                }
-            }
-        });
-    };
-    imgLoad();
-    $(window).bind("scroll", imgLoad);
-}
+
 if (!navigator.cookieEnabled) {
     $("body").prepend("<p style='background-color:#ffa627' class='alC lh30 c3'>您的浏览器禁用了cookie，会导致购物车、登录等操作异常,请启用cookie或更换浏览器</p>");
 }
