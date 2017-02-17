@@ -1,8 +1,7 @@
 ﻿var jian = 100;
-var page = "1";
-var total = "5";
-var nurl = "man/feijibei/t-o-p2.html?is_ajax=1&p=";
-lazyload({defObj:"#glist"});
+var page = 1;
+var total = parseInt($('.pg-infor .pg-total').text());
+var nurl = location.origin+'/sex/home/ajaxSeach?pg=';
 var cvon = 0;
 var mo = 0;
 var isf = 0;
@@ -13,14 +12,11 @@ var glist = $("#glist");
 var lod = $("#lod");
 var pg = $("#pgnum");
 var gl = $("#glist");
-var nxpage = $("#nxpage");
-var prpage = $("#prpage");
 var npage = parseInt(page) + 1;
 var yem = $("#yem");
-var pagesb = $("#pages");
 var hpy = true;
 var t_sl = $("#t_sl");
-
+lazy();
 if (t_sl.length > 1) {
     t_sl.focus(function () {
         $("#qxs").show();
@@ -76,30 +72,22 @@ function loadData() {
         return;
     }
     isf = 1;
-    lod.show();
     $.ajax({
         url: nurl + npage,
         async: false,
         dataType: "html",
+        beforeSend:function(){
+        	lod.show();
+        },
         success: function (c) {
             lod.hide();
             gl.append(c);
             isf = 0;
             yem.text(npage + "/" + total);
             npage++;
-            if (hpy) {
-                //pg.text(npage+"/"+total);
-                pagesb.hide();
-                //if(npage==total){nxpage.attr("href","javascript:;").text("最后一页了");}
-                hpy = false;
-            }
-
+            lazy();
         }
     });
-}
-
-if (page == 1) {
-    prpage.attr("href", "javascript:;").text("第一页了");
 }
 
 yem.click(function () {
