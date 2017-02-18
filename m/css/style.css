@@ -205,8 +205,8 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .rxl{height:20px;width:1px;overflow:hidden;background-color:#e7e7e7;position:absolute;right:0;top:1.3rem;}
 .jg{background-position:right 1.7rem;padding-right:1.2rem;}
 .von{background-position:50% -2.4rem;}
-.sxon .jg{background-image:url(l_p2.png);}
-.sxon .pup{background-image:url(l_p3.png);}
+.sxon .jg{background-image:url(../images/l_p2.png);}
+.sxon .pup{background-image:url(../images/l_p3.png);}
 .i_new,.i_best,.i_hot,.i_pro,.i_video{display:inline-block;line-height:15px;background-color:#3dc906;color:#fff;padding:0 3px;font-size:10px;margin-left:2px;border-radius:2px;}
 .i_best{background-color:#7902e6;}
 .i_hot{background-color:#dd2727;}

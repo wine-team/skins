@@ -1,7 +1,8 @@
 ﻿var jian = 100;
 var page = 1;
 var total = parseInt($('.pg-infor .pg-total').text());
-var nurl = location.origin+'/sex/home/ajaxSeach?pg=';
+var urlParam = $('.pg-infor').attr('url-param');
+var nurl = location.origin+'/sex/home/ajaxSeach?'+urlParam+'&pg=';
 var cvon = 0;
 var mo = 0;
 var isf = 0;
