@@ -219,12 +219,12 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 #bpage p{text-align:center;background:#fff url(fv.png) 90% 50% no-repeat;font-size:1.4rem;line-height:3.8rem;border:1px solid #ccc;box-shadow:0 3px 3px #D7D7D7 inset;}
 
 /*goods*≤˙∆∑œÍ«È“≥ */
-.header{border-bottom:1px solid #910101;}
+.goods-header .header{border-bottom:1px solid #910101;}
 .bkw{word-break:break-all;padding:8px 10px 0 10px;}
 .se_p{padding:0 10px 10px 10px;overflow:hidden;}
 .gfs{min-height:320px;}
 .des{padding:5px 0;}
-.des img{background:url(http://img.qw.cc/mobile/css/load.gif) 50% 50% no-repeat;}
+.des img{background:url(../images/load.gif) 50% 50% no-repeat;}
 #preview{width:10rem;height:10rem;position:absolute;left:1rem;top:-4rem;border:2px solid #fff;}
 .gt_xx{padding:0 1rem 2.4rem 11rem;line-height:2rem;margin-bottom:1rem;border-bottom:1px solid #e5e5e5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tc_box{margin-bottom:1rem;background-color:#fff;border:1px solid #e5e5e5;border-width:1px 0;padding:0.8rem 10.5rem 0.4rem 0.8rem;overflow:hidden;position:relative;}
