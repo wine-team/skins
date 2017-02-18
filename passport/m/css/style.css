@@ -81,7 +81,7 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .header h2,.header h1{width:100%;text-align:center;font-size:1.6rem;color:#fff;}
 .b_l,.b_r,#qxs{position:absolute;top:0;font-size:1.4rem;color:#e9cbcb;min-width:3.2rem;display:block;height:4.4rem;}
 .b_r,#qxs{right:0;text-align:right;padding-right:1rem;}
-.b_l{left:0;background:url(backs.png) 1rem 50% no-repeat;padding-left:1rem;background-size:1.1rem 2rem;}
+.b_l{left:0;background:url(../images/backs.png) 1rem 50% no-repeat;padding-left:1rem;background-size:1.1rem 2rem;}
 .vl{padding:0 5px;}
 .fot{padding:10px 0;text-align:center;}
 .nav{width:100%;overflow:hidden;}
