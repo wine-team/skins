@@ -224,7 +224,7 @@ input[type="text"],input[type="password"],input[type="number"],input[type="tel"]
 .se_p{padding:0 10px 10px 10px;overflow:hidden;}
 .gfs{min-height:320px;}
 .des{padding:5px 0;}
-.des img{background:url(../images/load.gif) 50% 50% no-repeat;}
+.des img{background:url(../images/load.gif) 50% 50% no-repeat;width:100%;}
 #preview{width:10rem;height:10rem;position:absolute;left:1rem;top:-4rem;border:2px solid #fff;}
 .gt_xx{padding:0 1rem 2.4rem 11rem;line-height:2rem;margin-bottom:1rem;border-bottom:1px solid #e5e5e5;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .tc_box{margin-bottom:1rem;background-color:#fff;border:1px solid #e5e5e5;border-width:1px 0;padding:0.8rem 10.5rem 0.4rem 0.8rem;overflow:hidden;position:relative;}
@@ -373,14 +373,14 @@ a.ab{background-color:#999;color:#fff;}
 .bigm{padding:0 6px;}
 .bigm .gm{border:1px solid #f5f5f5;}
 .bigm .gt{color:#444;}
-.heng{white-space:nowrap;width:100%;height:170px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+.heng{white-space:nowrap;width:100%;height:170px;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;}
 .henga{display:inline-block;height:170px;width:130px;margin-right:0.5rem;overflow:hidden;line-height:16px;background-color:#fff;font-size:12px;}
 @media only screen and (max-width:320px){.da{width:25%;}}
 
 
 /***·ÖÀà */
 .category {overflow:hidden;}
-.category .t_se{left:6rem;right:6rem}
+.category .t_se{left:6rem;right:6rem;}
 .category .c_l{width:30%;background-color:#f2f2f2;min-height:300px;position:relative;overflow:hidden;}
 .category .c_r{width:70%;background-color:#fff;overflow:hidden;min-height:300px;position:relative;}
 .category .c_lul{position:relative;width:100%;padding-bottom:4rem;}
