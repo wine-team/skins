@@ -149,6 +149,10 @@ var home = {
 				 	 $('.top-active').hide();
 				 }
 			 }
+
+			$("#erma").click(function(){
+				$(this).remove();
+			});
 		 },
 		 
 		 'search':function(){
@@ -642,7 +646,8 @@ var home = {
 }
 
 jQuery(function(){
-	home.initial();
+	home.initial(); 
+	hometg(); // 首页首席情趣顾问
 })
 
 var ac = 1;
@@ -757,4 +762,16 @@ function ajaxRecommend(pg,from) {
 			 }
 		 }
    })
+}
+
+/**
+ * 首页底部推广情趣专家
+ */
+function hometg() {
+	
+	 setTimeout(function(){
+		$("#erma").animate({
+			right:"35px"
+		},500);
+	 },1000);
 }
